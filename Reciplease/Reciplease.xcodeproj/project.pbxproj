@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		216F350176A2BF9B120251BE /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9377CB23BE5C0BD56FF00A53 /* Pods_Reciplease.framework */; };
 		AFE8EDAC996054B2D064BD6A /* Pods_RecipleaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BBC7DA00765699833EA3EC /* Pods_RecipleaseTests.framework */; };
+		F6225203238EC69E008CCDBB /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6225202238EC69E008CCDBB /* ShadowView.swift */; };
+		F6225205238EC75C008CCDBB /* LinearGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6225204238EC75C008CCDBB /* LinearGradientLayer.swift */; };
 		F689EC38237C37C000747170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC37237C37C000747170 /* AppDelegate.swift */; };
 		F689EC3D237C37C000747170 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F689EC3B237C37C000747170 /* Reciplease.xcdatamodeld */; };
 		F689EC41237C37C100747170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F689EC40237C37C100747170 /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 		87BAC4E9159BBBD9ABD3C42E /* Pods-RecipleaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipleaseTests.release.xcconfig"; path = "Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		9377CB23BE5C0BD56FF00A53 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B152BFAC10112DB0D2674FA3 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
+		F6225202238EC69E008CCDBB /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		F6225204238EC75C008CCDBB /* LinearGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearGradientLayer.swift; sourceTree = "<group>"; };
 		F689EC34237C37C000747170 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F689EC37237C37C000747170 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F689EC3C237C37C000747170 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
@@ -110,6 +114,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F6225206238EC782008CCDBB /* ShadowView */ = {
+			isa = PBXGroup;
+			children = (
+				F6225202238EC69E008CCDBB /* ShadowView.swift */,
+				F6225204238EC75C008CCDBB /* LinearGradientLayer.swift */,
+			);
+			path = ShadowView;
+			sourceTree = "<group>";
+		};
 		F689EC2B237C37BF00747170 = {
 			isa = PBXGroup;
 			children = (
@@ -155,8 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				F689EC60237C4AB200747170 /* Context.swift */,
-				F689EC37237C37C000747170 /* AppDelegate.swift */,
 				F689EC62237C4ACD00747170 /* AppCoordinator.swift */,
+				F689EC37237C37C000747170 /* AppDelegate.swift */,
 				F689EC5C237C433900747170 /* Main.storyboard */,
 			);
 			path = Sources;
@@ -205,6 +218,7 @@
 		F689EC6F237C5C8D00747170 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				F6225206238EC782008CCDBB /* ShadowView */,
 				F689EC77237C5D3500747170 /* FavoriteViewController.swift */,
 				F689EC75237C5D1900747170 /* FavoriteViewModel.swift */,
 				F689EC79237C61F100747170 /* RecipeDetail */,
@@ -405,6 +419,8 @@
 				F689EC61237C4AB200747170 /* Context.swift in Sources */,
 				F689EC73237C5CC200747170 /* SearchViewModel.swift in Sources */,
 				F689EC7B237C620B00747170 /* RecipeDetailViewController.swift in Sources */,
+				F6225203238EC69E008CCDBB /* ShadowView.swift in Sources */,
+				F6225205238EC75C008CCDBB /* LinearGradientLayer.swift in Sources */,
 				F689EC3D237C37C000747170 /* Reciplease.xcdatamodeld in Sources */,
 				F689EC38237C37C000747170 /* AppDelegate.swift in Sources */,
 				F689EC6A237C4DD400747170 /* SearchCoordinator.swift in Sources */,
@@ -574,7 +590,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lauriane.haydari.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -595,7 +611,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lauriane.haydari.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
