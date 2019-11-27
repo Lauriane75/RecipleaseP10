@@ -21,8 +21,4 @@ final class RecipeDetailViewModel {
       init(delegate: RecipeDetailViewModelDelegate?) {
           self.delegate = delegate
       }
-
-    
-    
-    
 }

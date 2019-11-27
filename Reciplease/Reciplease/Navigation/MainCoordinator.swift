@@ -33,12 +33,16 @@ fileprivate class TabBarSource: TabBarSourceType {
         UINavigationController(nibName: nil, bundle: nil),
         UINavigationController(nibName: nil, bundle: nil)    ]
     
-    let searchItem = UIImage(named: "search-icon")
-    let favoriteItem = UIImage(named: "favorite-icon")
-
+//    let searchItem = UIImage(named: "search-icon")
+//    let favoriteItem = UIImage(named: "favorite-icon")
+//
+//    init() {
+//        self[.search].tabBarItem.image = searchItem
+//        self[.favorite].tabBarItem.image = favoriteItem
+//    }
     init() {
-        self[.search].tabBarItem.image = searchItem
-        self[.favorite].tabBarItem.image = favoriteItem
+        self[.search].tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
+        self[.favorite].tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
     }
 }
 
