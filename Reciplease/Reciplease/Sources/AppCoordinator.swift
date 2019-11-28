@@ -14,15 +14,12 @@ final class AppCoordinator {
 
     private unowned var appDelegate: AppDelegate
 
-    private let context: Context
-
     private var mainCoordinator: MainCoordinator?
 
     // MARK: - Initializer
 
-    init(appDelegate: AppDelegate, context: Context) {
+    init(appDelegate: AppDelegate) {
         self.appDelegate = appDelegate
-        self.context = context
     }
 
     // MARK: - Start
@@ -37,7 +34,6 @@ final class AppCoordinator {
             return
         }
         
-
         showMain()
     }
 
@@ -45,7 +41,7 @@ final class AppCoordinator {
 
     private func showMain() {
 
-        mainCoordinator = MainCoordinator(presenter: appDelegate.window!, context: context)
+        mainCoordinator = MainCoordinator(presenter: appDelegate.window!)
         UITabBar.appearance().tintColor = UIColor(named: "UITabBar.item.tintColor")
         mainCoordinator?.start()
     }

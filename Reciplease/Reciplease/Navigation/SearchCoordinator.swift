@@ -30,7 +30,7 @@ final class SearchCoordinator {
     }
 
     private func showHome() {
-        let viewController = screens.createMainViewController()
+        let viewController = screens.createSearchViewController()
         presenter.viewControllers = [viewController]
     }
 }

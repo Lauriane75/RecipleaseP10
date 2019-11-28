@@ -25,7 +25,6 @@ final class FavoriteCoordinator {
 
     // MARK: - Coodinator
 
-
     func start() {
         showFavorite()
     }
@@ -38,23 +37,24 @@ final class FavoriteCoordinator {
     
 }
 
-extension FavoriteCoordinator: RecipeDetailViewModelDelegate {
-    func didPressRecipeDetailView() {
-        
-    }
-    
-   
-    
-}
-
-
 extension FavoriteCoordinator: FavoriteViewModelDelegate {
+    
     func selectRecipe() {
+
     }
-    
-  
-    
 }
+
+extension FavoriteCoordinator: RecipeDetailViewModelDelegate {
+    
+    func didPressRecipeDetailView() {
+
+    }
+
+}
+
+    
+
+
 
 
 

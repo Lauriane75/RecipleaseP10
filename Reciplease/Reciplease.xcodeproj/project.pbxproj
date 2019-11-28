@@ -11,13 +11,16 @@
 		AFE8EDAC996054B2D064BD6A /* Pods_RecipleaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BBC7DA00765699833EA3EC /* Pods_RecipleaseTests.framework */; };
 		F6225203238EC69E008CCDBB /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6225202238EC69E008CCDBB /* ShadowView.swift */; };
 		F6225205238EC75C008CCDBB /* LinearGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6225204238EC75C008CCDBB /* LinearGradientLayer.swift */; };
+		F622520A238FB4F8008CCDBB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6225209238FB4F8008CCDBB /* CoreDataStack.swift */; };
+		F622520C238FB604008CCDBB /* TabBarSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F622520B238FB604008CCDBB /* TabBarSource.swift */; };
+		F622520E238FBC2A008CCDBB /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F622520D238FBC2A008CCDBB /* SearchDataSource.swift */; };
+		F6225210238FBCC9008CCDBB /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F622520F238FBCC9008CCDBB /* SearchTableViewCell.swift */; };
 		F689EC38237C37C000747170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC37237C37C000747170 /* AppDelegate.swift */; };
 		F689EC3D237C37C000747170 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F689EC3B237C37C000747170 /* Reciplease.xcdatamodeld */; };
 		F689EC41237C37C100747170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F689EC40237C37C100747170 /* Assets.xcassets */; };
 		F689EC47237C37C100747170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F689EC45237C37C100747170 /* LaunchScreen.storyboard */; };
 		F689EC52237C37C100747170 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC51237C37C100747170 /* RecipleaseTests.swift */; };
 		F689EC5D237C433900747170 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F689EC5C237C433900747170 /* Main.storyboard */; };
-		F689EC61237C4AB200747170 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC60237C4AB200747170 /* Context.swift */; };
 		F689EC63237C4ACE00747170 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC62237C4ACD00747170 /* AppCoordinator.swift */; };
 		F689EC66237C4B0100747170 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC65237C4B0100747170 /* Screens.swift */; };
 		F689EC68237C4B6600747170 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC67237C4B6600747170 /* MainCoordinator.swift */; };
@@ -50,6 +53,10 @@
 		B152BFAC10112DB0D2674FA3 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
 		F6225202238EC69E008CCDBB /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		F6225204238EC75C008CCDBB /* LinearGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearGradientLayer.swift; sourceTree = "<group>"; };
+		F6225209238FB4F8008CCDBB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F622520B238FB604008CCDBB /* TabBarSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSource.swift; sourceTree = "<group>"; };
+		F622520D238FBC2A008CCDBB /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
+		F622520F238FBCC9008CCDBB /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		F689EC34237C37C000747170 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F689EC37237C37C000747170 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F689EC3C237C37C000747170 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
@@ -60,7 +67,6 @@
 		F689EC51237C37C100747170 /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		F689EC53237C37C100747170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F689EC5C237C433900747170 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F689EC60237C4AB200747170 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		F689EC62237C4ACD00747170 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F689EC65237C4B0100747170 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		F689EC67237C4B6600747170 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -167,9 +173,9 @@
 		F689EC5E237C4A8F00747170 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				F689EC60237C4AB200747170 /* Context.swift */,
-				F689EC62237C4ACD00747170 /* AppCoordinator.swift */,
 				F689EC37237C37C000747170 /* AppDelegate.swift */,
+				F6225209238FB4F8008CCDBB /* CoreDataStack.swift */,
+				F689EC62237C4ACD00747170 /* AppCoordinator.swift */,
 				F689EC5C237C433900747170 /* Main.storyboard */,
 			);
 			path = Sources;
@@ -179,8 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				F689EC40237C37C100747170 /* Assets.xcassets */,
-				F689EC48237C37C100747170 /* Info.plist */,
 				F689EC45237C37C100747170 /* LaunchScreen.storyboard */,
+				F689EC48237C37C100747170 /* Info.plist */,
 			);
 			path = Ressources;
 			sourceTree = "<group>";
@@ -188,6 +194,7 @@
 		F689EC64237C4AF100747170 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F622520B238FB604008CCDBB /* TabBarSource.swift */,
 				F689EC65237C4B0100747170 /* Screens.swift */,
 				F689EC67237C4B6600747170 /* MainCoordinator.swift */,
 				F689EC69237C4DD400747170 /* SearchCoordinator.swift */,
@@ -209,6 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				F689EC70237C5CAB00747170 /* SearchViewController.swift */,
+				F622520D238FBC2A008CCDBB /* SearchDataSource.swift */,
+				F622520F238FBCC9008CCDBB /* SearchTableViewCell.swift */,
 				F689EC72237C5CC200747170 /* SearchViewModel.swift */,
 				F689EC74237C5D0400747170 /* Model */,
 			);
@@ -412,15 +421,18 @@
 			files = (
 				F689EC6C237C4DDF00747170 /* FavoriteCoordinator.swift in Sources */,
 				F689EC7D237C621C00747170 /* RecipeDetailViewModel.swift in Sources */,
+				F622520C238FB604008CCDBB /* TabBarSource.swift in Sources */,
 				F689EC63237C4ACE00747170 /* AppCoordinator.swift in Sources */,
 				F689EC68237C4B6600747170 /* MainCoordinator.swift in Sources */,
 				F689EC71237C5CAB00747170 /* SearchViewController.swift in Sources */,
 				F689EC66237C4B0100747170 /* Screens.swift in Sources */,
-				F689EC61237C4AB200747170 /* Context.swift in Sources */,
 				F689EC73237C5CC200747170 /* SearchViewModel.swift in Sources */,
+				F622520A238FB4F8008CCDBB /* CoreDataStack.swift in Sources */,
 				F689EC7B237C620B00747170 /* RecipeDetailViewController.swift in Sources */,
+				F6225210238FBCC9008CCDBB /* SearchTableViewCell.swift in Sources */,
 				F6225203238EC69E008CCDBB /* ShadowView.swift in Sources */,
 				F6225205238EC75C008CCDBB /* LinearGradientLayer.swift in Sources */,
+				F622520E238FBC2A008CCDBB /* SearchDataSource.swift in Sources */,
 				F689EC3D237C37C000747170 /* Reciplease.xcdatamodeld in Sources */,
 				F689EC38237C37C000747170 /* AppDelegate.swift in Sources */,
 				F689EC6A237C4DD400747170 /* SearchCoordinator.swift in Sources */,
@@ -509,7 +521,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -563,7 +575,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -583,6 +595,7 @@
 				DEVELOPMENT_TEAM = 568UZNMWK9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Reciplease/Ressources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -604,6 +617,7 @@
 				DEVELOPMENT_TEAM = 568UZNMWK9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Reciplease/Ressources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

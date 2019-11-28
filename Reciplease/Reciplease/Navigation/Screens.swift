@@ -12,12 +12,6 @@ import UIKit
 final class Screens {
 
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: Screens.self))
-
-    let context: Context
-
-    init(context: Context) {
-        self.context = context
-    }
 }
 
 // MARK : - Main
@@ -27,7 +21,7 @@ protocol SearchViewControllerDelegate: class {
 
 extension Screens {
 
-    func createMainViewController() -> UIViewController {
+    func createSearchViewController() -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         let viewModel = SearchViewModel()
         viewController.viewModel = viewModel
@@ -47,7 +41,7 @@ protocol RecipeDetailViewControllerDelegate: class {
 extension Screens {
     func createFavoriteViewController(delegate: FavoriteViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
-        let viewModel = FavoriteViewModel(delegate: delegate!)
+       let viewModel = FavoriteViewModel(delegate: delegate!)
         viewController.viewModel = viewModel
         return viewController
     }

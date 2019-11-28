@@ -8,44 +8,6 @@
 
 import UIKit
 
-enum ViewControllerItem: Int {
-    case search = 0
-    case favorite
-}
-
-protocol TabBarSourceType {
-    var items: [UINavigationController] { get set }
-}
-
-extension TabBarSourceType {
-    subscript(item: ViewControllerItem) -> UINavigationController {
-        get {
-            guard !items.isEmpty, item.rawValue < items.count, item.rawValue >= 0 else {
-                fatalError("Item does not exists")
-            }
-            return items[item.rawValue]
-        }
-    }
-}
-
-fileprivate class TabBarSource: TabBarSourceType {
-    var items: [UINavigationController] = [
-        UINavigationController(nibName: nil, bundle: nil),
-        UINavigationController(nibName: nil, bundle: nil)    ]
-    
-//    let searchItem = UIImage(named: "search-icon")
-//    let favoriteItem = UIImage(named: "favorite-icon")
-//
-//    init() {
-//        self[.search].tabBarItem.image = searchItem
-//        self[.favorite].tabBarItem.image = favoriteItem
-//    }
-    init() {
-        self[.search].tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
-        self[.favorite].tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-    }
-}
-
 final class MainCoordinator: NSObject, UITabBarControllerDelegate {
 
     private let presenter: UIWindow
@@ -62,10 +24,10 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
 
     // MARK: - Init
 
-    init(presenter: UIWindow, context: Context) {
+    init(presenter: UIWindow) {
         self.presenter = presenter
 
-        self.screens = Screens(context: context)
+        self.screens = Screens()
 
         tabBarController = UITabBarController(nibName: nil, bundle: nil)
         tabBarController.viewControllers = tabBarSource.items
@@ -78,10 +40,10 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
 
     func start() {
         presenter.rootViewController = tabBarController
-        showMainView()
+        showSearchView()
     }
 
-    private func showMainView() {
+    private func showSearchView() {
         searchCoordinator = SearchCoordinator(presenter: tabBarSource[.search], screens: screens)
         searchCoordinator?.start()
     }
@@ -101,7 +63,7 @@ extension MainCoordinator {
 
         switch item {
         case .search:
-            showMainView()
+            showSearchView()
         case .favorite:
             showfavoriteView()
         }
