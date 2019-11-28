@@ -15,6 +15,7 @@
 		F622520C238FB604008CCDBB /* TabBarSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F622520B238FB604008CCDBB /* TabBarSource.swift */; };
 		F622520E238FBC2A008CCDBB /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F622520D238FBC2A008CCDBB /* SearchDataSource.swift */; };
 		F6225210238FBCC9008CCDBB /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F622520F238FBCC9008CCDBB /* SearchTableViewCell.swift */; };
+		F6225213238FC7B4008CCDBB /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6225212238FC7B4008CCDBB /* Alert.swift */; };
 		F689EC38237C37C000747170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC37237C37C000747170 /* AppDelegate.swift */; };
 		F689EC3D237C37C000747170 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F689EC3B237C37C000747170 /* Reciplease.xcdatamodeld */; };
 		F689EC41237C37C100747170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F689EC40237C37C100747170 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		F622520B238FB604008CCDBB /* TabBarSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSource.swift; sourceTree = "<group>"; };
 		F622520D238FBC2A008CCDBB /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
 		F622520F238FBCC9008CCDBB /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		F6225212238FC7B4008CCDBB /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		F689EC34237C37C000747170 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F689EC37237C37C000747170 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F689EC3C237C37C000747170 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 				F6225204238EC75C008CCDBB /* LinearGradientLayer.swift */,
 			);
 			path = ShadowView;
+			sourceTree = "<group>";
+		};
+		F6225211238FC79E008CCDBB /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				F6225212238FC7B4008CCDBB /* Alert.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		F689EC2B237C37BF00747170 = {
@@ -206,6 +216,7 @@
 		F689EC6D237C5C7700747170 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F6225211238FC79E008CCDBB /* Alert */,
 				F689EC6E237C5C8700747170 /* Search */,
 				F689EC6F237C5C8D00747170 /* Favorite */,
 			);
@@ -437,6 +448,7 @@
 				F689EC38237C37C000747170 /* AppDelegate.swift in Sources */,
 				F689EC6A237C4DD400747170 /* SearchCoordinator.swift in Sources */,
 				F689EC78237C5D3500747170 /* FavoriteViewController.swift in Sources */,
+				F6225213238FC7B4008CCDBB /* Alert.swift in Sources */,
 				F689EC76237C5D1900747170 /* FavoriteViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

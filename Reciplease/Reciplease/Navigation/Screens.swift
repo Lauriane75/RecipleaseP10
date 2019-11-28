@@ -21,9 +21,9 @@ protocol SearchViewControllerDelegate: class {
 
 extension Screens {
 
-    func createSearchViewController() -> UIViewController {
+    func createSearchViewController(delegate: SearchViewModelDelegate?, alertDelegate: AlertDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        let viewModel = SearchViewModel()
+        let viewModel = SearchViewModel(delegate: delegate, alertDelegate: alertDelegate)
         viewController.viewModel = viewModel
         return viewController
     }

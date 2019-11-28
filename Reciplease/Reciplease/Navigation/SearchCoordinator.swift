@@ -30,12 +30,25 @@ final class SearchCoordinator {
     }
 
     private func showHome() {
-        let viewController = screens.createSearchViewController()
+        let viewController = screens.createSearchViewController(delegate: self, alertDelegate: self as? AlertDelegate)
         presenter.viewControllers = [viewController]
     }
+    
+    private func showRecipes(ingredient: String) {
+        
+    }
+    
+    
 }
 
-extension SearchCoordinator: SearchViewControllerDelegate {
+extension SearchCoordinator: SearchViewModelDelegate {
+    
+    func didSelectIngredient(ingredient: String) {
+//        showRecipes(ingredient: ingredients)
+    }
+    func errorNoRecipeFound(for type: AlertType) {
+//        showAlert(for: type)
+    }
 
 }
 
