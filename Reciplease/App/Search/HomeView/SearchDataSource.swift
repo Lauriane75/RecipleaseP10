@@ -13,6 +13,7 @@ final class SearchDataSource: NSObject, UITableViewDataSource {
     private var ingredients: [String] = []
     
     func update(with ingredients: [String]) {
+        print("ingredients : \(ingredients)")
         self.ingredients = ingredients
     }
     
@@ -21,8 +22,9 @@ final class SearchDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.rowHeight = 50
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientTableViewCell", for: indexPath)as! SearchTableViewCell
+        tableView.rowHeight = 30
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientTableViewCell", for: indexPath) as!
+        SearchTableViewCell
         cell.updateCell(with: ingredients, row: indexPath.row)
         return cell
     }

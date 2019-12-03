@@ -11,6 +11,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     // MARK: - Outlets
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -23,7 +24,7 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var ingredientListLabel: UILabel!
     
-    @IBOutlet weak var searchForRecipesButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     @IBOutlet weak var ingredientListTableView: UITableView!
     
@@ -81,26 +82,46 @@ class SearchViewController: UIViewController {
             self?.clearButton.setTitle(text, for: .normal)
         }
         viewModel.searchButtonIsHidden = { [weak self] state in
-            self?.searchForRecipesButton.isHidden = state
+            self?.searchButton.isHidden = state
         }
         viewModel.searchButton = { [weak self] text in
-            self?.searchForRecipesButton.setTitle(text, for: .normal)
+            self?.searchButton.setTitle(text, for: .normal)
         }
+//        viewModel.ingredients = { [weak self] text in
+//            self?.titleLabel.text = "\(text)"
+//        }
         viewModel.ingredients = { [weak self] item in
+            print("item = \(item)")
             DispatchQueue.main.async {
                 self?.searchDataSource.update(with: item)
                 self?.ingredientListTableView.reloadData()
             }
         }
-         
     }
+    
+    // MARK: - View actions
+
+    @IBAction func didPressAddButton(_ sender: Any) {
+        guard let newIngredient = self.searchTextField.text else { return }
+        print("\(newIngredient)")
+        viewModel.didPressAdd(ingredient: newIngredient)
+    }
+    
+    @IBAction func didPressClearButton(_ sender: Any) {
+        viewModel.didPressClear()
+    }
+    
+    @IBAction func didPressSearchButton(_ sender: Any) {
+        viewModel.didPressSearchForRecipes()
+    }
+    
     
     // MARK: - Private Files
     
     fileprivate func elementCustom() {
         addButton.layer.cornerRadius = 15
         clearButton.layer.cornerRadius = 15
-        searchForRecipesButton.layer.cornerRadius = 20
+        searchButton.layer.cornerRadius = 20
     }
     
     @objc private func hideKeyBoard() {
@@ -109,7 +130,7 @@ class SearchViewController: UIViewController {
         addButton.resignFirstResponder()
         clearButton.resignFirstResponder()
         ingredientListLabel.resignFirstResponder()
-        searchForRecipesButton.resignFirstResponder()
+        searchButton.resignFirstResponder()
         ingredientListTableView.resignFirstResponder()
     }
     

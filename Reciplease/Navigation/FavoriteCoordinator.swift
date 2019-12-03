@@ -34,7 +34,6 @@ final class FavoriteCoordinator {
         let viewController = screens.createFavoriteViewController(delegate: self)
         presenter.viewControllers = [viewController]
     }
-    
 }
 
 extension FavoriteCoordinator: FavoriteViewModelDelegate {
@@ -49,7 +48,6 @@ extension FavoriteCoordinator: RecipeDetailViewModelDelegate {
     func didPressRecipeDetailView() {
 
     }
-
 }
 
     

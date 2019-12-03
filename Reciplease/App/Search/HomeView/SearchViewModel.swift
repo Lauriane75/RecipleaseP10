@@ -25,8 +25,9 @@ final class SearchViewModel {
        
        private var ingredientList: [String] = [] {
            didSet {
-            guard ingredientList != [] else
-            {self.alertDelegate?.displayAlert(type: .errorWrongIngredient); return}
+            guard ingredientList != [] else {
+//                self.alertDelegate?.displayAlert(type: .errorWrongIngredient);
+                return }
                ingredients?(ingredientList)
            }
        }
@@ -68,6 +69,24 @@ final class SearchViewModel {
         clearButton?("Clear")
         searchButton?("Search")
         searchButtonIsHidden?(true)
+        ingredients?(ingredientList)
+    }
+    
+    func didPressAdd(ingredient: String) {
+        guard ingredient != "" else { return }
+        ingredientList.append(ingredient)
+        ingredientTextField?("")
+        searchButtonIsHidden?(false)
+    }
+    
+    func didPressClear() {
+        ingredientList = [""]
+        searchButtonIsHidden?(true)
+    }
+    
+    func didPressSearchForRecipes() {
+        let ingredientListString = ingredientList.joined(separator:" ")
+        self.delegate?.didSelectIngredient(ingredient: ingredientListString)
     }
     
 }

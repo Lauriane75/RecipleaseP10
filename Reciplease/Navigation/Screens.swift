@@ -34,7 +34,26 @@ extension Screens {
 protocol FavoriteViewControllerDelegate: class {
 }
 
+protocol ResultRecipesViewControllerDelegate: class {
+}
+
 protocol RecipeDetailViewControllerDelegate: class {
+}
+
+extension Screens {
+    func createResultRecipesViewController(ingredientSelected: String, delegate: ResultRecipesViewModelDelegate?, alertDelegate: AlertDelegate?) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ResultRecipesViewController") as! ResultRecipesViewController
+        let viewModel = ResultRecipesViewModel(delegate: delegate!, alertDelegate: alertDelegate)
+        viewController.viewModel = viewModel
+        return viewController
+    }
+    
+    func createRecipeDetailViewController(delegate: RecipeDetailViewModelDelegate?) -> UIViewController {
+           let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
+           let viewModel = RecipeDetailViewModel(delegate: delegate)
+           viewController.viewModel = viewModel
+           return viewController
+    }
 }
 
 
@@ -45,13 +64,18 @@ extension Screens {
         viewController.viewModel = viewModel
         return viewController
     }
+}
 
 
-    func createRecipeDetailViewController(delegate: RecipeDetailViewModelDelegate?) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
-        let viewModel = RecipeDetailViewModel(delegate: delegate)
-        viewController.viewModel = viewModel
-        return viewController
+// MARK: - Alert
+
+extension Screens {
+    func createAlertView(for type: AlertType) -> UIAlertController? {
+            let alert = Alert(type: type)
+            let alertViewController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .actionSheet)
+            let yesButton = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertViewController.addAction(yesButton)
+            return alertViewController
     }
 }
 

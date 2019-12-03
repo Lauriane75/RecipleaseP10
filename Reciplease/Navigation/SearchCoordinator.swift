@@ -35,7 +35,13 @@ final class SearchCoordinator {
     }
     
     private func showRecipes(ingredient: String) {
-        
+        let viewController = screens.createResultRecipesViewController(ingredientSelected: ingredient, delegate: self as? ResultRecipesViewModelDelegate, alertDelegate: self as? AlertDelegate)
+        presenter.pushViewController(viewController, animated: true)
+    }
+    
+    private func showAlert(for type: AlertType) {
+        guard let alert = screens.createAlertView(for: type) else {return}
+        presenter.visibleViewController?.present(alert, animated: true, completion: nil)
     }
     
     
@@ -44,10 +50,10 @@ final class SearchCoordinator {
 extension SearchCoordinator: SearchViewModelDelegate {
     
     func didSelectIngredient(ingredient: String) {
-//        showRecipes(ingredient: ingredients)
+        showRecipes(ingredient: ingredient)
     }
     func errorNoRecipeFound(for type: AlertType) {
-//        showAlert(for: type)
+        showAlert(for: type)
     }
 
 }

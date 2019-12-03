@@ -15,7 +15,6 @@ protocol FavoriteViewModelDelegate: class {
 final class FavoriteViewModel {
     
     private weak var delegate: FavoriteViewModelDelegate?
-
     
     // MARK: - Initializer
 
