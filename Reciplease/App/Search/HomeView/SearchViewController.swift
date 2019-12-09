@@ -11,9 +11,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     // MARK: - Outlets
-    
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+        
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -27,6 +25,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     
     @IBOutlet weak var ingredientListTableView: UITableView!
+    
+    // MARK: - Properties
     
     var viewModel: SearchViewModel!
     
@@ -87,14 +87,11 @@ class SearchViewController: UIViewController {
         viewModel.searchButton = { [weak self] text in
             self?.searchButton.setTitle(text, for: .normal)
         }
-//        viewModel.ingredients = { [weak self] text in
-//            self?.titleLabel.text = "\(text)"
-//        }
         viewModel.ingredients = { [weak self] item in
             print("item = \(item)")
             DispatchQueue.main.async {
-                self?.searchDataSource.update(with: item)
-                self?.ingredientListTableView.reloadData()
+        self?.searchDataSource.update(with: item)
+        self?.ingredientListTableView.reloadData()
             }
         }
     }

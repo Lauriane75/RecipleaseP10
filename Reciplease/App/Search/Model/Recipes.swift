@@ -8,18 +8,21 @@
 
 import Foundation
 
-struct Recipes: Decodable {
-
+// MARK: - Recipes
+struct Recipes: Codable {
     let hits: [Hit]
+}
 
-    struct Hit: Decodable {
-        let recipe: RecipeProperties
-    }
+// MARK: - Hit
+struct Hit: Codable {
+    let recipe: Recipe
+}
 
-    struct RecipeProperties: Decodable {
-        let label: String
-        let image: String
-        let url: String
-        let ingredientLines: [String]
-    }
+// MARK: - Recipe
+struct Recipe: Codable {
+    let label: String
+    let image: String
+    let url: String
+    let ingredientLines: [String]
+    let totalTime: Int
 }

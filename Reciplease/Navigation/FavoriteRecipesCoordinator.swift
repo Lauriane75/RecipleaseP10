@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FavoriteCoordinator {
+final class FavoriteRecipesCoordinator {
 
     // MARK: - Properties
 
@@ -26,24 +26,27 @@ final class FavoriteCoordinator {
     // MARK: - Coodinator
 
     func start() {
-        showFavorite()
+        showFavoriteRecipesView()
     }
 
-    private func showFavorite() {
-       
-        let viewController = screens.createFavoriteViewController(delegate: self)
+    private func showFavoriteRecipesView() {
+        print("tableViewtype: Favorite")
+        let viewController = screens.createRecipesViewController(ingredientSelected: "", delegate: self, alertDelegate: self as? AlertDelegate, tableViewtype: .favoriteRecipes)
         presenter.viewControllers = [viewController]
     }
 }
 
-extension FavoriteCoordinator: FavoriteViewModelDelegate {
+extension FavoriteRecipesCoordinator: RecipesViewModelDelegate {
+    func error(for type: AlertType) {
+        
+    }
     
-    func selectRecipe() {
-
+    func selectRecipe(recipe: RecipeItem) {
+        
     }
 }
 
-extension FavoriteCoordinator: RecipeDetailViewModelDelegate {
+extension FavoriteRecipesCoordinator: RecipeDetailViewModelDelegate {
     
     func didPressRecipeDetailView() {
 

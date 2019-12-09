@@ -16,58 +16,59 @@ protocol SearchViewModelDelegate: class {
 final class SearchViewModel {
     
     // MARK: - Properties
-       
-       private weak var delegate: SearchViewModelDelegate?
-       
-       private weak var alertDelegate: AlertDelegate?
-       
-//       private var item:
-       
-       private var ingredientList: [String] = [] {
-           didSet {
-            guard ingredientList != [] else {
-//                self.alertDelegate?.displayAlert(type: .errorWrongIngredient);
-                return }
-               ingredients?(ingredientList)
-           }
-       }
+    
+    private weak var delegate: SearchViewModelDelegate?
+    
+    private weak var alertDelegate: AlertDelegate?
+        
+    private var ingredientList: [String] = [] {
+        didSet {
+            if ingredientList != [] {
+                ingredients?(ingredientList)
+            } else {
+                alertDelegate?.displayAlert(type: .errorWrongIngredient)
+            }
+        }
+    }
     
     // MARK: - Initializer
-       
+    
     init(delegate: SearchViewModelDelegate?, alertDelegate: AlertDelegate?) {
-           self.delegate = delegate
-           self.alertDelegate = alertDelegate
-       }
+        self.delegate = delegate
+        self.alertDelegate = alertDelegate
+    }
     
     // MARK: - Output
-
-       var titleLabel: ((String) -> Void)?
-              
-       var placeHolderTextField: ((String) -> Void)?
-       
-       var addButton: ((String) -> Void)?
-       
-       var ingredientListLabel: ((String) -> Void)?
-       
-       var clearButton: ((String) -> Void)?
-       
-       var ingredients: (([String]) -> Void)?
-       
-       var ingredientTextField: ((String) -> Void)?
-              
-       var searchButton: ((String) -> Void)?
     
-       var searchButtonIsHidden: ((Bool) -> Void)?
-
+    var titleLabel: ((String) -> Void)?
+    
+    var placeHolderTextField: ((String) -> Void)?
+    
+    var addButton: ((String) -> Void)?
+    
+    var ingredientListLabel: ((String) -> Void)?
+    
+    var clearButton: ((String) -> Void)?
+    
+    var ingredients: (([String]) -> Void)?
+    
+    var ingredientTextField: ((String) -> Void)?
+    
+    var searchButton: ((String) -> Void)?
+    
+    var searchButtonIsHidden: ((Bool) -> Void)?
+    
     // MARK: - Input
+    
+    
     
     func viewDidLoad() {
         titleLabel?("What's in your fridge?")
-        placeHolderTextField?("Lemon, Cheese, Sausages ...")
-        addButton?("Add")
+        placeHolderTextField?("Lemon, Sugar, Honey ...")
+        addButton?("+")
         ingredientListLabel?("In your fridge :")
-        clearButton?("Clear")
-        searchButton?("Search")
+        clearButton?("x")
+        searchButton?("Go !")
         searchButtonIsHidden?(true)
         ingredients?(ingredientList)
     }
@@ -85,8 +86,10 @@ final class SearchViewModel {
     }
     
     func didPressSearchForRecipes() {
-        let ingredientListString = ingredientList.joined(separator:" ")
-        self.delegate?.didSelectIngredient(ingredient: ingredientListString)
+        let ingredientName = ingredientList.joined(separator:" ")
+        self.delegate?.didSelectIngredient(ingredient: ingredientName)
     }
     
+    // MARK: - Private Functions
+
 }

@@ -11,11 +11,12 @@ import CoreData
 
 struct RecipeItem: Equatable {
     let name: String
-    let imageURLString: String
+    let imageName: String
     let url: String
     let ingredient: [String]
+    let time: Int
     
-    static func ==(lhs: RecipeItem, rhs: RecipeItem) -> Bool {
-        return lhs.name == rhs.name && lhs.imageURLString == rhs.imageURLString && lhs.url == rhs.url && lhs.ingredient == rhs.ingredient
+    static func == (parameterLhs: RecipeItem, parameterRhs: RecipeItem) -> Bool {
+        return parameterLhs.name == parameterRhs.name && parameterLhs.imageName == parameterRhs.imageName && parameterLhs.url == parameterRhs.url && parameterLhs.ingredient == parameterRhs.ingredient && parameterLhs.time == parameterRhs.time
     }
 }

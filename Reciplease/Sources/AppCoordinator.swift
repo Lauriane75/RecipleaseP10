@@ -29,7 +29,6 @@ final class AppCoordinator {
         appDelegate.window!.rootViewController = UIViewController()
         appDelegate.window!.makeKeyAndVisible()
 
-        // look & learn
         if ProcessInfo.processInfo.environment["IS_RUNNING_UNIT_TESTS"] == "YES" {
             return
         }
@@ -43,6 +42,8 @@ final class AppCoordinator {
 
         mainCoordinator = MainCoordinator(presenter: appDelegate.window!)
         UITabBar.appearance().tintColor = UIColor(named: "UITabBar.item.tintColor")
+        UITabBar.appearance().backgroundColor = UIColor(named: "UITabBar.item.tintColor")!
+
         mainCoordinator?.start()
     }
 }

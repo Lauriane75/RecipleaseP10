@@ -31,41 +31,45 @@ extension Screens {
 
 // MARK: - Child
 
-protocol FavoriteViewControllerDelegate: class {
-}
-
-protocol ResultRecipesViewControllerDelegate: class {
+protocol RecipesViewControllerDelegate: class {
 }
 
 protocol RecipeDetailViewControllerDelegate: class {
 }
 
+enum type {
+    case foundRecipes
+    case favoriteRecipes
+}
+
 extension Screens {
-    func createResultRecipesViewController(ingredientSelected: String, delegate: ResultRecipesViewModelDelegate?, alertDelegate: AlertDelegate?) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ResultRecipesViewController") as! ResultRecipesViewController
-        let viewModel = ResultRecipesViewModel(delegate: delegate!, alertDelegate: alertDelegate)
-        viewController.viewModel = viewModel
+    func createRecipesViewController(ingredientSelected: String, delegate: RecipesViewModelDelegate?, alertDelegate: AlertDelegate?, tableViewtype: type) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as! RecipesViewController
+    
+        switch tableViewtype {
+        case .foundRecipes :
+            let network = NetworkRequest()
+            let repository = RecipeRepository(requestType: .network, network: network)
+            let viewModel = RecipesViewModel(delegate: delegate, alertDelegate: alertDelegate, repository: repository, ingredients: ingredientSelected)
+            viewController.viewModel = viewModel
+        case .favoriteRecipes :
+            let network = NetworkRequest()
+            let repository = RecipeRepository(requestType: .network, network: network)
+            let viewModel = RecipesViewModel(delegate: delegate, alertDelegate: alertDelegate, repository: repository, ingredients: ingredientSelected)
+            viewController.viewModel = viewModel
+        }
         return viewController
     }
-    
-    func createRecipeDetailViewController(delegate: RecipeDetailViewModelDelegate?) -> UIViewController {
+}
+
+extension Screens {
+    func createRecipeDetailViewController(recipe: RecipeItem, delegate: RecipeDetailViewModelDelegate?) -> UIViewController {
            let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
            let viewModel = RecipeDetailViewModel(delegate: delegate)
            viewController.viewModel = viewModel
            return viewController
     }
 }
-
-
-extension Screens {
-    func createFavoriteViewController(delegate: FavoriteViewModelDelegate?) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
-       let viewModel = FavoriteViewModel(delegate: delegate!)
-        viewController.viewModel = viewModel
-        return viewController
-    }
-}
-
 
 // MARK: - Alert
 

@@ -24,7 +24,7 @@ final class SearchDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.rowHeight = 30
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientTableViewCell", for: indexPath) as!
-        SearchTableViewCell
+        IngredientTableViewCell
         cell.updateCell(with: ingredients, row: indexPath.row)
         return cell
     }

@@ -20,7 +20,7 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
     
     private var searchCoordinator: SearchCoordinator?
 
-    private var favoriteCoordinator: FavoriteCoordinator?
+    private var favoriteRecipesCoordinator: FavoriteRecipesCoordinator?
 
     // MARK: - Init
 
@@ -49,8 +49,8 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
     }
 
     private func showfavoriteView() {
-        favoriteCoordinator = FavoriteCoordinator(presenter: tabBarSource[.favorite], screens: screens)
-        favoriteCoordinator?.start()
+        favoriteRecipesCoordinator = FavoriteRecipesCoordinator(presenter: tabBarSource[.favorite], screens: screens)
+        favoriteRecipesCoordinator?.start()
     }
 }
 

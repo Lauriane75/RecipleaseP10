@@ -12,6 +12,7 @@ protocol RecipeDetailViewModelDelegate: class {
     func didPressRecipeDetailView()
 }
 
+
 final class RecipeDetailViewModel {
     
     private weak var delegate: RecipeDetailViewModelDelegate?
