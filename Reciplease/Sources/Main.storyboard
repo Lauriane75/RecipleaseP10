@@ -21,14 +21,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableViewCell" id="jF7-ft-2Y3" customClass="IngredientTableViewCell" customModule="Reciplease">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="21"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="21.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jF7-ft-2Y3" id="Bad-sP-bST">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="21.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYf-nN-W0A">
-                                                    <rect key="frame" x="20" y="0.0" width="300" height="21"/>
+                                                    <rect key="frame" x="20" y="0.0" width="300" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" id="xhr-6v-LZM"/>
                                                     </constraints>
@@ -124,7 +124,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pza-DC-J6t" userLabel="search For Recipes Button">
-                                <rect key="frame" x="20" y="410" width="280" height="40"/>
+                                <rect key="frame" x="50" y="410" width="220" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="IMu-nM-L0N"/>
@@ -148,10 +148,10 @@
                             <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="wNc-a4-WeL" secondAttribute="trailing" id="RbE-Dx-I19"/>
                             <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="rBT-GH-khH" secondAttribute="trailing" id="SKM-Sy-ESQ"/>
                             <constraint firstItem="wNc-a4-WeL" firstAttribute="leading" secondItem="ofQ-4h-lFs" secondAttribute="leading" id="Y2x-P7-FqN"/>
-                            <constraint firstItem="pza-DC-J6t" firstAttribute="leading" secondItem="ofQ-4h-lFs" secondAttribute="leading" constant="20" id="YeS-av-OVv"/>
+                            <constraint firstItem="pza-DC-J6t" firstAttribute="leading" secondItem="ofQ-4h-lFs" secondAttribute="leading" constant="50" id="YeS-av-OVv"/>
                             <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="bSF-Um-zmN" secondAttribute="trailing" constant="15" id="aFA-Om-7Aa"/>
                             <constraint firstItem="wNc-a4-WeL" firstAttribute="top" secondItem="ofQ-4h-lFs" secondAttribute="top" id="gFb-8L-RyY"/>
-                            <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="pza-DC-J6t" secondAttribute="trailing" constant="20" id="j7U-Vi-Dhx"/>
+                            <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="pza-DC-J6t" secondAttribute="trailing" constant="50" id="j7U-Vi-Dhx"/>
                             <constraint firstItem="bSF-Um-zmN" firstAttribute="top" secondItem="773-46-mrU" secondAttribute="top" id="oEs-Xd-LNb"/>
                             <constraint firstItem="773-46-mrU" firstAttribute="leading" secondItem="ofQ-4h-lFs" secondAttribute="leading" constant="15" id="pAG-ll-iUD"/>
                             <constraint firstItem="bSF-Um-zmN" firstAttribute="top" secondItem="ofQ-4h-lFs" secondAttribute="top" constant="150" id="ube-Sx-XqP"/>
@@ -364,14 +364,14 @@
                                     <constraint firstAttribute="height" constant="250" id="p9N-VP-u3G"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcT-O8-41j">
-                                <rect key="frame" x="30" y="146" width="260" height="134"/>
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcT-O8-41j">
+                                <rect key="frame" x="30" y="90" width="260" height="134"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="vfr-uy-nva">
-                                        <rect key="frame" x="20" y="20" width="40" height="94"/>
+                                        <rect key="frame" x="20" y="20" width="42" height="94"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GtF-tb-XiY">
-                                                <rect key="frame" x="0.0" y="0.5" width="40" height="39"/>
+                                                <rect key="frame" x="1" y="0.5" width="40" height="39"/>
                                                 <color key="tintColor" name="UITabBar.item.tintColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="1SK-WD-iN1"/>
@@ -379,36 +379,48 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSd-0e-snZ">
-                                                <rect key="frame" x="1.5" y="54" width="37" height="40"/>
-                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <rect key="frame" x="0.0" y="54" width="42" height="40"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="17"/>
                                                 <color key="textColor" red="0.33123310350000001" green="0.33036584130000002" blue="0.34551475250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="hI8-Uc-Inp">
-                                        <rect key="frame" x="110" y="20" width="40" height="94"/>
+                                        <rect key="frame" x="109" y="20" width="42" height="94"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Din-wg-lpq">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                <color key="tintColor" name="UITabBar.item.tintColor"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syf-E3-KIW">
+                                                <rect key="frame" x="1" y="0.0" width="40" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="Dzp-Lm-QU2"/>
-                                                    <constraint firstAttribute="width" constant="40" id="aEe-l1-qHA"/>
+                                                    <constraint firstAttribute="height" constant="40" id="Goy-nM-4Ta"/>
+                                                    <constraint firstAttribute="width" constant="40" id="L8c-Wj-q5c"/>
                                                 </constraints>
-                                            </imageView>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <color key="tintColor" name="UITabBar.item.tintColor"/>
+                                                <state key="normal" image="star.fill" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="starRateButton:" destination="cl6-iN-3Nr" eventType="touchUpInside" id="U8J-X7-VvD"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyI-lD-r3x">
-                                                <rect key="frame" x="1.5" y="54" width="37" height="40"/>
-                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <rect key="frame" x="0.0" y="54" width="42" height="40"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="17"/>
                                                 <color key="textColor" red="0.33123310350000001" green="0.33036584130000002" blue="0.34551475250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="syf-E3-KIW" firstAttribute="leading" secondItem="hI8-Uc-Inp" secondAttribute="leading" constant="1" id="JEk-nO-if0"/>
+                                            <constraint firstAttribute="trailing" secondItem="syf-E3-KIW" secondAttribute="trailing" constant="1" id="iNZ-OS-mhM"/>
+                                            <constraint firstItem="syf-E3-KIW" firstAttribute="top" secondItem="hI8-Uc-Inp" secondAttribute="top" id="tqe-1f-d00"/>
+                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="HM5-5A-C9u">
-                                        <rect key="frame" x="200" y="20" width="40" height="94"/>
+                                        <rect key="frame" x="198" y="20" width="42" height="94"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-bO-i4T">
-                                                <rect key="frame" x="0.0" y="1.5" width="40" height="37"/>
+                                                <rect key="frame" x="1" y="1.5" width="40" height="37"/>
                                                 <color key="tintColor" name="UITabBar.item.tintColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="2v0-i1-vzR"/>
@@ -416,8 +428,8 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWk-5e-kus">
-                                                <rect key="frame" x="1.5" y="54" width="37" height="40"/>
-                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <rect key="frame" x="0.0" y="54" width="42" height="40"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="17"/>
                                                 <color key="textColor" red="0.33123310350000001" green="0.33036584130000002" blue="0.34551475250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -438,12 +450,12 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lA7-BJ-XEy">
-                                <rect key="frame" x="20" y="410" width="280" height="40"/>
+                                <rect key="frame" x="30" y="410" width="260" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3N9-Nc-Jc2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="16"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -452,19 +464,19 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lak-VN-T79">
-                                <rect key="frame" x="30" y="307" width="260" height="65"/>
+                                <rect key="frame" x="30" y="264" width="260" height="126"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeDetailTableViewCell" id="HEB-UA-b1i" customClass="RecipeDetailTableViewCell" customModule="Reciplease" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="260" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="260" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HEB-UA-b1i" id="MJs-Fk-bTO">
-                                            <rect key="frame" x="0.0" y="0.0" width="260" height="26.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="260" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XoQ-zf-WRL">
-                                                    <rect key="frame" x="20" y="0.0" width="240" height="26.5"/>
-                                                    <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="20"/>
+                                                    <rect key="frame" x="20" y="0.0" width="240" height="20"/>
+                                                    <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
                                                     <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -488,15 +500,17 @@
                             <constraint firstItem="Qma-ri-Lwt" firstAttribute="trailing" secondItem="TcT-O8-41j" secondAttribute="trailing" constant="30" id="0TF-OD-pfi"/>
                             <constraint firstItem="Qma-ri-Lwt" firstAttribute="bottom" secondItem="lA7-BJ-XEy" secondAttribute="bottom" constant="30" id="AIj-1o-nNy"/>
                             <constraint firstItem="9Wl-xY-c74" firstAttribute="top" secondItem="Qma-ri-Lwt" secondAttribute="top" id="BMh-yy-ute"/>
-                            <constraint firstItem="lA7-BJ-XEy" firstAttribute="top" secondItem="Lak-VN-T79" secondAttribute="bottom" constant="38" id="DbG-st-oUF"/>
+                            <constraint firstItem="lA7-BJ-XEy" firstAttribute="top" secondItem="Lak-VN-T79" secondAttribute="bottom" constant="20" id="DbG-st-oUF">
+                                <variation key="heightClass=compact-widthClass=compact" constant="10"/>
+                            </constraint>
                             <constraint firstItem="Qma-ri-Lwt" firstAttribute="trailing" secondItem="Lak-VN-T79" secondAttribute="trailing" constant="30" id="ENS-gC-2rn"/>
                             <constraint firstItem="Qma-ri-Lwt" firstAttribute="trailing" secondItem="9Wl-xY-c74" secondAttribute="trailing" id="PJj-aX-ijT"/>
                             <constraint firstItem="TcT-O8-41j" firstAttribute="leading" secondItem="Qma-ri-Lwt" secondAttribute="leading" constant="30" id="Taq-EW-Lkb"/>
-                            <constraint firstItem="TcT-O8-41j" firstAttribute="top" secondItem="Qma-ri-Lwt" secondAttribute="top" constant="146" id="dSi-eH-wgL"/>
+                            <constraint firstItem="TcT-O8-41j" firstAttribute="top" secondItem="Qma-ri-Lwt" secondAttribute="top" constant="90" id="dSi-eH-wgL"/>
                             <constraint firstItem="Lak-VN-T79" firstAttribute="leading" secondItem="Qma-ri-Lwt" secondAttribute="leading" constant="30" id="dhj-3g-WfY"/>
-                            <constraint firstItem="Qma-ri-Lwt" firstAttribute="trailing" secondItem="lA7-BJ-XEy" secondAttribute="trailing" constant="20" id="fMe-Hc-kH7"/>
-                            <constraint firstItem="lA7-BJ-XEy" firstAttribute="leading" secondItem="Qma-ri-Lwt" secondAttribute="leading" constant="20" id="fQT-zq-FrH"/>
-                            <constraint firstItem="Lak-VN-T79" firstAttribute="top" secondItem="TcT-O8-41j" secondAttribute="bottom" constant="27" id="hwL-GZ-TMu"/>
+                            <constraint firstItem="Qma-ri-Lwt" firstAttribute="trailing" secondItem="lA7-BJ-XEy" secondAttribute="trailing" constant="30" id="fMe-Hc-kH7"/>
+                            <constraint firstItem="lA7-BJ-XEy" firstAttribute="leading" secondItem="Qma-ri-Lwt" secondAttribute="leading" constant="30" id="fQT-zq-FrH"/>
+                            <constraint firstItem="Lak-VN-T79" firstAttribute="top" secondItem="TcT-O8-41j" secondAttribute="bottom" constant="40" id="hwL-GZ-TMu"/>
                             <constraint firstItem="9Wl-xY-c74" firstAttribute="leading" secondItem="Qma-ri-Lwt" secondAttribute="leading" id="jwJ-1h-d51"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qma-ri-Lwt"/>
@@ -507,6 +521,7 @@
                         <outlet property="getDirectionButton" destination="lA7-BJ-XEy" id="UER-hG-p6F"/>
                         <outlet property="imageView" destination="9Wl-xY-c74" id="2Lx-7W-ia9"/>
                         <outlet property="servingsLabel" destination="AWk-5e-kus" id="FfO-lm-4xx"/>
+                        <outlet property="starRateButton" destination="syf-E3-KIW" id="7i3-cB-cd7"/>
                         <outlet property="tableView" destination="Lak-VN-T79" id="gUM-A1-eDp"/>
                         <outlet property="timeLabel" destination="DSd-0e-snZ" id="bF5-6F-YHL"/>
                     </connections>

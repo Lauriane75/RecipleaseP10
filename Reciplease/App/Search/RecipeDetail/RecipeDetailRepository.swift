@@ -10,10 +10,26 @@ import Foundation
 import CoreData
 
 protocol RecipeDetailRepositoryType {
+    func didPressAddFavoriteRecipe(recipe: RecipeItem)
+    func didPressFavoriteVerifying(recipeName: String, completion: (Bool) -> Void)
+    func didPressRemoveFavoriteRecipe(recipeName: String)
 
 }
 
 final class RecipeDetailRepository: RecipeDetailRepositoryType {
+    func didPressAddFavoriteRecipe(recipe: RecipeItem) {
+        
+    }
+
+    
+    func didPressFavoriteVerifying(recipeName: String, completion: (Bool) -> Void) {
+        
+    }
+    
+    func didPressRemoveFavoriteRecipe(recipeName: String) {
+        
+    }
+    
 }
 
 

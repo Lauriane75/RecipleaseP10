@@ -39,13 +39,15 @@ final class RecipeRepository: RecipeRepositoryType {
         case .network:
             network.request(type: Recipes.self, url: url) { (result) in
                 switch result {
+                    
                 case .success(value: let recipeItems):
                     let result: [RecipeItem] = recipeItems.hits.map {
                         return      RecipeItem(name: $0.recipe.label,
                                     imageName: $0.recipe.image,
                                     url: $0.recipe.url,
-                                    ingredient: $0.recipe.ingredientLines.map { $0}, time:  $0.recipe.totalTime) }
+                                    ingredient: $0.recipe.ingredientLines.map { $0}, time:  $0.recipe.totalTime, yield: $0.recipe.yield)}
                     success(.success(value: result))
+
                 case .error(error: let error):
                     onError(error.localizedDescription)
                 }
@@ -55,7 +57,7 @@ final class RecipeRepository: RecipeRepositoryType {
             guard let recipes = try? AppDelegate.viewContext.fetch(request) else { return}
             let recipeItem : [RecipeItem] = recipes.map  { return RecipeItem(name: $0.recipeName!,
                                                                              imageName: $0.recipeImage ?? "", url: $0.recipeURL ?? "",
-                                                                             ingredient: ($0.recipeIngredients?.components(separatedBy: "@") ?? [""]), time: Int($0.recipeTime) )
+                                                                             ingredient: ($0.recipeIngredients?.components(separatedBy: "@") ?? [""]), time: Int($0.recipeTime), yield: Int($0.yieldRecipe))
             }
             success(.success(value: recipeItem))
         }

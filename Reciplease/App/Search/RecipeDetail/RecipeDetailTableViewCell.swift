@@ -21,10 +21,9 @@ class RecipeDetailTableViewCell: UITableViewCell {
     func updateCell(with recipe: RecipeItem, row: Int) {
           self.recipe = recipe
           self.row = row
-//        ingredientsLabel.text = recipe.ingredient[row]
-        ingredientsLabel.text = "# \(recipe.ingredient.prefix(8).joined(separator: ", "))"
+        ingredientsLabel.text = "\(recipe.ingredient.prefix(8).joined(separator: "\n"))"
         
-
+ 
     }
 
 }

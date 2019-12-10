@@ -12,6 +12,8 @@ class RecipeDetailViewController: UIViewController {
     
     // MARK: - Outlet
 
+
+    @IBOutlet weak var starRateButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var contentView: UIView!
 
@@ -27,7 +29,8 @@ class RecipeDetailViewController: UIViewController {
     weak var delegate: RecipeDetailViewControllerDelegate?
     
     private lazy var recipeDetailDataSource = RecipeDetailDataSource()
-
+    
+    private var starRate = 0
 
     override func viewDidLoad() {
             super.viewDidLoad()
@@ -53,13 +56,13 @@ class RecipeDetailViewController: UIViewController {
         guard let image = url.transformURLToImage() else { return }
             self?.imageView.image = image
         }
-        viewModel.bookMarkedLabel = { [weak self] text in
+        viewModel.rateLabel = { [weak self] text in
             self?.bookMarkedLabel.text = text
         }
         viewModel.nameRecipeButton = { [weak self] text in
             self?.getDirectionButton.setTitle(text, for: .normal)
         }
-        viewModel.servingsLabel = { [weak self] text in
+        viewModel.yieldLabel = { [weak self] text in
             self?.servingsLabel.text = text
         }
         viewModel.timeLabel = { [weak self] text in
@@ -74,8 +77,17 @@ class RecipeDetailViewController: UIViewController {
 
     fileprivate func elementsCustom() {
         contentView.layer.cornerRadius = 20
-        getDirectionButton.layer.cornerRadius = 20
-        tableView.layer.cornerRadius = 20
+        getDirectionButton.layer.cornerRadius = 15
+        tableView.layer.cornerRadius = 15
     }
-       
+    
+    @IBAction func starRateButton(_ sender: Any) {
+//        self.starRateButton.setImage(UIImage(named: ""), for: .normal)
+        starRate += 1
+        if starRate > 5 {
+            starRate = 0
+        }
+        viewModel.didPressstarRateButton(rate: starRate)
+    }
+    
 }

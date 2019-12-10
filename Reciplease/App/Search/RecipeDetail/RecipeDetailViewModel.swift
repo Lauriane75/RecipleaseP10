@@ -22,6 +22,8 @@ final class RecipeDetailViewModel {
     
     private weak var delegate: RecipeDetailViewModelDelegate?
     
+    private var starRate = 0
+    
     // MARK: - Initializer
       
     init(delegate: RecipeDetailViewModelDelegate?, repository: RecipeDetailRepositoryType, recipe: RecipeItem, alertDelegate: AlertDelegate?) {
@@ -36,8 +38,8 @@ final class RecipeDetailViewModel {
     var recipeDisplayed: ((RecipeItem) -> Void)?
     var image: ((String) -> Void)?
     var timeLabel: ((String) -> Void)?
-    var bookMarkedLabel: ((String) -> Void)?
-    var servingsLabel: ((String) -> Void)?
+    var rateLabel: ((String) -> Void)?
+    var yieldLabel: ((String) -> Void)?
     var nameRecipeButton: ((String) -> Void)?
     
     // MARK: - Input
@@ -48,8 +50,8 @@ final class RecipeDetailViewModel {
 
         setUpTimeLabel()
         image?("\(recipe.imageName)")
-        bookMarkedLabel?("\(recipe.time)")
-        servingsLabel?("\(recipe.time)")
+        rateLabel?("\(starRate)")
+        yieldLabel?("\(recipe.yield)")
         nameRecipeButton?("\(recipe.name)")
     }
     
@@ -63,6 +65,12 @@ final class RecipeDetailViewModel {
               timeLabel?("\(recipe.time) min")
           }
       }
+    
+    func didPressstarRateButton(rate: Int) {
+        starRate = rate
+        rateLabel?("\(starRate)")
+
+    }
     
     
 

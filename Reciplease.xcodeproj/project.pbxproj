@@ -289,10 +289,10 @@
 			isa = PBXGroup;
 			children = (
 				F689EC7C237C621C00747170 /* RecipeDetailViewModel.swift */,
-				F664A4E8239F16F000515C29 /* RecipeDetailRepository.swift */,
 				F689EC7A237C620B00747170 /* RecipeDetailViewController.swift */,
 				F664A4E4239ECAE700515C29 /* RecipeDetailTableViewCell.swift */,
 				F664A4EA239F229200515C29 /* RecipeDetailDataSource.swift */,
+				F664A4E8239F16F000515C29 /* RecipeDetailRepository.swift */,
 			);
 			path = RecipeDetail;
 			sourceTree = "<group>";
