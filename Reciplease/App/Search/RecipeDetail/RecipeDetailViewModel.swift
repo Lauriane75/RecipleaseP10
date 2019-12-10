@@ -12,14 +12,59 @@ protocol RecipeDetailViewModelDelegate: class {
     func didPressRecipeDetailView()
 }
 
-
 final class RecipeDetailViewModel {
+    
+    private var repository: RecipeDetailRepositoryType
+    
+    private var recipe: RecipeItem
+    
+    private weak var alertDelegate: AlertDelegate?
     
     private weak var delegate: RecipeDetailViewModelDelegate?
     
     // MARK: - Initializer
       
-      init(delegate: RecipeDetailViewModelDelegate?) {
-          self.delegate = delegate
+    init(delegate: RecipeDetailViewModelDelegate?, repository: RecipeDetailRepositoryType, recipe: RecipeItem, alertDelegate: AlertDelegate?) {
+        self.delegate = delegate
+        self.repository = repository
+        self.recipe = recipe
+        self.alertDelegate = alertDelegate
       }
+    
+    // MARK: - Output
+    
+    var recipeDisplayed: ((RecipeItem) -> Void)?
+    var image: ((String) -> Void)?
+    var timeLabel: ((String) -> Void)?
+    var bookMarkedLabel: ((String) -> Void)?
+    var servingsLabel: ((String) -> Void)?
+    var nameRecipeButton: ((String) -> Void)?
+    
+    // MARK: - Input
+    
+    func viewDidLoad() {
+        
+        recipeDisplayed?(recipe)
+
+        setUpTimeLabel()
+        image?("\(recipe.imageName)")
+        bookMarkedLabel?("\(recipe.time)")
+        servingsLabel?("\(recipe.time)")
+        nameRecipeButton?("\(recipe.name)")
+    }
+    
+    // MARK: - Private Functions
+
+      fileprivate func setUpTimeLabel() {
+          if recipe.time == 0 {
+              let defaultValue = 30
+              timeLabel?("\(defaultValue) min")
+          } else {
+              timeLabel?("\(recipe.time) min")
+          }
+      }
+    
+    
+
+
 }

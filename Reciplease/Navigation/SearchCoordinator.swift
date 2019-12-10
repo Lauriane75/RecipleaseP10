@@ -46,10 +46,9 @@ final class SearchCoordinator {
     }
     
     private func showRecipesDetail(recipe: RecipeItem) {
-//        let viewController = screens.createRecipeDetailViewController(delegate: self as? RecipeDetailViewModelDelegate)
-//           presenter.pushViewController(viewController, animated: true)
+        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, delegate: self as? RecipeDetailViewModelDelegate, alertDelegate: self as? AlertDelegate)
+           presenter.pushViewController(viewController, animated: true)
        }
-
 }
 
 extension SearchCoordinator: SearchViewModelDelegate {
@@ -60,6 +59,15 @@ extension SearchCoordinator: SearchViewModelDelegate {
     func errorNoRecipeFound(for type: AlertType) {
         showAlert(for: type)
     }
+}
 
+extension SearchCoordinator: RecipesViewModelDelegate {
+    func selectRecipe(recipe: RecipeItem) {
+        showRecipesDetail(recipe: recipe)
+    }
+    
+    func error(for type: AlertType) {
+         showAlert(for: type)
+    }
 }
 

@@ -54,10 +54,10 @@ final class RecipesViewModel {
 
         // MARK: - Input
     
-        func viewWillAppear() {
-            activityIndicatorIsLoading?(true)
-            guard let url = route.getURL(ingredients: ingredients) else { return }
-            repository.getRecipes(url: url, success: { [weak self] recipes in
+    func viewWillAppear() {
+        activityIndicatorIsLoading?(true)
+        guard let url = route.getURL(ingredients: ingredients) else { return }
+        repository.getRecipes(url: url, success: { [weak self] recipes in
     
                                     switch recipes {
                                     case .success(value: let
