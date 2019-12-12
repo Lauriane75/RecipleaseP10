@@ -36,6 +36,6 @@ final class TabBarSource: TabBarSourceType {
     init() {
         self[.search].tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         self[.favorite].tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        UITabBar.appearance().backgroundColor = UIColor(named: "UITabBar.item.tintColor")!
+        //        UITabBar.appearance().backgroundColor = UIColor(named: "UITabBar.item.tintColor")!
     }
 }

@@ -13,26 +13,31 @@ final class RecipesTableViewCell: UITableViewCell {
     // MARK: - Outlet
     
     @IBOutlet weak var nameLabel: UILabel!
+    
     @IBOutlet weak var favoriteButton: UIButton!
+    
     @IBOutlet weak var recipeImageView: UIImageView!
+    
     @IBOutlet weak var timeLabel: UILabel!
+    
     @IBOutlet weak var recipeIngredientLabel: UILabel!
     
     // MARK: - Private properties
-
+    
     private var recipe: RecipeItem? = nil {
-    didSet {
-        if let image = recipe?.imageName.transformURLToImage() {
-        nameLabel.text = recipe?.name
-        recipeImageView.layer.cornerRadius = 20
-        recipeImageView.image = image
-        }
-        recipeIngredientLabel.text = recipe?.ingredient.prefix(2).joined(separator: ", ")
-        if recipe?.time == 0 {
-            let defaultValue = "30 min"
-            timeLabel.text = defaultValue
-        } else {
-            timeLabel.text = "\(recipe?.time ?? 30) min"
+        
+        didSet {
+            if let image = recipe?.imageName.transformURLToImage() {
+                nameLabel.text = recipe?.name
+                recipeImageView.layer.cornerRadius = 20
+                recipeImageView.image = image
+            }
+            recipeIngredientLabel.text = recipe?.ingredient.prefix(3).joined(separator: ", ")
+            if recipe?.time == 0 {
+                let defaultValue = "30 min"
+                timeLabel.text = defaultValue
+            } else {
+                timeLabel.text = "\(recipe?.time ?? 30) min"
             }
         }
     }
@@ -42,7 +47,8 @@ final class RecipesTableViewCell: UITableViewCell {
     }
     
 }
-    // MARK: - Extension
+
+// MARK: - Extension
 
 extension String {
     func transformURLToImage() -> UIImage? {
@@ -52,5 +58,4 @@ extension String {
         return image
     }
 }
-
 

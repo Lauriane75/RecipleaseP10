@@ -10,24 +10,52 @@ import Foundation
 import CoreData
 
 protocol RecipeDetailRepositoryType {
-    func didPressAddFavoriteRecipe(recipe: RecipeItem)
-    func didPressFavoriteVerifying(recipeName: String, completion: (Bool) -> Void)
+    func didPressSelectFavoriteRecipe(recipe: RecipeItem)
+    func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void)
     func didPressRemoveFavoriteRecipe(recipeName: String)
-
+    
 }
 
 final class RecipeDetailRepository: RecipeDetailRepositoryType {
-    func didPressAddFavoriteRecipe(recipe: RecipeItem) {
+    
+    func didPressSelectFavoriteRecipe(recipe: RecipeItem) {
+        
+        let recipeObject = RecipeObject(context: AppDelegate.viewContext)
+        recipeObject.recipeImage = recipe.imageName
+        recipeObject.recipeName = recipe.name
+        recipeObject.recipeIngredients = recipe.ingredient.joined(separator: ", ")
+        try? AppDelegate.viewContext.save()
         
     }
-
     
-    func didPressFavoriteVerifying(recipeName: String, completion: (Bool) -> Void) {
+    func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void) {
+        
+        let request: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
+        request.predicate = NSPredicate(format: "recipeName == %@", recipeName)
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \RecipeObject.recipeName, ascending: true)]
+        
+        guard let recipes = try? AppDelegate.viewContext.fetch(request) else { print("error") ; return }
+        
+        if recipes == [] {completion(false); return }
+        
+        completion(true)
         
     }
     
     func didPressRemoveFavoriteRecipe(recipeName: String) {
         
+        let request: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
+        request.predicate = NSPredicate(format: "recipeName == %@", recipeName)
+        
+        do {
+            let object = try AppDelegate.viewContext.fetch(request)
+            if !object.isEmpty {
+                AppDelegate.viewContext.delete(object[0])
+                try? AppDelegate.viewContext.save()
+            }
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
     
 }

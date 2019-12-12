@@ -9,16 +9,34 @@
 import UIKit
 
 class FavoriteRecipesTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var ingredientsLabel: UILabel!
+    
+    @IBOutlet weak var favoriteImageView: UIImageView!
+    
+    
+    // MARK: - Private properties
+    
+    // MARK: - Private properties
+    
+    private var recipe: RecipeItem?
+    
+    private var row: Int?
+    
+    func updateCell(with recipe: RecipeItem, row: Int) {
+        self.recipe = recipe
+        self.row = row
+        
+        if let image = recipe.imageName.transformURLToImage() {
+            favoriteImageView.image = image
+        }
+        
+        nameLabel.text = "\(recipe.name)"
+        
+        ingredientsLabel.text = "\(recipe.ingredient.joined(separator: "\n"))"
+        
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }

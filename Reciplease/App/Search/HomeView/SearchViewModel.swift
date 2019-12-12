@@ -20,7 +20,7 @@ final class SearchViewModel {
     private weak var delegate: SearchViewModelDelegate?
     
     private weak var alertDelegate: AlertDelegate?
-        
+    
     private var ingredientList: [String] = [] {
         didSet {
             if ingredientList != [] {
@@ -86,10 +86,10 @@ final class SearchViewModel {
     }
     
     func didPressSearchForRecipes() {
-        let ingredientName = ingredientList.joined(separator:" ")
+        let ingredientName = ingredientList.joined(separator:", ")
         self.delegate?.didSelectIngredient(ingredient: ingredientName)
     }
     
     // MARK: - Private Functions
-
+    
 }

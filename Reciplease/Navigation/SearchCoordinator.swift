@@ -9,26 +9,27 @@
 import UIKit
 
 final class SearchCoordinator {
-
+    
     // MARK: - Properties
-
+    
     private let presenter: UINavigationController
-
+    
     private let screens: Screens
-
+    
     // MARK: - Initializer
-
+    
     init(presenter: UINavigationController, screens: Screens) {
         self.presenter = presenter
         self.screens = screens
     }
-
+    
     // MARK: - Coodinator
-
+    
     func start() {
         showHome()
     }
-
+    
+    
     private func showHome() {
         let viewController = screens.createSearchViewController(delegate: self, alertDelegate: self as? AlertDelegate)
         presenter.viewControllers = [viewController]
@@ -47,8 +48,8 @@ final class SearchCoordinator {
     
     private func showRecipesDetail(recipe: RecipeItem) {
         let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, delegate: self as? RecipeDetailViewModelDelegate, alertDelegate: self as? AlertDelegate)
-           presenter.pushViewController(viewController, animated: true)
-       }
+        presenter.pushViewController(viewController, animated: true)
+    }
 }
 
 extension SearchCoordinator: SearchViewModelDelegate {
@@ -67,7 +68,7 @@ extension SearchCoordinator: RecipesViewModelDelegate {
     }
     
     func error(for type: AlertType) {
-         showAlert(for: type)
+        showAlert(for: type)
     }
 }
 

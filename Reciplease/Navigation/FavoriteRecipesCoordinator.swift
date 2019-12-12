@@ -9,30 +9,39 @@
 import UIKit
 
 final class FavoriteRecipesCoordinator {
-
+    
     // MARK: - Properties
-
+    
     private let presenter: UINavigationController
-
+    
     private let screens: Screens
-
+    
     // MARK: - Initializer
-
+    
     init(presenter: UINavigationController, screens: Screens) {
         self.presenter = presenter
         self.screens = screens
     }
-
+    
     // MARK: - Coodinator
-
+    
     func start() {
-        showFavoriteRecipesView()
+        showFavoriteRecipes()
     }
-
-    private func showFavoriteRecipesView() {
+    
+    private func showFavoriteRecipes() {
         print("tableViewtype: Favorite")
         let viewController = screens.createRecipesViewController(ingredientSelected: "", delegate: self, alertDelegate: self as? AlertDelegate, tableViewtype: .favoriteRecipes)
         presenter.viewControllers = [viewController]
+    }
+    
+    private func showRecipeDetailFromFavorite(recipe: RecipeItem) {
+        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, delegate: self as? RecipeDetailViewModelDelegate, alertDelegate: self as? AlertDelegate)
+        presenter.pushViewController(viewController, animated: true)
+    }
+    
+    private func showAlert() {
+        
     }
 }
 
@@ -42,21 +51,8 @@ extension FavoriteRecipesCoordinator: RecipesViewModelDelegate {
     }
     
     func selectRecipe(recipe: RecipeItem) {
+        showRecipeDetailFromFavorite(recipe: recipe)
         
     }
 }
-
-extension FavoriteRecipesCoordinator: RecipeDetailViewModelDelegate {
-    
-    func didPressRecipeDetailView() {
-
-    }
-}
-
-    
-
-
-
-
-
 

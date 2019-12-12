@@ -19,7 +19,7 @@ class RecipesViewController: UIViewController {
     // MARK: - Properties
     
     var viewModel: RecipesViewModel!
-           
+    
     private lazy var recipeDataSource = RecipesDataSource()
     
     weak var delegate: RecipesViewControllerDelegate?
@@ -37,7 +37,7 @@ class RecipesViewController: UIViewController {
         
         recipesTableView.delegate = recipeDataSource
         recipesTableView.dataSource = recipeDataSource
-
+        
         bind(to: viewModel)
         bind(to: recipeDataSource)
     }
@@ -54,7 +54,6 @@ class RecipesViewController: UIViewController {
                 self?.recipesTableView.isHidden = false
                 self?.activityIndicator.stopAnimating()
             }
-            
         }
         viewModel.recipesDisplayed = { [weak self] recipes in
             DispatchQueue.main.async {
@@ -68,16 +67,14 @@ class RecipesViewController: UIViewController {
         source.selectedRecipe = viewModel.didSelectRecipe
     }
     
-    private func navigationBar() {
-        navigationItem.title = "Recipes"
-            guard (navigationItem.backBarButtonItem != nil) else { return }
-            navigationItem.backBarButtonItem!.title = "retour"
-            navigationItem.backBarButtonItem!.tintColor = UIColor(named: "UITabBar.item.tintColor")
+    @objc func printer() {
+        print("favorite button")
     }
     
-    // MARK: - View actions
+    private func navigationBar() {
+        // navigationTitle
+        navigationItem.title = "Recipes"
+    }
     
-//     didpressSelectRecipe
-    
-
 }
+

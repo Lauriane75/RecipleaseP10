@@ -13,9 +13,8 @@ final class IngredientTableViewCell: UITableViewCell {
     @IBOutlet weak var ingredientLabel: UILabel!
     
     func updateCell(with ingredients: [String], row: Int) {
-           let title = ingredients[row]
-           ingredientLabel.text =  "# \(title)"
-       }
-    
+        let title = ingredients[row]
+        ingredientLabel.text =  "  \(title)"
+    }
 }
 

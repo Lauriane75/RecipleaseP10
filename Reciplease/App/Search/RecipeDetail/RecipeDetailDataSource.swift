@@ -9,7 +9,7 @@
 import UIKit
 
 final class RecipeDetailDataSource: NSObject, UITableViewDataSource {
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -19,22 +19,20 @@ final class RecipeDetailDataSource: NSObject, UITableViewDataSource {
         let tableViewCell = UITableViewCell()
         
         guard let recipe = self.recipe else { return tableViewCell }
-
-//        guard self.recipe != nil else { return tableViewCell }
-        
+                
         let cell = tableView.dequeueReusableCell(withIdentifier: "recipeDetailTableViewCell", for: indexPath) as! RecipeDetailTableViewCell
         tableView.rowHeight = 250
         cell.updateCell(with: recipe, row: indexPath.row)
-
+        
         return cell
     }
     
-
-private var recipe: RecipeItem?
+    
+    private var recipe: RecipeItem?
     
     func update (with recipe: RecipeItem) {
-           self.recipe = recipe
-       }
-
+        self.recipe = recipe
+    }
+    
 }
 

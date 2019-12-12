@@ -10,7 +10,7 @@
 import UIKit
 
 final class Screens {
-
+    
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: Screens.self))
 }
 
@@ -20,7 +20,7 @@ protocol SearchViewControllerDelegate: class {
 }
 
 extension Screens {
-
+    
     func createSearchViewController(delegate: SearchViewModelDelegate?, alertDelegate: AlertDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         let viewModel = SearchViewModel(delegate: delegate, alertDelegate: alertDelegate)
@@ -45,7 +45,7 @@ enum type {
 extension Screens {
     func createRecipesViewController(ingredientSelected: String, delegate: RecipesViewModelDelegate?, alertDelegate: AlertDelegate?, tableViewtype: type) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as! RecipesViewController
-    
+        
         switch tableViewtype {
         case .foundRecipes :
             let network = NetworkRequest()
@@ -54,7 +54,7 @@ extension Screens {
             viewController.viewModel = viewModel
         case .favoriteRecipes :
             let network = NetworkRequest()
-            let repository = RecipeRepository(requestType: .network, network: network)
+            let repository = RecipeRepository(requestType: .persistence, network: network)
             let viewModel = RecipesViewModel(delegate: delegate, alertDelegate: alertDelegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
         }
@@ -67,8 +67,8 @@ extension Screens {
         let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
         let repository = RecipeDetailRepository()
         let viewModel = RecipeDetailViewModel(delegate: delegate, repository: repository, recipe: recipeSelected, alertDelegate: alertDelegate)
-           viewController.viewModel = viewModel
-           return viewController
+        viewController.viewModel = viewModel
+        return viewController
     }
 }
 
@@ -76,11 +76,11 @@ extension Screens {
 
 extension Screens {
     func createAlertView(for type: AlertType) -> UIAlertController? {
-            let alert = Alert(type: type)
-            let alertViewController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .actionSheet)
-            let yesButton = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alertViewController.addAction(yesButton)
-            return alertViewController
+        let alert = Alert(type: type)
+        let alertViewController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .actionSheet)
+        let yesButton = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertViewController.addAction(yesButton)
+        return alertViewController
     }
 }
 

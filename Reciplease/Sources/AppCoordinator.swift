@@ -9,41 +9,41 @@
 import UIKit
 
 final class AppCoordinator {
-
+    
     // MARK: - Properties
-
+    
     private unowned var appDelegate: AppDelegate
-
+    
     private var mainCoordinator: MainCoordinator?
-
+    
     // MARK: - Initializer
-
+    
     init(appDelegate: AppDelegate) {
         self.appDelegate = appDelegate
     }
-
+    
     // MARK: - Start
-
+    
     func start() {
         appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
         appDelegate.window!.rootViewController = UIViewController()
         appDelegate.window!.makeKeyAndVisible()
-
+        
         if ProcessInfo.processInfo.environment["IS_RUNNING_UNIT_TESTS"] == "YES" {
             return
         }
         
         showMain()
     }
-
+    
     // MARK: - Private
-
+    
     private func showMain() {
-
+        
         mainCoordinator = MainCoordinator(presenter: appDelegate.window!)
         UITabBar.appearance().tintColor = UIColor(named: "UITabBar.item.tintColor")
-        UITabBar.appearance().backgroundColor = UIColor(named: "UITabBar.item.tintColor")!
-
+        //        UITabBar.appearance().backgroundColor = .white
+        
         mainCoordinator?.start()
     }
 }

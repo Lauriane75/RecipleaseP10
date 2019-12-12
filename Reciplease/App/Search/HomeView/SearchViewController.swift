@@ -11,15 +11,15 @@ import UIKit
 class SearchViewController: UIViewController {
     
     // MARK: - Outlets
-        
+    
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var searchTextField: UITextField!
     
     @IBOutlet weak var addButton: UIButton!
-
+    
     @IBOutlet weak var clearButton: UIButton!
-
+    
     @IBOutlet weak var ingredientListLabel: UILabel!
     
     @IBOutlet weak var searchButton: UIButton!
@@ -49,18 +49,17 @@ class SearchViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         
         view.addGestureRecognizer(tap)
-
+        
         settingNotificationCenter()
     }
     
     deinit {
-           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification , object: nil)
-       }
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification , object: nil)
+    }
     
     // MARK: - Private Functions
-
     
     private func bind(to viewModel: SearchViewModel) {
         viewModel.titleLabel = { [weak self] text in
@@ -90,14 +89,14 @@ class SearchViewController: UIViewController {
         viewModel.ingredients = { [weak self] item in
             print("item = \(item)")
             DispatchQueue.main.async {
-        self?.searchDataSource.update(with: item)
-        self?.ingredientListTableView.reloadData()
+                self?.searchDataSource.update(with: item)
+                self?.ingredientListTableView.reloadData()
             }
         }
     }
     
     // MARK: - View actions
-
+    
     @IBAction func didPressAddButton(_ sender: Any) {
         guard let newIngredient = self.searchTextField.text else { return }
         print("\(newIngredient)")
@@ -111,7 +110,6 @@ class SearchViewController: UIViewController {
     @IBAction func didPressSearchButton(_ sender: Any) {
         viewModel.didPressSearchForRecipes()
     }
-    
     
     // MARK: - Private Files
     
@@ -133,7 +131,7 @@ class SearchViewController: UIViewController {
     
     internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyBoard()
-            return true
+        return true
     }
     
     fileprivate func settingNotificationCenter() {
@@ -143,16 +141,16 @@ class SearchViewController: UIViewController {
     }
     
     @objc private func keyboardWillChange(notification: Notification) {
-
+        
         guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?          NSValue else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
-
+        
         if notification.name == UIResponder.keyboardWillShowNotification ||
-                notification.name == UIResponder.keyboardWillChangeFrameNotification {
-                view.frame.origin.y = -(keyboardHeight/4)
+            notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -(keyboardHeight/4)
         } else {
-                view.frame.origin.y = 0
+            view.frame.origin.y = 0
         }
     }
 }
