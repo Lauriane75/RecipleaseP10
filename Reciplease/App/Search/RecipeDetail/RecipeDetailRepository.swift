@@ -23,7 +23,7 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         let recipeObject = RecipeObject(context: AppDelegate.viewContext)
         recipeObject.recipeImage = recipe.imageName
         recipeObject.recipeName = recipe.name
-        recipeObject.recipeIngredients = recipe.ingredient.joined(separator: "#")
+        recipeObject.recipeIngredients = recipe.ingredient.joined(separator: " ")
         try? AppDelegate.viewContext.save()
         
     }
