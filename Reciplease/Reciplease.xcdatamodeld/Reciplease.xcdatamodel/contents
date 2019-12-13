@@ -8,7 +8,7 @@
         <attribute name="recipeName" optional="YES" attributeType="String"/>
         <attribute name="recipeTime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="recipeURL" optional="YES" attributeType="String"/>
-        <attribute name="yieldRecipe" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="recipeYield" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="RecipeObject" positionX="-63" positionY="-18" width="128" height="163"/>

@@ -42,7 +42,6 @@ final class RecipeDetailViewModel {
     var dietLabel: ((String) -> Void)?
     var yieldLabel: ((String) -> Void)?
     var nameRecipeButton: ((String) -> Void)?
-    
     var favoriteState: ((Bool) -> Void)?
     
     // MARK: - Input
@@ -55,17 +54,12 @@ final class RecipeDetailViewModel {
         }
         
         recipeDisplayed?(recipe)
-        
         setUpTimeLabel()
+        setUpYieldLabel()
+        setUpDietLabel()
+        
         image?("\(recipe.imageName)")
         
-        var diet = editingDietLabels()
-        if diet == "" {
-            diet = "Food"
-        }
-        
-        dietLabel?("\(diet)")
-        yieldLabel?("\(recipe.yield)")
         nameRecipeButton?("\(recipe.name)")
     }
     
@@ -92,6 +86,15 @@ final class RecipeDetailViewModel {
     
     // MARK: - Private Functions
     
+    fileprivate func setUpYieldLabel() {
+        if recipe.yield == 0 {
+            let defaultValue = 2
+            yieldLabel?("\(defaultValue)")
+        } else {
+            yieldLabel?("\(recipe.yield)")
+        }
+    }
+    
     fileprivate func setUpTimeLabel() {
         if recipe.time == 0 {
             let defaultValue = 30
@@ -101,6 +104,15 @@ final class RecipeDetailViewModel {
         }
     }
     
+    
+    func setUpDietLabel() {
+        var diet = editingDietLabels()
+        if diet == "" {
+            diet = "Food"
+        }
+        dietLabel?("\(diet)")
+    }
+    
     /// To remove '[]'
     func editingDietLabels() -> String {
         let first = "\(recipe.dietLabels)".dropFirst(2)
@@ -108,5 +120,4 @@ final class RecipeDetailViewModel {
         
         return String(last)
     }
-    
 }

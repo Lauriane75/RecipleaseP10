@@ -23,9 +23,12 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         let recipeObject = RecipeObject(context: AppDelegate.viewContext)
         recipeObject.recipeImage = recipe.imageName
         recipeObject.recipeName = recipe.name
-        recipeObject.recipeIngredients = recipe.ingredient.joined(separator: " ")
+        recipeObject.recipeIngredients =
+            recipe.ingredient.joined(separator: " ")
+        recipeObject.recipeTime = Int16(Int(recipe.time))
+        recipeObject.recipeYield = Int16(Int(recipe.yield))
+        recipeObject.dietLabelsRecipe = recipe.dietLabels.joined(separator: " ")
         try? AppDelegate.viewContext.save()
-        
     }
     
     func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void) {
