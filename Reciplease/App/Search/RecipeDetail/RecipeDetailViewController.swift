@@ -55,7 +55,6 @@ class RecipeDetailViewController: UIViewController {
             self?.recipeDetailDataSource.update(with: recipe)
             self?.tableView.reloadData()
         }
-        
         viewModel.image = { [weak self] url in
             guard let image = url.transformURLToImage() else { return }
             self?.imageView.image = image
@@ -74,24 +73,6 @@ class RecipeDetailViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapGetDirectionButton(_ sender: Any) {
-    }
-    
-    // MARK: - Private Functions
-    
-    fileprivate func elementsCustom() {
-        contentView.layer.cornerRadius = 20
-        getDirectionButton.layer.cornerRadius = 15
-        tableView.layer.cornerRadius = 15
-    }
-    
-    private func navigationBar() {
-        // navigationTitle
-        //    navigationItem.title = ""
-        let image = UIImage(named: "favorite-icon")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didPressSelectFavoriteRecipe))
-        print("is nil ?")
-    }
     
     // MARK: - View actions
     
@@ -103,13 +84,19 @@ class RecipeDetailViewController: UIViewController {
         viewModel.didPressSelectFavoriteRecipe()
     }
     
+    // MARK: - Private Functions
+    
+    fileprivate func elementsCustom() {
+        contentView.layer.cornerRadius = 20
+        getDirectionButton.layer.cornerRadius = 15
+        tableView.layer.cornerRadius = 15
+        getDirectionButton.layer.borderWidth = 1
+        getDirectionButton.layer.borderColor = UIColor.orange.cgColor
+    }
+    
+    private func navigationBar() {
+        let image = UIImage(named: "reciplease-logo")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didPressSelectFavoriteRecipe))
+    }
+    
 }
-
-//    @IBAction func starRateButton(_ sender: Any) {
-//        //        self.starRateButton.setImage(UIImage(named: ""), for: .normal)
-//        starRate += 1
-//        if starRate > 5 {
-//            starRate = 0
-//        }
-//        viewModel.didPressStarRateButton(rate: starRate)
-//    }

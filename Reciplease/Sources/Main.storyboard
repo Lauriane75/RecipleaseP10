@@ -17,23 +17,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rBT-GH-khH" userLabel="Ingredient List Table View">
-                                <rect key="frame" x="0.0" y="205" width="320" height="185"/>
+                                <rect key="frame" x="0.0" y="205" width="320" height="117"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableViewCell" id="jF7-ft-2Y3" customClass="IngredientTableViewCell" customModule="Reciplease">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="21"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="20.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jF7-ft-2Y3" id="Bad-sP-bST">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYf-nN-W0A">
-                                                    <rect key="frame" x="20" y="0.0" width="300" height="21"/>
+                                                    <rect key="frame" x="20" y="0.0" width="300" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" id="xhr-6v-LZM"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" name="UITabBar.item.tintColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -105,7 +105,7 @@
                                     <constraint firstAttribute="width" constant="170" id="hmz-6d-36F"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSF-Um-zmN" userLabel="clear Button">
@@ -124,7 +124,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pza-DC-J6t" userLabel="search For Recipes Button">
-                                <rect key="frame" x="50" y="410" width="220" height="40"/>
+                                <rect key="frame" x="50" y="337" width="220" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="IMu-nM-L0N"/>
@@ -137,13 +137,93 @@
                                     <action selector="didPressSearchButton:" destination="hDi-ZA-EiS" eventType="touchUpInside" id="h1X-JL-81k"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLL-QV-cAF">
+                                <rect key="frame" x="0.0" y="392" width="320" height="88"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sAq-jk-QEV">
+                                        <rect key="frame" x="40" y="8" width="100" height="72"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCK-M5-kew">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="uVM-dX-8Fe"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <state key="normal" title="Tree-Nut free">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didSelectTreeNutFree:" destination="hDi-ZA-EiS" eventType="touchUpInside" id="QBK-yx-wap"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWH-2P-72e">
+                                                <rect key="frame" x="0.0" y="40" width="100" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <state key="normal" title="Low-Sugar">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didSelectLowSugar:" destination="hDi-ZA-EiS" eventType="touchUpInside" id="DUp-QQ-FHQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="mWH-2P-72e" firstAttribute="width" secondItem="NCK-M5-kew" secondAttribute="width" id="aCS-Hr-P1G"/>
+                                            <constraint firstItem="mWH-2P-72e" firstAttribute="height" secondItem="NCK-M5-kew" secondAttribute="height" id="swI-fW-MfM"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9NN-Hg-khq">
+                                        <rect key="frame" x="180" y="8" width="100" height="72"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJW-yr-SN9">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="iIl-x5-80D"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <state key="normal" title="Peanut-Free">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didSelectPeanutFree:" destination="hDi-ZA-EiS" eventType="touchUpInside" id="AdE-vJ-Sat"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auh-QP-HAt">
+                                                <rect key="frame" x="0.0" y="40" width="100" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <state key="normal" title="Alcohol-Free">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didSelectAlcoholFree:" destination="hDi-ZA-EiS" eventType="touchUpInside" id="EK1-W6-m6d"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="9NN-Hg-khq" firstAttribute="top" secondItem="DLL-QV-cAF" secondAttribute="top" constant="8" id="1zo-mt-EHj"/>
+                                    <constraint firstItem="OJW-yr-SN9" firstAttribute="height" secondItem="NCK-M5-kew" secondAttribute="height" id="Eoh-0r-6fh"/>
+                                    <constraint firstItem="sAq-jk-QEV" firstAttribute="leading" secondItem="DLL-QV-cAF" secondAttribute="leading" constant="40" id="KGn-wy-Veh"/>
+                                    <constraint firstAttribute="bottom" secondItem="sAq-jk-QEV" secondAttribute="bottom" constant="8" id="ZuN-Ei-VLy"/>
+                                    <constraint firstAttribute="trailing" secondItem="9NN-Hg-khq" secondAttribute="trailing" constant="40" id="c0I-UL-fQN"/>
+                                    <constraint firstAttribute="bottom" secondItem="9NN-Hg-khq" secondAttribute="bottom" constant="8" id="tMX-qv-bAT"/>
+                                    <constraint firstItem="sAq-jk-QEV" firstAttribute="top" secondItem="DLL-QV-cAF" secondAttribute="top" constant="8" id="wK9-k0-4nx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bSF-Um-zmN" firstAttribute="bottom" secondItem="773-46-mrU" secondAttribute="bottom" id="8xn-q4-aVH"/>
+                            <constraint firstItem="DLL-QV-cAF" firstAttribute="top" secondItem="pza-DC-J6t" secondAttribute="bottom" constant="15" id="9j8-Z9-Rvx"/>
                             <constraint firstItem="rBT-GH-khH" firstAttribute="leading" secondItem="ofQ-4h-lFs" secondAttribute="leading" id="LwU-GW-Etj"/>
                             <constraint firstItem="773-46-mrU" firstAttribute="top" secondItem="wNc-a4-WeL" secondAttribute="bottom" constant="20" id="Nxj-uK-vKX"/>
-                            <constraint firstItem="ofQ-4h-lFs" firstAttribute="bottom" secondItem="pza-DC-J6t" secondAttribute="bottom" constant="30" id="OfO-Y3-ive"/>
+                            <constraint firstItem="DLL-QV-cAF" firstAttribute="bottom" secondItem="ofQ-4h-lFs" secondAttribute="bottom" id="OnB-4x-74L"/>
                             <constraint firstItem="rBT-GH-khH" firstAttribute="top" secondItem="773-46-mrU" secondAttribute="bottom" constant="20" id="R11-pV-dCl"/>
                             <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="wNc-a4-WeL" secondAttribute="trailing" id="RbE-Dx-I19"/>
                             <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="rBT-GH-khH" secondAttribute="trailing" id="SKM-Sy-ESQ"/>
@@ -151,27 +231,33 @@
                             <constraint firstItem="pza-DC-J6t" firstAttribute="leading" secondItem="ofQ-4h-lFs" secondAttribute="leading" constant="50" id="YeS-av-OVv"/>
                             <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="bSF-Um-zmN" secondAttribute="trailing" constant="15" id="aFA-Om-7Aa"/>
                             <constraint firstItem="wNc-a4-WeL" firstAttribute="top" secondItem="ofQ-4h-lFs" secondAttribute="top" id="gFb-8L-RyY"/>
+                            <constraint firstItem="DLL-QV-cAF" firstAttribute="leading" secondItem="ofQ-4h-lFs" secondAttribute="leading" id="hfG-gw-vyn"/>
                             <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="pza-DC-J6t" secondAttribute="trailing" constant="50" id="j7U-Vi-Dhx"/>
                             <constraint firstItem="bSF-Um-zmN" firstAttribute="top" secondItem="773-46-mrU" secondAttribute="top" id="oEs-Xd-LNb"/>
                             <constraint firstItem="773-46-mrU" firstAttribute="leading" secondItem="ofQ-4h-lFs" secondAttribute="leading" constant="15" id="pAG-ll-iUD"/>
                             <constraint firstItem="bSF-Um-zmN" firstAttribute="top" secondItem="ofQ-4h-lFs" secondAttribute="top" constant="150" id="ube-Sx-XqP"/>
-                            <constraint firstItem="pza-DC-J6t" firstAttribute="top" secondItem="rBT-GH-khH" secondAttribute="bottom" constant="20" id="yxs-lv-gJS"/>
+                            <constraint firstItem="ofQ-4h-lFs" firstAttribute="trailing" secondItem="DLL-QV-cAF" secondAttribute="trailing" id="vJ1-pH-ldu"/>
+                            <constraint firstItem="pza-DC-J6t" firstAttribute="top" secondItem="rBT-GH-khH" secondAttribute="bottom" constant="15" id="yxs-lv-gJS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ofQ-4h-lFs"/>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="aaw-zG-01P" id="9bZ-8Z-p1M"/>
+                        <outlet property="alcoholFreeButton" destination="auh-QP-HAt" id="njI-a1-Q0W"/>
                         <outlet property="clearButton" destination="bSF-Um-zmN" id="xOS-1j-p2x"/>
                         <outlet property="ingredientListLabel" destination="773-46-mrU" id="sZ2-rm-a4c"/>
                         <outlet property="ingredientListTableView" destination="rBT-GH-khH" id="x4X-OO-3IB"/>
+                        <outlet property="lowSugarButton" destination="mWH-2P-72e" id="cTq-1D-LL6"/>
+                        <outlet property="peanutFreeButton" destination="OJW-yr-SN9" id="Gfp-pN-5Hn"/>
                         <outlet property="searchButton" destination="pza-DC-J6t" id="StW-ZY-zDF"/>
                         <outlet property="searchTextField" destination="wCM-CW-izO" id="Ara-fs-W5b"/>
                         <outlet property="titleLabel" destination="8yS-xs-DpG" id="Jjy-cc-bCx"/>
+                        <outlet property="treeNutFreeButton" destination="NCK-M5-kew" id="KSY-Iq-L45"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Op-Qs-22i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22.5" y="-91.901408450704224"/>
+            <point key="canvasLocation" x="22.5" y="-92.5"/>
         </scene>
         <!--Recipes View Controller-->
         <scene sceneID="vCp-0d-Ihh">
@@ -454,7 +540,6 @@
                                 </state>
                                 <connections>
                                     <action selector="didPressNameRecipeButton:" destination="cl6-iN-3Nr" eventType="touchUpInside" id="ZU7-tR-AaN"/>
-                                    <action selector="didTapGetDirectionButton:" destination="cl6-iN-3Nr" eventType="touchUpInside" id="5BB-hi-QXJ"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lak-VN-T79">
@@ -489,7 +574,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Qma-ri-Lwt" firstAttribute="trailing" secondItem="TcT-O8-41j" secondAttribute="trailing" constant="30" id="0TF-OD-pfi"/>
                             <constraint firstItem="Qma-ri-Lwt" firstAttribute="bottom" secondItem="lA7-BJ-XEy" secondAttribute="bottom" constant="30" id="AIj-1o-nNy"/>

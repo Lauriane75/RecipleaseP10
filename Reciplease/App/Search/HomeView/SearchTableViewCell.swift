@@ -14,7 +14,16 @@ final class IngredientTableViewCell: UITableViewCell {
     
     func updateCell(with ingredients: [String], row: Int) {
         let title = ingredients[row]
-        ingredientLabel.text =  "  \(title)"
+                
+        ingredientLabel.text =  "# \(title.firstCapitalized)"
     }
 }
+
+extension StringProtocol {
+  
+    var firstCapitalized: String {
+        return String(prefix(1)).capitalized + dropFirst()
+    }
+}
+
 

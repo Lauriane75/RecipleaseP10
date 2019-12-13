@@ -15,11 +15,11 @@ class RecipesViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var recipesTableView: UITableView!
-    
+        
     // MARK: - Properties
     
     var viewModel: RecipesViewModel!
-    
+           
     private lazy var recipeDataSource = RecipesDataSource()
     
     weak var delegate: RecipesViewControllerDelegate?
@@ -37,7 +37,7 @@ class RecipesViewController: UIViewController {
         
         recipesTableView.delegate = recipeDataSource
         recipesTableView.dataSource = recipeDataSource
-        
+
         bind(to: viewModel)
         bind(to: recipeDataSource)
     }
@@ -66,15 +66,17 @@ class RecipesViewController: UIViewController {
     private func bind(to source: RecipesDataSource) {
         source.selectedRecipe = viewModel.didSelectRecipe
     }
-    
-    @objc func printer() {
-        print("favorite button")
-    }
-    
+
     private func navigationBar() {
-        // navigationTitle
-        navigationItem.title = "Recipes"
+
+    let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
+    navigationController?.navigationBar.titleTextAttributes = titleColor
+    navigationItem.title = Accessibility.RecipesView.title
+    self.navigationController?.navigationBar.tintColor = .white
+    self.navigationController?.navigationBar.barTintColor = .orange
     }
-    
+
 }
 
+
+ 

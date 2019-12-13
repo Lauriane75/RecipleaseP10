@@ -59,7 +59,10 @@ final class RecipeDetailViewModel {
         setUpTimeLabel()
         image?("\(recipe.imageName)")
         
-        let diet = editingDietLabels()
+        var diet = editingDietLabels()
+        if diet == "" {
+            diet = "Food"
+        }
         
         dietLabel?("\(diet)")
         yieldLabel?("\(recipe.yield)")
@@ -107,8 +110,3 @@ final class RecipeDetailViewModel {
     }
     
 }
-
-//    func didPressStarRateButton(rate: Int) {
-//        starRate = rate
-//        rateLabel?("\(starRate)")
-//    }

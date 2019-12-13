@@ -58,7 +58,7 @@ extension MainCoordinator {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let index = tabBarController.selectedIndex
         guard index < tabBarSource.items.count, let item = ViewControllerItem(rawValue: index) else {
-            fatalError("Selected ViewController Index Out Of range")
+            fatalError("error")
         }
         
         switch item {

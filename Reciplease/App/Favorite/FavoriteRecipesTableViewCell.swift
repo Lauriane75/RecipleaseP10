@@ -16,9 +16,6 @@ class FavoriteRecipesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var favoriteImageView: UIImageView!
     
-    
-    // MARK: - Private properties
-    
     // MARK: - Private properties
     
     private var recipe: RecipeItem?
@@ -36,7 +33,6 @@ class FavoriteRecipesTableViewCell: UITableViewCell {
         nameLabel.text = "\(recipe.name)"
         
         ingredientsLabel.text = "\(recipe.ingredient.joined(separator: "\n"))"
-        
     }
     
 }

@@ -32,7 +32,7 @@ final class RecipesTableViewCell: UITableViewCell {
                 recipeImageView.layer.cornerRadius = 20
                 recipeImageView.image = image
             }
-            recipeIngredientLabel.text = recipe?.ingredient.prefix(3).joined(separator: ", ")
+            recipeIngredientLabel.text = recipe?.ingredient.prefix(2).joined(separator: ", ")
             if recipe?.time == 0 {
                 let defaultValue = "30 min"
                 timeLabel.text = defaultValue

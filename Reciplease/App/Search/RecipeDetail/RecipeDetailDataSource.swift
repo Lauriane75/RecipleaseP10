@@ -19,14 +19,12 @@ final class RecipeDetailDataSource: NSObject, UITableViewDataSource {
         let tableViewCell = UITableViewCell()
         
         guard let recipe = self.recipe else { return tableViewCell }
-                
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "recipeDetailTableViewCell", for: indexPath) as! RecipeDetailTableViewCell
-        tableView.rowHeight = 250
         cell.updateCell(with: recipe, row: indexPath.row)
         
         return cell
     }
-    
     
     private var recipe: RecipeItem?
     

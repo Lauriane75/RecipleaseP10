@@ -26,6 +26,14 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var ingredientListTableView: UITableView!
     
+    @IBOutlet weak var treeNutFreeButton: UIButton!
+    
+    @IBOutlet weak var lowSugarButton: UIButton!
+    
+    @IBOutlet weak var peanutFreeButton: UIButton!
+    
+    @IBOutlet weak var alcoholFreeButton: UIButton!
+    
     // MARK: - Properties
     
     var viewModel: SearchViewModel!
@@ -51,6 +59,9 @@ class SearchViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
         settingNotificationCenter()
+        
+        self.navigationController?.navigationBar.barTintColor = .orange
+        
     }
     
     deinit {
@@ -101,6 +112,7 @@ class SearchViewController: UIViewController {
         guard let newIngredient = self.searchTextField.text else { return }
         print("\(newIngredient)")
         viewModel.didPressAdd(ingredient: newIngredient)
+        
     }
     
     @IBAction func didPressClearButton(_ sender: Any) {
@@ -111,12 +123,49 @@ class SearchViewController: UIViewController {
         viewModel.didPressSearchForRecipes()
     }
     
+    @IBAction func didSelectTreeNutFree(_ sender: Any) {
+        if treeNutFreeButton.currentTitleColor == UIColor.white {
+            treeNutFreeButton.setTitleColor(UIColor.green, for: .normal)
+        } else {
+            treeNutFreeButton.setTitleColor(UIColor.white, for: .normal)
+        }
+    }
+    
+    @IBAction func didSelectLowSugar(_ sender: Any) {
+        if lowSugarButton.currentTitleColor == UIColor.white {
+            lowSugarButton.setTitleColor(UIColor.green, for: .normal)
+        } else {
+            lowSugarButton.setTitleColor(UIColor.white, for: .normal)
+        }
+    }
+    
+    @IBAction func didSelectPeanutFree(_ sender: Any) {
+        if peanutFreeButton.currentTitleColor == UIColor.white {
+            peanutFreeButton.setTitleColor(UIColor.green, for: .normal)
+        } else {
+            peanutFreeButton.setTitleColor(UIColor.white, for: .normal)
+        }
+    }
+    
+    @IBAction func didSelectAlcoholFree(_ sender: Any) {
+        if alcoholFreeButton.currentTitleColor == UIColor.white {
+            alcoholFreeButton.setTitleColor(UIColor.green, for: .normal)
+        } else {
+            alcoholFreeButton.setTitleColor(UIColor.white, for: .normal)
+        }
+    }
+    
     // MARK: - Private Files
     
     fileprivate func elementCustom() {
         addButton.layer.cornerRadius = 15
         clearButton.layer.cornerRadius = 15
         searchButton.layer.cornerRadius = 20
+        
+        treeNutFreeButton.layer.cornerRadius = 15
+        alcoholFreeButton.layer.cornerRadius = 15
+        peanutFreeButton.layer.cornerRadius = 15
+        lowSugarButton.layer.cornerRadius = 15
     }
     
     @objc private func hideKeyBoard() {

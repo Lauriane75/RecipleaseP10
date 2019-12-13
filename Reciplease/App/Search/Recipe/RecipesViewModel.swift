@@ -24,7 +24,7 @@ final class RecipesViewModel {
     private var ingredients: String
     
     private var repository: RecipeRepositoryType
-    
+        
     let route = Route()
     
     private var recipes: [RecipeItem] = [] {
@@ -51,7 +51,7 @@ final class RecipesViewModel {
     var recipesDisplayed: (([RecipeItem]) -> Void)?
     
     var activityIndicatorIsLoading: ((Bool) -> Void)?
-    
+        
     // MARK: - Input
     
     func viewWillAppear() {
@@ -77,7 +77,5 @@ final class RecipesViewModel {
     func didSelectRecipe(recipe: RecipeItem) {
         delegate?.selectRecipe(recipe: recipe)
     }
-        
-    
     
 }

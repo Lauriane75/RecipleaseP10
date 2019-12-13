@@ -29,7 +29,6 @@ final class SearchCoordinator {
         showHome()
     }
     
-    
     private func showHome() {
         let viewController = screens.createSearchViewController(delegate: self, alertDelegate: self as? AlertDelegate)
         presenter.viewControllers = [viewController]

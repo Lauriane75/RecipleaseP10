@@ -60,8 +60,6 @@ final class SearchViewModel {
     
     // MARK: - Input
     
-    
-    
     func viewDidLoad() {
         titleLabel?("What's in your fridge?")
         placeHolderTextField?("Lemon, Sugar, Honey ...")
@@ -89,7 +87,4 @@ final class SearchViewModel {
         let ingredientName = ingredientList.joined(separator:", ")
         self.delegate?.didSelectIngredient(ingredient: ingredientName)
     }
-    
-    // MARK: - Private Functions
-    
 }
