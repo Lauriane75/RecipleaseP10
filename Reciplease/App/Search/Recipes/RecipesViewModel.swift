@@ -23,7 +23,7 @@ final class RecipesViewModel {
     
     private var ingredients: String
     
-    private var repository: RecipeRepositoryType
+    private var repository: RecipesRepositoryType
         
     let route = Route()
     
@@ -39,7 +39,7 @@ final class RecipesViewModel {
     
     // MARK: - Initializer
     
-    init(delegate: RecipesViewModelDelegate?, alertDelegate: AlertDelegate?, repository: RecipeRepositoryType, ingredients: String) {
+    init(delegate: RecipesViewModelDelegate?, alertDelegate: AlertDelegate?, repository: RecipesRepositoryType, ingredients: String) {
         self.delegate = delegate
         self.alertDelegate = alertDelegate
         self.repository = repository

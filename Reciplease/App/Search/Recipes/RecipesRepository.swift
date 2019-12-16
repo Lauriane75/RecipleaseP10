@@ -19,11 +19,11 @@ enum RequestType {
     case persistence
 }
 
-protocol RecipeRepositoryType: class {
+protocol RecipesRepositoryType: class {
     func getRecipes(url: URL, success: @escaping (Result<[RecipeItem]>) -> Void, onError: @escaping (String) -> Void)
 }
 
-final class RecipeRepository: RecipeRepositoryType {
+final class RecipesRepository: RecipesRepositoryType {
     
     private let network: NetworkRequestType
     

@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "favorite-icon.png"
+      "filename" : "reciplease-favorite-logo.png"
     }
   ],
   "info" : {
@@ -10,7 +10,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "template-rendering-intent" : "original",
-    "auto-scaling" : "auto"
+    "template-rendering-intent" : "original"
   }
 }

@@ -21,9 +21,9 @@ protocol SearchViewControllerDelegate: class {
 
 extension Screens {
     
-    func createSearchViewController(delegate: SearchViewModelDelegate?, alertDelegate: AlertDelegate?) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        let viewModel = SearchViewModel(delegate: delegate, alertDelegate: alertDelegate)
+    func createSearchViewController(delegate: HomeViewModelDelegate?, alertDelegate: AlertDelegate?) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! HomeViewController
+        let viewModel = HomeViewModel(delegate: delegate, alertDelegate: alertDelegate)
         viewController.viewModel = viewModel
         return viewController
     }
@@ -49,12 +49,12 @@ extension Screens {
         switch tableViewtype {
         case .foundRecipes :
             let network = NetworkRequest()
-            let repository = RecipeRepository(requestType: .network, network: network)
+            let repository = RecipesRepository(requestType: .network, network: network)
             let viewModel = RecipesViewModel(delegate: delegate, alertDelegate: alertDelegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
         case .favoriteRecipes :
             let network = NetworkRequest()
-            let repository = RecipeRepository(requestType: .persistence, network: network)
+            let repository = RecipesRepository(requestType: .persistence, network: network)
             let viewModel = RecipesViewModel(delegate: delegate, alertDelegate: alertDelegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
         }
@@ -63,10 +63,10 @@ extension Screens {
 }
 
 extension Screens {
-    func createRecipeDetailViewController(recipeSelected: RecipeItem, delegate: RecipeDetailViewModelDelegate?, alertDelegate: AlertDelegate?) -> UIViewController {
+    func createRecipeDetailViewController(recipeSelected: RecipeItem, alertDelegate: AlertDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
         let repository = RecipeDetailRepository()
-        let viewModel = RecipeDetailViewModel(delegate: delegate, repository: repository, recipe: recipeSelected, alertDelegate: alertDelegate)
+        let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipeSelected, alertDelegate: alertDelegate)
         viewController.viewModel = viewModel
         return viewController
     }

@@ -37,9 +37,14 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         request.predicate = NSPredicate(format: "recipeName == %@", recipeName)
         request.sortDescriptors = [NSSortDescriptor(keyPath: \RecipeObject.recipeName, ascending: true)]
         
-        guard let recipes = try? AppDelegate.viewContext.fetch(request) else { print("error") ; return }
+        guard let recipes = try? AppDelegate.viewContext.fetch(request) else { print("error")
+            return
+
+        }
         
-        if recipes == [] {completion(false); return }
+        if recipes == [] { completion (false)
+            return
+        }
         
         completion(true)
         

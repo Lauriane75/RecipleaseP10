@@ -46,12 +46,12 @@ final class SearchCoordinator {
     }
     
     private func showRecipesDetail(recipe: RecipeItem) {
-        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, delegate: self as? RecipeDetailViewModelDelegate, alertDelegate: self as? AlertDelegate)
+        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, alertDelegate: self as? AlertDelegate)
         presenter.pushViewController(viewController, animated: true)
     }
 }
 
-extension SearchCoordinator: SearchViewModelDelegate {
+extension SearchCoordinator: HomeViewModelDelegate {
     
     func didSelectIngredient(ingredient: String) {
         showRecipes(ingredients: ingredient)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     // MARK: - Outlets
     
@@ -36,7 +36,7 @@ class SearchViewController: UIViewController {
     
     // MARK: - Properties
     
-    var viewModel: SearchViewModel!
+    var viewModel: HomeViewModel!
     
     private lazy var searchDataSource = SearchDataSource()
     
@@ -72,7 +72,7 @@ class SearchViewController: UIViewController {
     
     // MARK: - Private Functions
     
-    private func bind(to viewModel: SearchViewModel) {
+    private func bind(to viewModel: HomeViewModel) {
         viewModel.titleLabel = { [weak self] text in
             self?.titleLabel.text = text
         }
@@ -85,7 +85,7 @@ class SearchViewController: UIViewController {
         viewModel.ingredientTextField = { [weak self] text in
             self?.searchTextField.text = text
         }
-        viewModel.ingredientListLabel = { [weak self] text in
+        viewModel.listTitleLabel = { [weak self] text in
             self?.ingredientListLabel.text = text
         }
         viewModel.clearButton = { [weak self] text in
@@ -111,7 +111,7 @@ class SearchViewController: UIViewController {
     @IBAction func didPressAddButton(_ sender: Any) {
         guard let newIngredient = self.searchTextField.text else { return }
         print("\(newIngredient)")
-        viewModel.didPressAdd(ingredient: newIngredient)
+        viewModel.didPressAdd(ingredientSelected: newIngredient)
         
     }
     

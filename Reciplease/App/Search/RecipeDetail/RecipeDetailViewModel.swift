@@ -6,12 +6,7 @@
 //  Copyright © 2019 Lauriane Haydari. All rights reserved.
 //
 
-import Foundation
 import UIKit
-
-protocol RecipeDetailViewModelDelegate: class {
-    func didPressRecipeDetailView()
-}
 
 final class RecipeDetailViewModel {
     
@@ -21,14 +16,11 @@ final class RecipeDetailViewModel {
     
     private weak var alertDelegate: AlertDelegate?
     
-    private weak var delegate: RecipeDetailViewModelDelegate?
-    
     private var starRate = 0
     
     // MARK: - Initializer
     
-    init(delegate: RecipeDetailViewModelDelegate?, repository: RecipeDetailRepositoryType, recipe: RecipeItem, alertDelegate: AlertDelegate?) {
-        self.delegate = delegate
+    init(repository: RecipeDetailRepositoryType, recipe: RecipeItem, alertDelegate: AlertDelegate?) {
         self.repository = repository
         self.recipe = recipe
         self.alertDelegate = alertDelegate
@@ -48,19 +40,18 @@ final class RecipeDetailViewModel {
     
     func viewDidLoad() {
         
-        repository.verifyingFavoriteState(recipeName: recipe.name) {
+        recipeDisplayed?(recipe)
+        image?("\(recipe.imageName)")
+        setUpTimeLabel()
+        setUpDietLabel()
+        setUpYieldLabel()
+        nameRecipeButton?("\(recipe.name)")
+        
+        self.repository.verifyingFavoriteState(recipeName: self.recipe.name) {
             (state) in
             self.favoriteState?(state)
         }
         
-        recipeDisplayed?(recipe)
-        setUpTimeLabel()
-        setUpYieldLabel()
-        setUpDietLabel()
-        
-        image?("\(recipe.imageName)")
-        
-        nameRecipeButton?("\(recipe.name)")
     }
     
     func didPressSelectFavoriteRecipe() {
@@ -78,10 +69,12 @@ final class RecipeDetailViewModel {
         }
     }
     
-    func didOpenSafariButton() {
-        if let url = URL(string: recipe.url) {
-            UIApplication.shared.open(url)
+    func didPPressSafariButton() {
+        guard let url = URL(string: recipe.url) else {
+            alertDelegate?.displayAlert(type: .errorNoService)
+            return
         }
+        UIApplication.shared.open(url)
     }
     
     // MARK: - Private Functions
@@ -105,16 +98,16 @@ final class RecipeDetailViewModel {
     }
     
     
-    func setUpDietLabel() {
+    fileprivate func setUpDietLabel() {
         var diet = editingDietLabels()
         if diet == "" {
-            diet = "Food"
+            diet = "Low-Fat"
         }
         dietLabel?("\(diet)")
     }
     
     /// To remove '[]'
-    func editingDietLabels() -> String {
+    fileprivate func editingDietLabels() -> String {
         let first = "\(recipe.dietLabels)".dropFirst(2)
         let last = first.dropLast(2)
         

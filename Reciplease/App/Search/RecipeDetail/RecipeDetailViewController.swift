@@ -77,7 +77,7 @@ class RecipeDetailViewController: UIViewController {
     // MARK: - View actions
     
     @IBAction func didPressNameRecipeButton(_ sender: Any) {
-        viewModel.didOpenSafariButton()
+        viewModel.didPPressSafariButton()
     }
     
     @objc func didPressSelectFavoriteRecipe() {
@@ -95,7 +95,7 @@ class RecipeDetailViewController: UIViewController {
     }
     
     private func navigationBar() {
-        let image = UIImage(named: "reciplease-logo")
+        let image = UIImage(named: "reciplease-favorite-logo")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didPressSelectFavoriteRecipe))
     }
     

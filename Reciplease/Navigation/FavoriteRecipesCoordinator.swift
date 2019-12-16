@@ -36,7 +36,7 @@ final class FavoriteRecipesCoordinator {
     }
     
     private func showRecipeDetailFromFavorite(recipe: RecipeItem) {
-        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, delegate: self as? RecipeDetailViewModelDelegate, alertDelegate: self as? AlertDelegate)
+        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, alertDelegate: self as? AlertDelegate)
         presenter.pushViewController(viewController, animated: true)
     }
     

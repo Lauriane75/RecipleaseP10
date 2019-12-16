@@ -8,16 +8,16 @@
 
 import Foundation
 
-protocol SearchViewModelDelegate: class {
+protocol HomeViewModelDelegate: class {
     func didSelectIngredient(ingredient: String)
     func errorNoRecipeFound(for type: AlertType)
 }
 
-final class SearchViewModel {
+final class HomeViewModel {
     
     // MARK: - Properties
     
-    private weak var delegate: SearchViewModelDelegate?
+    private weak var delegate: HomeViewModelDelegate?
     
     private weak var alertDelegate: AlertDelegate?
     
@@ -33,7 +33,7 @@ final class SearchViewModel {
     
     // MARK: - Initializer
     
-    init(delegate: SearchViewModelDelegate?, alertDelegate: AlertDelegate?) {
+    init(delegate: HomeViewModelDelegate?, alertDelegate: AlertDelegate?) {
         self.delegate = delegate
         self.alertDelegate = alertDelegate
     }
@@ -46,7 +46,7 @@ final class SearchViewModel {
     
     var addButton: ((String) -> Void)?
     
-    var ingredientListLabel: ((String) -> Void)?
+    var listTitleLabel: ((String) -> Void)?
     
     var clearButton: ((String) -> Void)?
     
@@ -64,16 +64,16 @@ final class SearchViewModel {
         titleLabel?("What's in your fridge?")
         placeHolderTextField?("Lemon, Sugar, Honey ...")
         addButton?("+")
-        ingredientListLabel?("In your fridge :")
+        listTitleLabel?("In your fridge :")
         clearButton?("x")
         searchButton?("Go !")
         searchButtonIsHidden?(true)
         ingredients?(ingredientList)
     }
     
-    func didPressAdd(ingredient: String) {
-        guard ingredient != "" else { return }
-        ingredientList.append(ingredient)
+    func didPressAdd(ingredientSelected: String) {
+        guard ingredientSelected != "" else { return }
+        ingredientList.append(ingredientSelected)
         ingredientTextField?("")
         searchButtonIsHidden?(false)
     }
