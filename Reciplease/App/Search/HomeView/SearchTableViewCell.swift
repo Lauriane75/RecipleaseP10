@@ -15,7 +15,7 @@ final class IngredientTableViewCell: UITableViewCell {
     func updateCell(with ingredients: [String], row: Int) {
         let title = ingredients[row]
                 
-        ingredientLabel.text =  "# \(title.firstCapitalized)"
+        ingredientLabel.text =  " \(title.firstCapitalized)"
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 
 protocol HomeViewModelDelegate: class {
     func didSelectIngredient(ingredient: String)
-    func errorNoRecipeFound(for type: AlertType)
+    func displayHomeAlert(for type: AlertType)
 }
 
 final class HomeViewModel {
@@ -18,24 +18,18 @@ final class HomeViewModel {
     // MARK: - Properties
     
     private weak var delegate: HomeViewModelDelegate?
-    
-    private weak var alertDelegate: AlertDelegate?
-    
+        
     private var ingredientList: [String] = [] {
         didSet {
-            if ingredientList != [] {
+            guard ingredientList != [] else { return }
                 ingredients?(ingredientList)
-            } else {
-                alertDelegate?.displayAlert(type: .errorWrongIngredient)
-            }
         }
     }
     
     // MARK: - Initializer
     
-    init(delegate: HomeViewModelDelegate?, alertDelegate: AlertDelegate?) {
+    init(delegate: HomeViewModelDelegate?) {
         self.delegate = delegate
-        self.alertDelegate = alertDelegate
     }
     
     // MARK: - Output
@@ -68,7 +62,6 @@ final class HomeViewModel {
         clearButton?("x")
         searchButton?("Go !")
         searchButtonIsHidden?(true)
-        ingredients?(ingredientList)
     }
     
     func didPressAdd(ingredientSelected: String) {
@@ -81,6 +74,7 @@ final class HomeViewModel {
     func didPressClear() {
         ingredientList = [""]
         searchButtonIsHidden?(true)
+        self.delegate?.displayHomeAlert(for: .errorIngredientListEmpty)
     }
     
     func didPressSearchForRecipes() {

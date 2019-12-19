@@ -30,23 +30,23 @@ final class SearchCoordinator {
     }
     
     private func showHome() {
-        let viewController = screens.createSearchViewController(delegate: self, alertDelegate: self as? AlertDelegate)
+        let viewController = screens.createSearchViewController(delegate: self)
         presenter.viewControllers = [viewController]
     }
     
     private func showRecipes(ingredients: String) {
-        let viewController = screens.createRecipesViewController(ingredientSelected: ingredients, delegate: self as? RecipesViewModelDelegate, alertDelegate: self as? AlertDelegate, tableViewtype: .foundRecipes)
+        let viewController = screens.createRecipesViewController(ingredientSelected: ingredients, delegate: self, tableViewtype: .foundRecipes)
         print("ingrédient : \(ingredients)")
         presenter.pushViewController(viewController, animated: true)
     }
     
     private func showAlert(for type: AlertType) {
-        guard let alert = screens.createAlertView(for: type) else {return}
+        let alert = screens.createAlertView(for: type)
         presenter.visibleViewController?.present(alert, animated: true, completion: nil)
     }
     
     private func showRecipesDetail(recipe: RecipeItem) {
-        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, alertDelegate: self as? AlertDelegate)
+        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe)
         presenter.pushViewController(viewController, animated: true)
     }
 }
@@ -56,7 +56,7 @@ extension SearchCoordinator: HomeViewModelDelegate {
     func didSelectIngredient(ingredient: String) {
         showRecipes(ingredients: ingredient)
     }
-    func errorNoRecipeFound(for type: AlertType) {
+    func displayHomeAlert(for type: AlertType) {
         showAlert(for: type)
     }
 }
@@ -66,7 +66,7 @@ extension SearchCoordinator: RecipesViewModelDelegate {
         showRecipesDetail(recipe: recipe)
     }
     
-    func error(for type: AlertType) {
+    func displayRecipesAlert(for type: AlertType) {
         showAlert(for: type)
     }
 }

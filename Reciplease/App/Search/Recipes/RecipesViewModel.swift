@@ -10,7 +10,7 @@ import Foundation
 
 protocol RecipesViewModelDelegate: class {
     func selectRecipe(recipe: RecipeItem)
-    func error(for type: AlertType)
+    func displayRecipesAlert(for type: AlertType)
 }
 
 final class RecipesViewModel {
@@ -18,9 +18,7 @@ final class RecipesViewModel {
     // MARK: - Properties
     
     private weak var delegate: RecipesViewModelDelegate?
-    
-    private weak var alertDelegate: AlertDelegate?
-    
+        
     private var ingredients: String
     
     private var repository: RecipesRepositoryType
@@ -32,16 +30,15 @@ final class RecipesViewModel {
             if recipes != [] {
                 recipesDisplayed?(recipes)
             } else {
-                alertDelegate?.displayAlert(type: .errorNoRecipeFound)
+                delegate?.displayRecipesAlert(for: .errorNoRecipeFound)
             }
         }
     }
     
     // MARK: - Initializer
     
-    init(delegate: RecipesViewModelDelegate?, alertDelegate: AlertDelegate?, repository: RecipesRepositoryType, ingredients: String) {
+    init(delegate: RecipesViewModelDelegate?, repository: RecipesRepositoryType, ingredients: String) {
         self.delegate = delegate
-        self.alertDelegate = alertDelegate
         self.repository = repository
         self.ingredients = ingredients
     }
@@ -65,10 +62,12 @@ final class RecipesViewModel {
                 self?.recipes = recipeArray
                 self?.activityIndicatorIsLoading?(false)
             case .error:
-                self?.alertDelegate?.displayAlert(type: .errorNoService)
+                DispatchQueue.main.async {
+                    self?.delegate?.displayRecipesAlert(for: .errorService)
+                }
             }
-            }, onError: { [weak self] error in
-                self?.alertDelegate?.displayAlert(type: .errorNoService)
+            }, error: { [weak self] alert in
+                self?.delegate?.displayRecipesAlert(for: .errorService)
                 return
         })
         recipesDisplayed?(recipes)

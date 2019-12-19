@@ -20,7 +20,7 @@ enum RequestType {
 }
 
 protocol RecipesRepositoryType: class {
-    func getRecipes(url: URL, success: @escaping (Result<[RecipeItem]>) -> Void, onError: @escaping (String) -> Void)
+    func getRecipes(url: URL, success: @escaping (Result<[RecipeItem]>) -> Void, error: @escaping (String) -> Void)
 }
 
 final class RecipesRepository: RecipesRepositoryType {
@@ -34,7 +34,7 @@ final class RecipesRepository: RecipesRepositoryType {
         self.network = network
     }
     
-    func getRecipes(url: URL, success: @escaping (Result<[RecipeItem]>) -> Void, onError: @escaping (String) -> Void) {
+    func getRecipes(url: URL, success: @escaping (Result<[RecipeItem]>) -> Void, error: @escaping (String) -> Void) {
         switch requestType {
         case .network:
             network.request(type: Recipes.self, url: url) { (result) in
@@ -48,8 +48,8 @@ final class RecipesRepository: RecipesRepositoryType {
                                                ingredient: $0.recipe.ingredientLines.map { $0}, time:  $0.recipe.totalTime, yield: $0.recipe.yield, dietLabels: $0.recipe.dietLabels)}
                     success(.success(value: result))
                     
-                case .error(error: let error):
-                    onError(error.localizedDescription)
+                case .error(error: let alert):
+                    error(alert.localizedDescription)
                 }
             }
         case .persistence:
@@ -57,7 +57,7 @@ final class RecipesRepository: RecipesRepositoryType {
             guard let recipes = try? AppDelegate.viewContext.fetch(request) else { return}
             let recipeItem : [RecipeItem] = recipes.map  { return RecipeItem(name: $0.recipeName!,
                                                                              imageName: $0.recipeImage ?? "", url: $0.recipeURL ?? "",
-                                                                             ingredient: ($0.recipeIngredients?.components(separatedBy: "#") ?? [""]), time: Int($0.recipeTime), yield: Int($0.recipeYield), dietLabels: ($0.dietLabelsRecipe?.components(separatedBy: "") ?? [""]))
+                                                                             ingredient: ($0.recipeIngredients?.components(separatedBy: ", ") ?? [", "]), time: Int($0.recipeTime), yield: Int($0.recipeYield), dietLabels: ($0.dietLabelsRecipe?.components(separatedBy: "") ?? [""]))
             }
             success(.success(value: recipeItem))
         }

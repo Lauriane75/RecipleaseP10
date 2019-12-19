@@ -9,27 +9,30 @@
 import XCTest
 @ testable import Reciplease
 
-class MockSearchCoordinator: HomeViewModelDelegate, RecipesViewModelDelegate {
+class MockHomeViewModelDelegate: HomeViewModelDelegate {
+    
+    var alert: AlertType? = nil
+    
+    var ingredient = "lemon"
+    
+//    var ing: RecipeItem? = nil
+    
     func didSelectIngredient(ingredient: String) {
+        self.ingredient = ingredient
     }
     
-    func errorNoRecipeFound(for type: AlertType) {
-    }
-    
-    func selectRecipe(recipe: RecipeItem) {
-    }
-    
-    func error(for type: AlertType) {
+    func displayHomeAlert(for type: AlertType) {
+        self.alert = type
     }
 }
 
 class HomeViewModelTests: XCTestCase {
-        
+    
     func test_Given_HomeViewModel_When_ViewDidLoad_Then_ReactivePropertiesAreDiplayed() {
         
-        let delegate: HomeViewModelDelegate? = MockSearchCoordinator()
+        let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate, alertDelegate: nil)
+        let viewModel = HomeViewModel(delegate: delegate)
         
         let expectation1 = self.expectation(description: "Diplayed titleLabel")
         let expectation2 = self.expectation(description: "Diplayed placeHolderTextField")
@@ -77,93 +80,86 @@ class HomeViewModelTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
     
-    // question search button is hidden
     func test_Given_ViewModel_When_didPressAdd_Then_ingredientsIsDisplayed() {
         
-        let delegate: HomeViewModelDelegate? = MockSearchCoordinator()
+        let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate, alertDelegate: nil)
+        let viewModel = HomeViewModel(delegate: delegate)
         
-        let expectation1 = self.expectation(description: "Diplayed ingredient")
-        
-        let expectation2 = self.expectation(description: "Diplayed searchButtonIsHidden")
-        
-        var counter1 = 0
-        
-        viewModel.ingredients = { text in
-            if counter1 == 1 {
-                XCTAssertEqual(text, ["lemon"])
-                expectation1.fulfill()
-            }
-            counter1 += 1
-        }
-        
-        var counter2 = 0
-        
-        viewModel.searchButtonIsHidden = { state in
-            if counter2 == 1 {
-                XCTAssertEqual(state, false)
-                expectation2.fulfill()
-            }
-            counter2 += 1
-        }
-                
         viewModel.viewDidLoad()
         viewModel.didPressAdd(ingredientSelected: "lemon")
-
-        waitForExpectations(timeout: 1.0, handler: nil)
         
+        viewModel.ingredients = { text in
+            XCTAssertEqual(text, ["lemon"])
+        }
     }
     
     func test_Given_ViewModel_When_didPressAddAnddidPressClear_Then_IngredientsIsEmpty() {
         
-        let delegate: HomeViewModelDelegate? = MockSearchCoordinator()
+        let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate, alertDelegate: nil)
+        let viewModel = HomeViewModel(delegate: delegate)
         
-        let expectation = self.expectation(description: "Ingredient is empty")
-        
-        var counter = 0
-        
-        viewModel.ingredients = { text in
-            if counter == 1 {
-                XCTAssertEqual(text, [""])
-                expectation.fulfill()
-            }
-            counter += 1
-        }
-        
+        viewModel.viewDidLoad()
         viewModel.didPressAdd(ingredientSelected: "eggs")
         viewModel.didPressClear()
         
-        viewModel.viewDidLoad()
-        
-        waitForExpectations(timeout: 1.0, handler: nil)
+        viewModel.ingredients = { text in
+            XCTAssertEqual(text, [""])
+        }
         
     }
     
     func test_Given_ViewModel_When_didPressAdd_Then_SearchButtonIsDisplayed() {
         
-        let delegate: HomeViewModelDelegate? = MockSearchCoordinator()
+        let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate, alertDelegate: nil)
+        let viewModel = HomeViewModel(delegate: delegate)
         
-        let expectation = self.expectation(description: "Displayed SearchButton")
+        let firstExpectation = self.expectation(description: "Displayed SearchButton")
+        let secondExpectation = self.expectation(description: "Displayed SearchButton2")
         
-        var counter = 0
         
         viewModel.searchButtonIsHidden = { state in
-            if counter == 1 {
-                XCTAssertEqual(state, false)
-                expectation.fulfill()
-            }
-            counter += 1
+            XCTAssertEqual(state, true)
+            firstExpectation.fulfill()
         }
         
         viewModel.viewDidLoad()
+        
+        viewModel.searchButtonIsHidden = { state in
+            XCTAssertEqual(state, false)
+            secondExpectation.fulfill()
+        }
+        
         viewModel.didPressAdd(ingredientSelected: "chocolate")
         
         waitForExpectations(timeout: 1.0, handler: nil)
-        
     }
+    
+    func test_Given_ViewModel_When_didPressClear_Then_Alert() {
+        
+        let delegate = MockHomeViewModelDelegate()
+        
+        let viewModel = HomeViewModel(delegate: delegate)
+        
+        viewModel.viewDidLoad()
+        viewModel.didPressAdd(ingredientSelected: "eggs")
+        viewModel.didPressClear()
+        
+        XCTAssertEqual(delegate.alert, .errorIngredientListEmpty)
+    }
+//    
+//    func test_Given_ViewModel_When_AddIngredient_Then_() {
+//        
+//        let delegate = MockHomeViewModelDelegate()
+//        
+//        let viewModel = HomeViewModel(delegate: delegate)
+//        
+//        viewModel.viewDidLoad()
+//        viewModel.didPressAdd(ingredientSelected: "lemon")
+//        
+//        XCTAssertEqual(delegate.ingredient, "lemon")
+//    }
+    
 }

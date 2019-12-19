@@ -25,6 +25,7 @@
 		F63F50912397C95A002EE563 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F50902397C95A002EE563 /* NetworkRequest.swift */; };
 		F63F50932397CB97002EE563 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F50922397CB97002EE563 /* Route.swift */; };
 		F63F50952397CDAD002EE563 /* RecipesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F50942397CDAD002EE563 /* RecipesRepository.swift */; };
+		F64BCA1623A95515008BE16A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64BCA1523A95515008BE16A /* Extension.swift */; };
 		F664A4E9239F16F000515C29 /* RecipeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F664A4E8239F16F000515C29 /* RecipeDetailRepository.swift */; };
 		F664A4EB239F229200515C29 /* RecipeDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F664A4EA239F229200515C29 /* RecipeDetailDataSource.swift */; };
 		F689EC38237C37C000747170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC37237C37C000747170 /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		F63F50902397C95A002EE563 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		F63F50922397CB97002EE563 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		F63F50942397CDAD002EE563 /* RecipesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesRepository.swift; sourceTree = "<group>"; };
+		F64BCA1523A95515008BE16A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		F664A4E8239F16F000515C29 /* RecipeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailRepository.swift; sourceTree = "<group>"; };
 		F664A4EA239F229200515C29 /* RecipeDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailDataSource.swift; sourceTree = "<group>"; };
 		F689EC34237C37C000747170 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		F64BCA1723A95973008BE16A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F64BCA1523A95515008BE16A /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		F689EC2B237C37BF00747170 = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +298,7 @@
 		F689EC6D237C5C7700747170 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F64BCA1723A95973008BE16A /* Extension */,
 				F6225211238FC79E008CCDBB /* Alert */,
 				F689EC6E237C5C8700747170 /* Search */,
 				F689EC6F237C5C8D00747170 /* Favorite */,
@@ -488,6 +499,7 @@
 				F689EC63237C4ACE00747170 /* AppCoordinator.swift in Sources */,
 				F689EC68237C4B6600747170 /* MainCoordinator.swift in Sources */,
 				F63F508A23964F63002EE563 /* RecipesDataSource.swift in Sources */,
+				F64BCA1623A95515008BE16A /* Extension.swift in Sources */,
 				F689EC71237C5CAB00747170 /* HomeViewController.swift in Sources */,
 				F689EC66237C4B0100747170 /* Screens.swift in Sources */,
 				F689EC73237C5CC200747170 /* HomeViewModel.swift in Sources */,
@@ -680,7 +692,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lauriane.haydari.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -702,7 +714,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lauriane.haydari.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

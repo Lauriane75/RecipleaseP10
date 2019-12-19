@@ -22,8 +22,6 @@ class RecipesViewController: UIViewController {
            
     private lazy var recipeDataSource = RecipesDataSource()
     
-    weak var delegate: RecipesViewControllerDelegate?
-    
     // MARK: - ViewLifeCycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,8 +73,8 @@ class RecipesViewController: UIViewController {
     self.navigationController?.navigationBar.tintColor = .white
     self.navigationController?.navigationBar.barTintColor = .orange
     }
-
 }
+
 
 
  

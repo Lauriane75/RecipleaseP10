@@ -31,23 +31,24 @@ final class FavoriteRecipesCoordinator {
     
     private func showFavoriteRecipes() {
         print("tableViewtype: Favorite")
-        let viewController = screens.createRecipesViewController(ingredientSelected: "", delegate: self, alertDelegate: self as? AlertDelegate, tableViewtype: .favoriteRecipes)
+        let viewController = screens.createRecipesViewController(ingredientSelected: "", delegate: self, tableViewtype: .favoriteRecipes)
         presenter.viewControllers = [viewController]
     }
     
     private func showRecipeDetailFromFavorite(recipe: RecipeItem) {
-        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe, alertDelegate: self as? AlertDelegate)
+        let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe)
         presenter.pushViewController(viewController, animated: true)
     }
     
-    private func showAlert() {
-        
+    private func showAlert(for type: AlertType) {
+        let alert = screens.createAlertView(for: type)
+        presenter.visibleViewController?.present(alert, animated: true, completion: nil)
     }
 }
 
 extension FavoriteRecipesCoordinator: RecipesViewModelDelegate {
-    func error(for type: AlertType) {
-        
+    func displayRecipesAlert(for type: AlertType) {
+           showAlert(for: type)
     }
     
     func selectRecipe(recipe: RecipeItem) {

@@ -16,14 +16,14 @@ final class Screens {
 
 // MARK : - Main
 
-protocol SearchViewControllerDelegate: class {
-}
+//protocol SearchViewControllerDelegate: class {
+//}
 
 extension Screens {
     
-    func createSearchViewController(delegate: HomeViewModelDelegate?, alertDelegate: AlertDelegate?) -> UIViewController {
+    func createSearchViewController(delegate: HomeViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! HomeViewController
-        let viewModel = HomeViewModel(delegate: delegate, alertDelegate: alertDelegate)
+        let viewModel = HomeViewModel(delegate: delegate)
         viewController.viewModel = viewModel
         return viewController
     }
@@ -31,11 +31,11 @@ extension Screens {
 
 // MARK: - Child
 
-protocol RecipesViewControllerDelegate: class {
-}
-
-protocol RecipeDetailViewControllerDelegate: class {
-}
+//protocol RecipesViewControllerDelegate: class {
+//}
+//
+//protocol RecipeDetailViewControllerDelegate: class {
+//}
 
 enum type {
     case foundRecipes
@@ -43,19 +43,19 @@ enum type {
 }
 
 extension Screens {
-    func createRecipesViewController(ingredientSelected: String, delegate: RecipesViewModelDelegate?, alertDelegate: AlertDelegate?, tableViewtype: type) -> UIViewController {
+    func createRecipesViewController(ingredientSelected: String, delegate: RecipesViewModelDelegate?, tableViewtype: type) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as! RecipesViewController
         
         switch tableViewtype {
         case .foundRecipes :
             let network = NetworkRequest()
             let repository = RecipesRepository(requestType: .network, network: network)
-            let viewModel = RecipesViewModel(delegate: delegate, alertDelegate: alertDelegate, repository: repository, ingredients: ingredientSelected)
+            let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
         case .favoriteRecipes :
             let network = NetworkRequest()
             let repository = RecipesRepository(requestType: .persistence, network: network)
-            let viewModel = RecipesViewModel(delegate: delegate, alertDelegate: alertDelegate, repository: repository, ingredients: ingredientSelected)
+            let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
         }
         return viewController
@@ -63,10 +63,10 @@ extension Screens {
 }
 
 extension Screens {
-    func createRecipeDetailViewController(recipeSelected: RecipeItem, alertDelegate: AlertDelegate?) -> UIViewController {
+    func createRecipeDetailViewController(recipeSelected: RecipeItem) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
         let repository = RecipeDetailRepository()
-        let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipeSelected, alertDelegate: alertDelegate)
+        let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipeSelected)
         viewController.viewModel = viewModel
         return viewController
     }
@@ -75,11 +75,11 @@ extension Screens {
 // MARK: - Alert
 
 extension Screens {
-    func createAlertView(for type: AlertType) -> UIAlertController? {
+    func createAlertView(for type: AlertType) -> UIAlertController {
         let alert = Alert(type: type)
-        let alertViewController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .actionSheet)
-        let yesButton = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alertViewController.addAction(yesButton)
+        let alertViewController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertViewController.addAction(action)
         return alertViewController
     }
 }

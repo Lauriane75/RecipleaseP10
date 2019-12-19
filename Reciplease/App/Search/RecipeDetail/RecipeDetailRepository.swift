@@ -21,10 +21,11 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
     func didPressSelectFavoriteRecipe(recipe: RecipeItem) {
         
         let recipeObject = RecipeObject(context: AppDelegate.viewContext)
+        recipeObject.recipeURL = recipe.url
         recipeObject.recipeImage = recipe.imageName
         recipeObject.recipeName = recipe.name
         recipeObject.recipeIngredients =
-            recipe.ingredient.joined(separator: " ")
+        recipe.ingredient.joined(separator: " ")
         recipeObject.recipeTime = Int16(Int(recipe.time))
         recipeObject.recipeYield = Int16(Int(recipe.yield))
         recipeObject.dietLabelsRecipe = recipe.dietLabels.joined(separator: " ")

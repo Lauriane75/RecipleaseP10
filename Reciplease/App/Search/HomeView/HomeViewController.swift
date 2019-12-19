@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
     
     private lazy var searchDataSource = SearchDataSource()
     
-    weak var delegate: SearchViewControllerDelegate?
+//    weak var delegate: SearchViewControllerDelegate?
     
     // MARK: - View life cycle
     
@@ -197,7 +197,7 @@ class HomeViewController: UIViewController {
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
             notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            view.frame.origin.y = -(keyboardHeight/4)
+            view.frame.origin.y = -(keyboardHeight/5)
         } else {
             view.frame.origin.y = 0
         }

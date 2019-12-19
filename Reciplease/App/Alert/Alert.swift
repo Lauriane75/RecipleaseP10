@@ -9,7 +9,7 @@
 import UIKit
 
 enum AlertType {
-    case errorNoService, errorNoRecipeFound, errorWrongIngredient
+    case errorService, errorNoRecipeFound, errorIngredientListEmpty
 }
 
 struct Alert {
@@ -20,17 +20,13 @@ struct Alert {
 extension Alert {
     init(type: AlertType) {
         switch type {
-        case .errorNoService:
-            self = Alert(title: "No service", message: "Can't connect to a cellular network")
+        case .errorService:
+            self = Alert(title: "Error", message: "No service connection")
         case .errorNoRecipeFound:
             self = Alert(title: "Error", message: "No recipe found please try again")
-        case .errorWrongIngredient:
-            self = Alert(title: "Error", message: "Please try to enter at least one ingredient.")
+        case .errorIngredientListEmpty:
+            self = Alert(title: "Is your fridge empty ?", message: "Please add your first ingredient then press +")
         }
     }
-}
-
-protocol AlertDelegate: class {
-    func displayAlert(type: AlertType)
 }
 

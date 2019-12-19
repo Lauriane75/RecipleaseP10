@@ -28,7 +28,7 @@ class RecipeDetailViewController: UIViewController {
     
     var viewModel: RecipeDetailViewModel!
     
-    weak var delegate: RecipeDetailViewControllerDelegate?
+//    weak var delegate: RecipeDetailViewControllerDelegate?
     
     private lazy var recipeDetailDataSource = RecipeDetailDataSource()
     
@@ -56,8 +56,7 @@ class RecipeDetailViewController: UIViewController {
             self?.tableView.reloadData()
         }
         viewModel.image = { [weak self] url in
-            guard let image = url.transformURLToImage() else { return }
-            self?.imageView.image = image
+            self?.imageView.download(url)
         }
         viewModel.dietLabel = { [weak self] text in
             self?.bookMarkedLabel.text = text
@@ -77,7 +76,7 @@ class RecipeDetailViewController: UIViewController {
     // MARK: - View actions
     
     @IBAction func didPressNameRecipeButton(_ sender: Any) {
-        viewModel.didPPressSafariButton()
+        viewModel.didPressSafariButton()
     }
     
     @objc func didPressSelectFavoriteRecipe() {

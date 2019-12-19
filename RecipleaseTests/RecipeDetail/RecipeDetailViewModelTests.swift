@@ -9,6 +9,16 @@
 import XCTest
 @ testable import Reciplease
 
+
+final class MockRecipeDetailViewModelDelegate: RecipeDetailViewModelDelegate {
+    
+    var alert: AlertType? = nil
+    
+    func displayAlert(for type: AlertType) {
+        self.alert = type
+    }
+}
+
 final class MockRecipeDetailRepository: RecipeDetailRepositoryType {
     
     var favoriteState = false
@@ -31,11 +41,9 @@ class RecipeDetailViewModelTests: XCTestCase {
     
     let mockRepository = MockRecipeDetailRepository()
     
-    let alertDelegate = MockAlertDelegate()
-    
     func test_Given_RecipeDetailViewModel_When_ViewDidLoad_Then_ReactivePropertiesAreDisplayed() {
         
-        let viewModel = RecipeDetailViewModel(repository: mockRepository, recipe: recipe, alertDelegate: alertDelegate)
+        let viewModel = RecipeDetailViewModel(repository: mockRepository, recipe: recipe)
         
         let expectation1 = self.expectation(description: "Displayed recipeDisplayed")
         let expectation2 = self.expectation(description: "Displayed image")
@@ -80,52 +88,18 @@ class RecipeDetailViewModelTests: XCTestCase {
         
         let repository = RecipeDetailRepository()
         
-        let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipe, alertDelegate: alertDelegate)
-        
-        let expectation1 = self.expectation(description: "Displayed state")
-        let expectation2 = self.expectation(description: "Verifying state")
-        
-        
-        viewModel.favoriteState = { state in
-            XCTAssertEqual(state, true)
-            expectation1.fulfill()
-        }
+        let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipe)
         
         viewModel.viewDidLoad()
         repository.didPressSelectFavoriteRecipe(recipe: recipe)
         
-        repository.verifyingFavoriteState(recipeName: recipe.name) { (state) in
+        viewModel.favoriteState = { state in
             XCTAssertEqual(state, true)
-            expectation2.fulfill()
         }
         
-        waitForExpectations(timeout: 1.0, handler: nil)
+        repository.verifyingFavoriteState(recipeName: recipe.name) { (state) in
+            XCTAssertEqual(state, true)
+        }
     }
-    
-//    func test_Given_ViewModel_When_didPPressSafariButton_Then() {
-//        
-//        let repository = RecipeDetailRepository()
-//        
-//        let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipe, alertDelegate: alertDelegate)
-//        
-//        let expectation1 = self.expectation(description: "Displayed state")
-//        let expectation2 = self.expectation(description: "Verifying state")
-//        
-//        
-//        viewModel.didPPressSafariButton() = { url in
-//            XCTAssertEqual(url, recipe.url)
-//            expectation1.fulfill()
-//        }
-//        
-//        viewModel.viewDidLoad()
-//        viewModel.didPPressSafariButton()
-//        
-//        repository.verifyingFavoriteState(recipeName: recipe.name) { (state) in
-//            XCTAssertEqual(state, true)
-//            expectation2.fulfill()
-//        }
-//        
-//        waitForExpectations(timeout: 1.0, handler: nil)
-//    }
     
 }

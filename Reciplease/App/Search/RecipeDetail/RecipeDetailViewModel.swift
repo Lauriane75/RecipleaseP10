@@ -8,22 +8,25 @@
 
 import UIKit
 
+protocol RecipeDetailViewModelDelegate: class {
+    func displayAlert(for type: AlertType)
+}
+
 final class RecipeDetailViewModel {
     
     private var repository: RecipeDetailRepositoryType
     
     private var recipe: RecipeItem
     
-    private weak var alertDelegate: AlertDelegate?
-    
+    private var delegate: RecipeDetailViewModelDelegate?
+        
     private var starRate = 0
     
     // MARK: - Initializer
     
-    init(repository: RecipeDetailRepositoryType, recipe: RecipeItem, alertDelegate: AlertDelegate?) {
+    init(repository: RecipeDetailRepositoryType, recipe: RecipeItem) {
         self.repository = repository
         self.recipe = recipe
-        self.alertDelegate = alertDelegate
     }
     
     // MARK: - Output
@@ -69,9 +72,9 @@ final class RecipeDetailViewModel {
         }
     }
     
-    func didPPressSafariButton() {
+    func didPressSafariButton() {
         guard let url = URL(string: recipe.url) else {
-            alertDelegate?.displayAlert(type: .errorNoService)
+            self.delegate?.displayAlert(for: .errorNoRecipeFound)
             return
         }
         UIApplication.shared.open(url)
@@ -96,7 +99,6 @@ final class RecipeDetailViewModel {
             timeLabel?("\(recipe.time) min")
         }
     }
-    
     
     fileprivate func setUpDietLabel() {
         var diet = editingDietLabels()

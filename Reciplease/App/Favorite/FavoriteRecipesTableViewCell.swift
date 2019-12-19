@@ -26,9 +26,11 @@ class FavoriteRecipesTableViewCell: UITableViewCell {
         self.recipe = recipe
         self.row = row
         
-        if let image = recipe.imageName.transformURLToImage() {
-            favoriteImageView.image = image
-        }
+        guard let recipe = self.recipe else { return }
+        
+//        if let image = recipe.imageName.transformURLToImage() {
+            favoriteImageView.download(self.recipe!.imageName)
+//        }
         
         nameLabel.text = "\(recipe.name)"
         

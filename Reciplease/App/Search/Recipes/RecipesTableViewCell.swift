@@ -27,17 +27,16 @@ final class RecipesTableViewCell: UITableViewCell {
     private var recipe: RecipeItem? = nil {
         
         didSet {
-            if let image = recipe?.imageName.transformURLToImage() {
-                nameLabel.text = recipe?.name
+            guard let recipe = self.recipe else { return }
+                nameLabel.text = recipe.name
                 recipeImageView.layer.cornerRadius = 20
-                recipeImageView.image = image
-            }
-            recipeIngredientLabel.text = recipe?.ingredient.prefix(2).joined(separator: ", ")
-            if recipe?.time == 0 {
+                recipeImageView.download(self.recipe!.imageName)
+            recipeIngredientLabel.text = recipe.ingredient.prefix(2).joined(separator: ", ")
+            if recipe.time == 0 {
                 let defaultValue = "30 min"
                 timeLabel.text = defaultValue
             } else {
-                timeLabel.text = "\(recipe?.time ?? 30) min"
+                timeLabel.text = "\(recipe.time ) min"
             }
         }
     }
@@ -46,16 +45,5 @@ final class RecipesTableViewCell: UITableViewCell {
         self.recipe = recipe
     }
     
-}
-
-// MARK: - Extension
-
-extension String {
-    func transformURLToImage() -> UIImage? {
-        guard let imageUrl = URL(string: self) else {return nil}
-        let imageData = try! Data(contentsOf: imageUrl)
-        guard let image = UIImage(data: imageData) else { return nil}
-        return image
-    }
 }
 
