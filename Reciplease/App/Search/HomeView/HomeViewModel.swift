@@ -11,11 +11,14 @@ import Foundation
 protocol HomeViewModelDelegate: class {
     func didSelectIngredient(ingredient: String)
     func displayHomeAlert(for type: AlertType)
+    func showCreateMyRecipeView()
 }
 
 final class HomeViewModel {
     
     // MARK: - Properties
+    
+//    private var createMyRecipeCoordinator: CreateMyRecipeCoordinator?
     
     private weak var delegate: HomeViewModelDelegate?
         
@@ -80,5 +83,9 @@ final class HomeViewModel {
     func didPressSearchForRecipes() {
         let ingredientName = ingredientList.joined(separator:", ")
         self.delegate?.didSelectIngredient(ingredient: ingredientName)
+    }
+    
+    func didPressCreateRecipe() {
+        delegate?.showCreateMyRecipeView()
     }
 }

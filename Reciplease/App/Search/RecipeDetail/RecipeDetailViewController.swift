@@ -27,9 +27,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var getDirectionButton: UIButton!
     
     var viewModel: RecipeDetailViewModel!
-    
-//    weak var delegate: RecipeDetailViewControllerDelegate?
-    
+        
     private lazy var recipeDetailDataSource = RecipeDetailDataSource()
     
     private var starRate = 0
@@ -46,8 +44,20 @@ class RecipeDetailViewController: UIViewController {
         elementsCustom()
         
         navigationBar()
-        
     }
+    
+    // MARK: - View actions
+    
+    @IBAction func didPressNameRecipeButton(_ sender: Any) {
+        viewModel.didPressSafariButton()
+    }
+    
+    @objc func didPressSelectFavoriteRecipe() {
+        viewModel.didPressSelectFavoriteRecipe()
+    }
+    
+    // MARK: - Private Functions
+    
     
     private func bind(to viewModel: RecipeDetailViewModel) {
         
@@ -72,19 +82,6 @@ class RecipeDetailViewController: UIViewController {
         }
     }
     
-    
-    // MARK: - View actions
-    
-    @IBAction func didPressNameRecipeButton(_ sender: Any) {
-        viewModel.didPressSafariButton()
-    }
-    
-    @objc func didPressSelectFavoriteRecipe() {
-        viewModel.didPressSelectFavoriteRecipe()
-    }
-    
-    // MARK: - Private Functions
-    
     fileprivate func elementsCustom() {
         contentView.layer.cornerRadius = 20
         getDirectionButton.layer.cornerRadius = 15
@@ -96,6 +93,8 @@ class RecipeDetailViewController: UIViewController {
     private func navigationBar() {
         let image = UIImage(named: "reciplease-favorite-logo")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didPressSelectFavoriteRecipe))
+        navigationItem.title = Accessibility.DetailView.title
+
     }
     
 }

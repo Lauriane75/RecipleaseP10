@@ -5,10 +5,9 @@
 //  Created by Lauriane Haydari on 13/11/2019.
 //  Copyright © 2019 Lauriane Haydari. All rights reserved.
 //
-
 import UIKit
 
-final class FavoriteRecipesCoordinator {
+final class FavoriteCoordinator {
     
     // MARK: - Properties
     
@@ -46,14 +45,13 @@ final class FavoriteRecipesCoordinator {
     }
 }
 
-extension FavoriteRecipesCoordinator: RecipesViewModelDelegate {
+extension FavoriteCoordinator: RecipesViewModelDelegate {
     func displayRecipesAlert(for type: AlertType) {
            showAlert(for: type)
     }
     
     func selectRecipe(recipe: RecipeItem) {
         showRecipeDetailFromFavorite(recipe: recipe)
-        
     }
 }
 

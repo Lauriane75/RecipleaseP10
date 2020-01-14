@@ -49,9 +49,17 @@ final class SearchCoordinator {
         let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe)
         presenter.pushViewController(viewController, animated: true)
     }
+    
+    private func showCreateMyRecipe() {
+          let viewController = screens.createCreateMyRecipeViewController()
+          presenter.show(viewController, sender: nil)
+      }
 }
 
 extension SearchCoordinator: HomeViewModelDelegate {
+    func showCreateMyRecipeView() {
+        showCreateMyRecipe()
+    }
     
     func didSelectIngredient(ingredient: String) {
         showRecipes(ingredients: ingredient)

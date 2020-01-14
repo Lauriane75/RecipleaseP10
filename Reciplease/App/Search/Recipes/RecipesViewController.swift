@@ -69,7 +69,7 @@ class RecipesViewController: UIViewController {
 
     let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
     navigationController?.navigationBar.titleTextAttributes = titleColor
-    navigationItem.title = Accessibility.RecipesView.title
+//    navigationItem.title = Accessibility.RecipesView.title
     self.navigationController?.navigationBar.tintColor = .white
     self.navigationController?.navigationBar.barTintColor = .orange
     }

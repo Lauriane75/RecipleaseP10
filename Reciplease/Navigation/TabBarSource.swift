@@ -11,6 +11,7 @@ import UIKit
 enum ViewControllerItem: Int {
     case search = 0
     case favorite
+    case creations
 }
 
 protocol TabBarSourceType {
@@ -31,10 +32,17 @@ extension TabBarSourceType {
 final class TabBarSource: TabBarSourceType {
     var items: [UINavigationController] = [
         UINavigationController(nibName: nil, bundle: nil),
-        UINavigationController(nibName: nil, bundle: nil)    ]
+        UINavigationController(nibName: nil, bundle: nil),
+        UINavigationController(nibName: nil, bundle: nil)]
+    
+    let creationsItem = UIImage(named: "creations-item")
+
     
     init() {
         self[.search].tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         self[.favorite].tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+//        self[.creations].tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+        self[.creations].tabBarItem.image = creationsItem
+
     }
 }

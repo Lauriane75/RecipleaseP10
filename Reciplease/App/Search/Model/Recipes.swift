@@ -27,7 +27,7 @@ struct Recipe: Codable {
     let totalTime: Int
     let dietLabels: [String]
     let yield: Int
-//    let healthLabels: [HealthLabel]
+    //let healthLabels: [HealthLabel]
 }
 
 //enum HealthLabel: String, Codable {

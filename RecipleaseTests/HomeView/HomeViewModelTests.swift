@@ -10,6 +10,9 @@ import XCTest
 @ testable import Reciplease
 
 class MockHomeViewModelDelegate: HomeViewModelDelegate {
+    func showCreateMyRecipeView() {
+        
+    }
     
     var alert: AlertType? = nil
     

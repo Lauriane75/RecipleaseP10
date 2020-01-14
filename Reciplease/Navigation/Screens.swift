@@ -16,9 +16,6 @@ final class Screens {
 
 // MARK : - Main
 
-//protocol SearchViewControllerDelegate: class {
-//}
-
 extension Screens {
     
     func createSearchViewController(delegate: HomeViewModelDelegate?) -> UIViewController {
@@ -30,12 +27,6 @@ extension Screens {
 }
 
 // MARK: - Child
-
-//protocol RecipesViewControllerDelegate: class {
-//}
-//
-//protocol RecipeDetailViewControllerDelegate: class {
-//}
 
 enum type {
     case foundRecipes
@@ -52,11 +43,13 @@ extension Screens {
             let repository = RecipesRepository(requestType: .network, network: network)
             let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
+            viewController.title = "Recipes"
         case .favoriteRecipes :
             let network = NetworkRequest()
             let repository = RecipesRepository(requestType: .persistence, network: network)
             let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
+            viewController.title = "Favorites"
         }
         return viewController
     }
@@ -67,6 +60,24 @@ extension Screens {
         let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
         let repository = RecipeDetailRepository()
         let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipeSelected)
+        viewController.viewModel = viewModel
+        return viewController
+    }
+}
+
+extension Screens {
+    func createCreateMyRecipeViewController() -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CreateMyRecipeViewController") as! CreateMyRecipeViewController
+        let viewModel = CreateMyRecipeViewModel()
+        viewController.viewModel = viewModel
+        return viewController
+    }
+}
+
+extension Screens {
+    func createCreations() -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CreationsViewController") as! CreationsViewController
+        let viewModel = CreationsViewModel()
         viewController.viewModel = viewModel
         return viewController
     }
