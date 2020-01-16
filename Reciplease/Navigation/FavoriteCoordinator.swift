@@ -46,6 +46,7 @@ final class FavoriteCoordinator {
 }
 
 extension FavoriteCoordinator: RecipesViewModelDelegate {
+
     func displayRecipesAlert(for type: AlertType) {
            showAlert(for: type)
     }

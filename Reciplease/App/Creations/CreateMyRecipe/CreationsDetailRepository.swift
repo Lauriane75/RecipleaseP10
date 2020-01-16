@@ -1,14 +1,14 @@
 //
-//  RecipeDetailRepository.swift
+//  CreationRepositoryDetail.swift
 //  Reciplease
 //
-//  Created by Lauriane Haydari on 10/12/2019.
-//  Copyright © 2019 Lauriane Haydari. All rights reserved.
+//  Created by Lauriane Haydari on 16/01/2020.
+//  Copyright © 2020 Lauriane Haydari. All rights reserved.
 //
 
 import CoreData
 
-protocol RecipeDetailRepositoryType {
+protocol CreationsDetailRepositoryType {
     func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String)
     func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void)
     func didPressRemoveFavoriteRecipe(recipeName: String)
@@ -20,36 +20,40 @@ protocol RecipeDetailRepositoryType {
 
 }
 
-final class RecipeDetailRepository: RecipeDetailRepositoryType {
+final class CreationsDetailRepository: RecipeDetailRepositoryType {
+    func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String) {
+        <#code#>
+    }
+
 
     var state: String = ""
-    
-    func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String) {
-        
-        let recipeObject = RecipeObject(context: AppDelegate.viewContext)
-        let favoriteImage = FavoriteImage(context: AppDelegate.viewContext)
-        favoriteImage.imageStatus = image
-        recipeObject.recipeURL = recipe.url
-        recipeObject.recipeImage = recipe.imageName
-        recipeObject.recipeName = recipe.name
-        recipeObject.recipeIngredients =
-            recipe.ingredient.joined(separator: " ")
-        recipeObject.recipeTime = Int16(Int(recipe.time))
-        recipeObject.recipeYield = Int16(Int(recipe.yield))
-        recipeObject.dietLabelsRecipe = recipe.dietLabels.joined(separator: " ")
-        try? AppDelegate.viewContext.save()
-    }
-    
+
+//    func didPressSaveButton(creationItem: ) {
+//
+//        let recipeObject = RecipeObject(context: AppDelegate.viewContext)
+//        let favoriteImage = FavoriteImage(context: AppDelegate.viewContext)
+//        favoriteImage.imageStatus = image
+//        recipeObject.recipeURL = recipe.url
+//        recipeObject.recipeImage = recipe.imageName
+//        recipeObject.recipeName = recipe.name
+//        recipeObject.recipeIngredients =
+//            recipe.ingredient.joined(separator: " ")
+//        recipeObject.recipeTime = Int16(Int(recipe.time))
+//        recipeObject.recipeYield = Int16(Int(recipe.yield))
+//        recipeObject.dietLabelsRecipe = recipe.dietLabels.joined(separator: " ")
+//        try? AppDelegate.viewContext.save()
+//    }
+
     func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void) {
-        
+
         let request: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
         request.predicate = NSPredicate(format: "recipeName == %@", recipeName)
         request.sortDescriptors = [NSSortDescriptor(keyPath: \RecipeObject.recipeName, ascending: true)]
-        
+
         guard let recipes = try? AppDelegate.viewContext.fetch(request) else { print("error")
             return
         }
-        
+
         if recipes == [] { completion (false)
             state = "star"
 
@@ -58,12 +62,12 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         completion(true)
         state = "star.fill"
     }
-    
+
     func didPressRemoveFavoriteRecipe(recipeName: String) {
-        
+
         let request: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
         request.predicate = NSPredicate(format: "recipeName == %@", recipeName)
-        
+
         do {
             let object = try AppDelegate.viewContext.fetch(request)
             if !object.isEmpty {
@@ -94,3 +98,4 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         _ = try? AppDelegate.viewContext.fetch(request)
     }
 }
+

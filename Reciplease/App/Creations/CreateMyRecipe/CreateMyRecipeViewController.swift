@@ -181,7 +181,5 @@ class CreateMyRecipeViewController: UIViewController, UIImagePickerControllerDel
         saveButton.layer.borderColor = UIColor.orange.cgColor
     }
     
-    
-    
 }
 

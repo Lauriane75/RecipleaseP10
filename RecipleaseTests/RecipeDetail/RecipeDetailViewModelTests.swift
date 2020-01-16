@@ -57,7 +57,7 @@ class RecipeDetailViewModelTests: XCTestCase {
             XCTAssertEqual(item, (self.recipe))
             expectation1.fulfill()
         }
-        viewModel.image = { image in
+        viewModel.recipeImage = { image in
             XCTAssertEqual(image, (self.recipe.imageName))
             expectation2.fulfill()
         }

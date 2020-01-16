@@ -27,15 +27,7 @@ struct Recipe: Codable {
     let totalTime: Int
     let dietLabels: [String]
     let yield: Int
-    //let healthLabels: [HealthLabel]
 }
-
-//enum HealthLabel: String, Codable {
-//    case alcoholFree = "Alcohol-Free"
-//    case peanutFree = "Peanut-Free"
-//    case sugarConscious = "Sugar-Conscious"
-//    case treeNutFree = "Tree-Nut-Free"
-//}
 
 
 

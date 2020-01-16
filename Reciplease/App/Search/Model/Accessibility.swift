@@ -11,21 +11,14 @@ import Foundation
 enum Accessibility {
     
     enum RecipesView {
-           
-    static let title = "Recipes"
-           
+        static let title = "Recipes"
     }
     
     enum DetailView {
-        
-    static let title = "Detail Recipes"
-        
+        static let title = "Detail Recipes"
     }
     
     enum CreateMyRecipe {
-          
-      static let title = "Create my recipe"
-          
-      }
-    
+        static let title = "Create my recipe"
+    }
 }

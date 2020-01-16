@@ -27,7 +27,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var getDirectionButton: UIButton!
     
     var viewModel: RecipeDetailViewModel!
-        
+
     private lazy var recipeDetailDataSource = RecipeDetailDataSource()
     
     private var starRate = 0
@@ -50,6 +50,8 @@ class RecipeDetailViewController: UIViewController {
     
     @IBAction func didPressNameRecipeButton(_ sender: Any) {
         viewModel.didPressSafariButton()
+        let url = viewModel.returnUrl()
+        UIApplication.shared.open(url)
     }
     
     @objc func didPressSelectFavoriteRecipe() {
@@ -80,6 +82,9 @@ class RecipeDetailViewController: UIViewController {
         viewModel.timeLabel = { [weak self] text in
             self?.timeLabel.text = text
         }
+        viewModel.favoriteImageState = { [weak self] text in
+            self?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: text), style: .done, target: self, action: #selector(self!.didPressSelectFavoriteRecipe))
+        }
     }
     
     fileprivate func elementsCustom() {
@@ -91,10 +96,9 @@ class RecipeDetailViewController: UIViewController {
     }
     
     private func navigationBar() {
-        let image = UIImage(named: "reciplease-favorite-logo")
+        let image = UIImage(systemName: "star")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didPressSelectFavoriteRecipe))
         navigationItem.title = Accessibility.DetailView.title
-
     }
     
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Lauriane Haydari. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 protocol RecipeDetailViewModelDelegate: class {
     func displayAlert(for type: AlertType)
@@ -17,9 +17,9 @@ final class RecipeDetailViewModel {
     private var repository: RecipeDetailRepositoryType
     
     private var recipe: RecipeItem
-    
+
     private var delegate: RecipeDetailViewModelDelegate?
-        
+
     private var starRate = 0
     
     // MARK: - Initializer
@@ -38,6 +38,7 @@ final class RecipeDetailViewModel {
     var yieldLabel: ((String) -> Void)?
     var nameRecipeButton: ((String) -> Void)?
     var favoriteState: ((Bool) -> Void)?
+    var favoriteImageState: ((String) -> Void)?
     
     // MARK: - Input
     
@@ -49,10 +50,12 @@ final class RecipeDetailViewModel {
         setUpDietLabel()
         setUpYieldLabel()
         nameRecipeButton?("\(recipe.name)")
+//        favoriteImageState?("star")
         
         self.repository.verifyingFavoriteState(recipeName: self.recipe.name) {
             (state) in
             self.favoriteState?(state)
+            self.favoriteImageState?(repository.state)
         }
         
     }
@@ -63,21 +66,42 @@ final class RecipeDetailViewModel {
             case true:
                 repository.didPressRemoveFavoriteRecipe(recipeName: recipe.name)
                 favoriteState?(false)
+
+                let imageState = repository.unselectedFavoriteStar()
+                self.favoriteImageState?(imageState)
+
+                repository.getFavoriteImageStatus(callback: { status in
+                    self.favoriteImageState?(status)
+                })
+
                 print("state not favorite")
+                //                favoriteImageState?("star")
+
             case false:
-                repository.didPressSelectFavoriteRecipe(recipe: recipe)
+                repository.didPressSelectFavoriteRecipe(recipe: recipe, image: "star.fill")
                 favoriteState?(true)
+
+                let imageState = repository.selectedFavoriteStarFill()
+                self.favoriteImageState?(imageState)
+
+                repository.getFavoriteImageStatus(callback: { status in
+                    self.favoriteImageState?(status)
+                })
                 print("state favorite")
+                //                favoriteImageState?("star.fill")
             }
         }
     }
-    
+
     func didPressSafariButton() {
-        guard let url = URL(string: recipe.url) else {
+        guard URL(string: recipe.url) != nil else {
             self.delegate?.displayAlert(for: .errorNoRecipeFound)
             return
         }
-        UIApplication.shared.open(url)
+    }
+
+    func returnUrl() -> URL {
+        return URL(string: recipe.url)!
     }
     
     // MARK: - Private Functions
