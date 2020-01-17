@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import UIKit
 
 struct RecipeItem: Equatable {
     let name: String
@@ -21,5 +22,7 @@ struct RecipeItem: Equatable {
         return parameterLhs.name == parameterRhs.name && parameterLhs.imageName == parameterRhs.imageName && parameterLhs.url == parameterRhs.url && parameterLhs.ingredient == parameterRhs.ingredient && parameterLhs.time == parameterRhs.time && parameterLhs.yield == parameterRhs.yield && parameterLhs.dietLabels == parameterRhs.dietLabels
     }
 }
+
+
 
 

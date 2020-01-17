@@ -12,18 +12,10 @@ protocol RecipeDetailRepositoryType {
     func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String)
     func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void)
     func didPressRemoveFavoriteRecipe(recipeName: String)
-    func selectedFavoriteStarFill() -> String
-    func unselectedFavoriteStar() -> String
-    func getFavoriteImageStatus(callback: @escaping (String) -> Void)
-
-    var state: String { get }
-
 }
 
 final class RecipeDetailRepository: RecipeDetailRepositoryType {
 
-    var state: String = ""
-    
     func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String) {
         
         let recipeObject = RecipeObject(context: AppDelegate.viewContext)
@@ -51,19 +43,16 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         }
         
         if recipes == [] { completion (false)
-            state = "star"
 
             return
         }
         completion(true)
-        state = "star.fill"
     }
     
     func didPressRemoveFavoriteRecipe(recipeName: String) {
         
         let request: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
         request.predicate = NSPredicate(format: "recipeName == %@", recipeName)
-        
         do {
             let object = try AppDelegate.viewContext.fetch(request)
             if !object.isEmpty {
@@ -73,24 +62,5 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
-    }
-
-    func selectedFavoriteStarFill() -> String {
-        let favoriteImage = FavoriteImage(context: AppDelegate.viewContext)
-        favoriteImage.imageStatus = "star.fill"
-        try? AppDelegate.viewContext.save()
-        return  favoriteImage.imageStatus!
-    }
-
-    func unselectedFavoriteStar() -> String {
-        let favoriteImage = FavoriteImage(context: AppDelegate.viewContext)
-        favoriteImage.imageStatus = "star"
-        try? AppDelegate.viewContext.save()
-        return  favoriteImage.imageStatus!
-    }
-
-    func getFavoriteImageStatus(callback: @escaping (String) -> Void) {
-        let request = NSFetchRequest<FavoriteImage>(entityName: "FavoriteImage")
-        _ = try? AppDelegate.viewContext.fetch(request)
     }
 }

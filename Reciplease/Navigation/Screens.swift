@@ -66,22 +66,28 @@ extension Screens {
 }
 
 extension Screens {
-    func createCreateMyRecipeViewController() -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "CreateMyRecipeViewController") as! CreateMyRecipeViewController
-        let viewModel = CreateMyRecipeViewModel()
+    func createSavingMyCreationViewController(delegate: SavingCreationViewModelDelegate?) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SavingMyCreationViewController") as! SavingMyCreationViewController
+        let repository = CreateMyRecipeRepository()
+        let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
         viewController.viewModel = viewModel
         return viewController
     }
 }
 
 extension Screens {
-    func createCreations() -> UIViewController {
+    func createCreationsViewController(title: String, ingredients: String, method: String, time: String, category: String, yield: String, delegate: CreationsViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "CreationsViewController") as! CreationsViewController
-        let viewModel = CreationsViewModel()
+        let repository = CreateMyRecipeRepository()
+        let viewModel = CreationsViewModel(repository: repository, delegate: delegate, titleSaved: title, ingredientsSaved: ingredients, methodSaved: method, timeSaved: time, categorySaved: category, yieldSaved: yield)
         viewController.viewModel = viewModel
+        viewController.title = "Creations"
+
+        print("title1 : \(title)")
         return viewController
     }
 }
+
 
 // MARK: - Alert
 

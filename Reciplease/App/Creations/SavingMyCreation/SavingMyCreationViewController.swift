@@ -1,5 +1,5 @@
 //
-//  CreateMyRecipeViewController.swift
+//  SavingMyCreationViewController.swift
 //  Reciplease
 //
 //  Created by Lauriane Haydari on 12/01/2020.
@@ -9,48 +9,42 @@
 import UIKit
 import Photos
 
-class CreateMyRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SavingMyCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Outlet
     
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var timeTextField: UITextField!
-    @IBOutlet weak var categoryTextField: UITextField!
-    @IBOutlet weak var personsTextField: UITextField!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
+
+    @IBOutlet weak var timeTextField: UITextField!
+    @IBOutlet weak var dietCategoryTextField: UITextField!
+    @IBOutlet weak var yieldTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var methodTextField: UITextField!
-    
+
+    @IBOutlet weak var saveButton: UIButton!
+
     // MARK: - Properties
     
     private var lastImageViewTapped: UIImageView?
+
     
-    var viewModel: CreateMyRecipeViewModel!
+    var viewModel: SavingCreationViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.viewDidLoad()
         
         elementsCustom()
     }
     
     // MARK: - Private Functions
-    
-    private func bind(to viewModel: CreateMyRecipeViewModel) {
-        //
-        //           viewModel.recipeDisplayed = { [weak self] recipe in
-        //               self?.recipeDetailDataSource.update(with: recipe)
-        //               self?.tableView.reloadData()
-        //           }
-    }
-    
-    
+
     private func navigationBar() {
         navigationItem.title = Accessibility.CreateMyRecipe.title
-        
     }
     
     // MARK: - View actions
@@ -64,24 +58,15 @@ class CreateMyRecipeViewController: UIViewController, UIImagePickerControllerDel
     @IBAction func didPressSaveButton(_ sender: Any) {
 
         guard self.timeTextField.text != nil else { return }
-        viewModel.saveTime(for: timeTextField.text!)
-        
-        guard self.categoryTextField.text != nil else { return }
-        viewModel.saveCategory(for: categoryTextField.text!)
-        
-        guard self.personsTextField.text != nil else { return }
-        viewModel.savePersons(for: personsTextField.text!)
-        
-        guard self.timeTextField.text != nil else { return }
-        viewModel.saveTime(for: timeTextField.text!)
-        
+        guard self.dietCategoryTextField.text != nil else { return }
+        guard self.yieldTextField.text != nil else { return }
+        guard self.titleTextField.text != nil else { return }
         guard self.ingredientsTextField.text != nil else { return }
-        viewModel.saveIngredient(for: ingredientsTextField.text!)
-        
         guard self.methodTextField.text != nil else { return }
-        viewModel.saveMethod(for: methodTextField.text!)
+
+        viewModel.didPressSaveButton(titleTextField: titleTextField.text!, ingredientTextField: ingredientsTextField.text!, methodTextField: methodTextField.text!, timeTextField: timeTextField.text!, dietCategoryTextField: dietCategoryTextField.text!, yieldTextField: yieldTextField.text!)
     }
-    
+
     // MARK: - Private Files
     
     fileprivate func  PhotoPickerController() {

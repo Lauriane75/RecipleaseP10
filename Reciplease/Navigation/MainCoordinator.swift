@@ -22,7 +22,7 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
     
     private var favoriteRecipesCoordinator: FavoriteCoordinator?
     
-    private var creationCoordinator: CreationCoordinator?
+    private var creationCoordinator: CreationsCoordinator?
     
     // MARK: - Init
     
@@ -56,7 +56,7 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
     }
     
     private func showCreations() {
-        creationCoordinator = CreationCoordinator(presenter: tabBarSource[.creations], screens: screens)
+        creationCoordinator = CreationsCoordinator(presenter: tabBarSource[.creations], screens: screens)
         creationCoordinator?.start()
     }
     

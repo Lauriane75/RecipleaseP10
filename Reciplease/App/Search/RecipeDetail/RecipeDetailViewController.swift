@@ -29,9 +29,7 @@ class RecipeDetailViewController: UIViewController {
     var viewModel: RecipeDetailViewModel!
 
     private lazy var recipeDetailDataSource = RecipeDetailDataSource()
-    
-    private var starRate = 0
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,7 +57,6 @@ class RecipeDetailViewController: UIViewController {
     }
     
     // MARK: - Private Functions
-    
     
     private func bind(to viewModel: RecipeDetailViewModel) {
         
@@ -96,8 +93,6 @@ class RecipeDetailViewController: UIViewController {
     }
     
     private func navigationBar() {
-        let image = UIImage(systemName: "star")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didPressSelectFavoriteRecipe))
         navigationItem.title = Accessibility.DetailView.title
     }
     

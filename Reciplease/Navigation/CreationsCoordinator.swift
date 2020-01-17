@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CreationCoordinator {
+final class CreationsCoordinator {
     
     // MARK: - Properties
     
@@ -26,13 +26,14 @@ final class CreationCoordinator {
     // MARK: - Coodinator
     
     func start() {
-        showCreations()
+        showCreationsList()
     }
-    
-    private func showCreations() {
-        let viewController = screens.createCreations()
-        presenter.viewControllers = [viewController]
+
+    private func showCreationsList() {
+        let viewController = screens.createCreationsViewController(title: "", ingredients: "", method: "", time: "", category: "", yield: "", delegate: self)
+        presenter.pushViewController(viewController, animated: true)
     }
+
     
     private func showAlert(for type: AlertType) {
         let alert = screens.createAlertView(for: type)
@@ -40,14 +41,11 @@ final class CreationCoordinator {
     }
 }
 
-//extension CreationCoordinator: CreationViewModelDelegate {
-//    func displayRecipesAlert(for type: AlertType) {
-//           showAlert(for: type)
-//    }
-//
-//    func selectRecipe(recipe: RecipeItem) {
-//        showRecipeDetailFromFavorite(recipe: recipe)
-//    }
-//}
+extension CreationsCoordinator: CreationsViewModelDelegate {
+    func displayAlert(for type: AlertType) {
+        showAlert(for: type)
+    }
+}
+
 
 

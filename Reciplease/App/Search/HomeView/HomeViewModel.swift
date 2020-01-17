@@ -17,9 +17,7 @@ protocol HomeViewModelDelegate: class {
 final class HomeViewModel {
     
     // MARK: - Properties
-    
-//    private var createMyRecipeCoordinator: CreateMyRecipeCoordinator?
-    
+
     private weak var delegate: HomeViewModelDelegate?
         
     private var ingredientList: [String] = [] {

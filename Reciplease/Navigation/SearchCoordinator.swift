@@ -49,11 +49,18 @@ final class SearchCoordinator {
         let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe)
         presenter.pushViewController(viewController, animated: true)
     }
-    
+
     private func showCreateMyRecipe() {
-          let viewController = screens.createCreateMyRecipeViewController()
-          presenter.show(viewController, sender: nil)
-      }
+        let viewController = screens.createSavingMyCreationViewController(delegate: self)
+        presenter.show(viewController, sender: nil)
+    }
+
+    private func saveCreationRecipe(titleSaved: String, ingredientsSaved: String, methodSaved: String, timeSaved: String, categorySaved: String, yieldSaved: String) {
+        print("didPressSaveButton ingredient : \(ingredientsSaved)")
+        let viewController = screens.createCreationsViewController(title: titleSaved, ingredients: ingredientsSaved, method: methodSaved, time: timeSaved, category: categorySaved, yield: yieldSaved, delegate: self)
+        presenter.pushViewController(viewController, animated: true)
+        print("push vcl with elements \(ingredientsSaved)")
+    }
 }
 
 extension SearchCoordinator: HomeViewModelDelegate {
@@ -79,3 +86,18 @@ extension SearchCoordinator: RecipesViewModelDelegate {
     }
 }
 
+extension SearchCoordinator: SavingCreationViewModelDelegate {
+
+    func didPressSaveButton(title: String, ingredients: String, method: String, time: String, category: String, yield: String) {
+        saveCreationRecipe(titleSaved: title, ingredientsSaved: ingredients, methodSaved: method, timeSaved: time, categorySaved: category, yieldSaved: yield)
+    }
+
+    func displayAlert(for type: AlertType) {
+        showAlert(for: type)
+    }
+}
+
+extension SearchCoordinator: CreationsViewModelDelegate {
+
+
+}
