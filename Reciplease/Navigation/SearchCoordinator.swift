@@ -36,7 +36,6 @@ final class SearchCoordinator {
     
     private func showRecipes(ingredients: String) {
         let viewController = screens.createRecipesViewController(ingredientSelected: ingredients, delegate: self, tableViewtype: .foundRecipes)
-        print("ingrédient : \(ingredients)")
         presenter.pushViewController(viewController, animated: true)
     }
     
@@ -56,11 +55,10 @@ final class SearchCoordinator {
     }
 
     private func saveCreationRecipe(titleSaved: String, ingredientsSaved: String, methodSaved: String, timeSaved: String, categorySaved: String, yieldSaved: String) {
-        print("didPressSaveButton ingredient : \(ingredientsSaved)")
-        let viewController = screens.createCreationsViewController(title: titleSaved, ingredients: ingredientsSaved, method: methodSaved, time: timeSaved, category: categorySaved, yield: yieldSaved, delegate: self)
+        let viewController = screens.createCreationDetailViewController(title: titleSaved, ingredients: ingredientsSaved, method: methodSaved, time: timeSaved, category: categorySaved, yield: yieldSaved, delegate: self)
         presenter.pushViewController(viewController, animated: true)
-        print("push vcl with elements \(ingredientsSaved)")
     }
+
 }
 
 extension SearchCoordinator: HomeViewModelDelegate {

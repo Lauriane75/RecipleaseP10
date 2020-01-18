@@ -30,7 +30,7 @@ final class CreationsCoordinator {
     }
 
     private func showCreationsList() {
-        let viewController = screens.createCreationsViewController(title: "", ingredients: "", method: "", time: "", category: "", yield: "", delegate: self)
+        let viewController = screens.createCreationsViewController(title: "", ingredients: "", method: "", time: "", category: "", yield: "")
         presenter.pushViewController(viewController, animated: true)
     }
 
@@ -41,11 +41,11 @@ final class CreationsCoordinator {
     }
 }
 
-extension CreationsCoordinator: CreationsViewModelDelegate {
-    func displayAlert(for type: AlertType) {
-        showAlert(for: type)
-    }
-}
+//extension CreationsCoordinator: CreationsViewModelDelegate {
+//    func displayAlert(for type: AlertType) {
+//        showAlert(for: type)
+//    }
+//}
 
 
 

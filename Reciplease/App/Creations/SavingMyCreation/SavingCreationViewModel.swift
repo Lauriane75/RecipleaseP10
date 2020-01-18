@@ -19,7 +19,7 @@ final class SavingCreationViewModel {
 
     private var delegate: SavingCreationViewModelDelegate?
 
-    //    private var creation: CreationItem
+//    private var creation: CreationItem
 
     private var repository: CreationRecipeRepositoryType
 
@@ -33,7 +33,7 @@ final class SavingCreationViewModel {
 
     // MARK: - Output
 
-    var creationDisplayed: ((CreationItem) -> Void)?
+//    var creationDisplayed: ((CreationItem) -> Void)?
 
     // MARK: - Input
 

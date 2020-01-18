@@ -1,5 +1,5 @@
 ////
-////  CreationRepositoryDetail.swift
+////  CreationRecipeRepository.swift
 ////  Reciplease
 ////
 ////  Created by Lauriane Haydari on 16/01/2020.
@@ -26,20 +26,19 @@ final class CreationRecipeRepository: CreationRecipeRepositoryType {
         creationObject.yieldCreation = yield
         
         try? AppDelegate.viewContext.save()
-        print("CreateMyRecipeRepository call")
     }
 
-    func getCreations(title: String, ingredients: String, method: String, time: String, category: String, yield: String) {
-
-        let creationObject = CreationObject(context: AppDelegate.viewContext)
-
-        creationObject.titleCreation = title
-        creationObject.ingredientCreation = ingredients
-        creationObject.methodCreation = method
-        creationObject.timeCreation = time
-        creationObject.dietCategoryCreation = category
-        creationObject.yieldCreation = yield
-
-        print("getCreations call")
-    }
+//    func getCreations(title: String, ingredients: String, method: String, time: String, category: String, yield: String) {
+//
+//        let creationObject = CreationObject(context: AppDelegate.viewContext)
+//
+//        creationObject.titleCreation = title
+//        creationObject.ingredientCreation = ingredients
+//        creationObject.methodCreation = method
+//        creationObject.timeCreation = time
+//        creationObject.dietCategoryCreation = category
+//        creationObject.yieldCreation = yield
+//
+//        print("getCreations call")
+//    }
 }

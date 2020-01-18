@@ -68,7 +68,7 @@ extension Screens {
 extension Screens {
     func createSavingMyCreationViewController(delegate: SavingCreationViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "SavingMyCreationViewController") as! SavingMyCreationViewController
-        let repository = CreateMyRecipeRepository()
+        let repository = CreationRecipeRepository()
         let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
         viewController.viewModel = viewModel
         return viewController
@@ -76,14 +76,21 @@ extension Screens {
 }
 
 extension Screens {
-    func createCreationsViewController(title: String, ingredients: String, method: String, time: String, category: String, yield: String, delegate: CreationsViewModelDelegate?) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "CreationsViewController") as! CreationsViewController
-        let repository = CreateMyRecipeRepository()
-        let viewModel = CreationsViewModel(repository: repository, delegate: delegate, titleSaved: title, ingredientsSaved: ingredients, methodSaved: method, timeSaved: time, categorySaved: category, yieldSaved: yield)
+    func createCreationDetailViewController(title: String, ingredients: String, method: String, time: String, category: String, yield: String, delegate: CreationsViewModelDelegate?) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CreationDetailViewController") as! CreationDetailViewController
+        let repository = CreationRecipeRepository()
+        let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, titleSaved: title, ingredientsSaved: ingredients, methodSaved: method, timeSaved: time, categorySaved: category, yieldSaved: yield)
         viewController.viewModel = viewModel
-        viewController.title = "Creations"
+        viewController.title = "My Creation"
+        return viewController
+    }
+}
 
-        print("title1 : \(title)")
+extension Screens {
+    func createCreationsViewController(title: String, ingredients: String, method: String, time: String, category: String, yield: String) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CreationsViewController") as! CreationsViewController
+        viewController.title = "Creations"
+        
         return viewController
     }
 }

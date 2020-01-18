@@ -31,7 +31,6 @@ class SavingMyCreationViewController: UIViewController, UIImagePickerControllerD
     
     private var lastImageViewTapped: UIImageView?
 
-    
     var viewModel: SavingCreationViewModel!
     
     override func viewDidLoad() {

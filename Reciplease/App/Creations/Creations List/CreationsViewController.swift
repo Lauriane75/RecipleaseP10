@@ -9,41 +9,28 @@
 import UIKit
 
 class CreationsViewController: UIViewController {
-    
+
     // MARK: - Outlet
-    
-    
-    
+
+
+
     // MARK: - Properties
-    
-    var viewModel: CreationsViewModel!
-    
+
+//    var viewModel: CreationsViewModel!
+
     // MARK: - View life cycl
-    
-    override func viewWillAppear(_ animated: Bool) {
-        viewModel.viewWillAppear()
-    }
-    
-    
-    
+
+
+
     // MARK: - Private Functions
-    
-    private func bind(to viewModel: CreationsViewModel) {
-        //
-        //           viewModel.recipeDisplayed = { [weak self] recipe in
-        //               self?.recipeDetailDataSource.update(with: recipe)
-        //               self?.tableView.reloadData()
-        //           }
-    }
-    
-    fileprivate func  PhotoPickerController() {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = (self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate)
-        myPickerController.sourceType = .photoLibrary
-        self.present(myPickerController, animated: true)
-        myPickerController.allowsEditing = true
-    }
-    
+
+//    private func bind(to viewModel: CreationsViewModel) {
+//
+////        viewModel.tile = { [weak self] text in
+////            self?.outlet
+////        }
+//    }
+
     //    let imagePickerController = UIImagePickerController()
     //    imagePickerController.delegate = self
     //    let actionSheet = UIAlertController(title: "photo source", message: "choose a source", preferredStyle: .actionSheet)
@@ -56,10 +43,10 @@ class CreationsViewController: UIViewController {
     //            print ("Camera not available")
     //        }
     //    }))
-    
-    
+
+
     // MARK: - Private Functions
-    
+
     //    fileprivate func elementsCustom() {
     //        contentView.layer.cornerRadius = 20
     //        getDirectionButton.layer.cornerRadius = 15
@@ -74,11 +61,11 @@ class CreationsViewController: UIViewController {
     //        navigationItem.title = Accessibility.DetailView.title
     //
     //    }
-    
+
     // MARK: - View actions
-    
-    
-    
-    
-    
+
+
+
+
+
 }
