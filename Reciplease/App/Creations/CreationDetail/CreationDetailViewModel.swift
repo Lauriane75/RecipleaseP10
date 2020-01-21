@@ -10,6 +10,14 @@ import Foundation
 
 protocol CreationsViewModelDelegate: class {
     func displayAlert(for type: AlertType)
+    func didPressCreationsListButton(creation: CreationItem)
+    func selectCreation(creation: CreationItem)
+}
+
+protocol CreationsListViewModelDelegate: class {
+    func displayAlert(for type: AlertType)
+    func didPressCreationsListItem(creation: CreationItem)
+    func selectCreation(creation: CreationItem)
 }
 
 final class CreationDetailViewModel {
@@ -18,33 +26,32 @@ final class CreationDetailViewModel {
 
     private var delegate: CreationsViewModelDelegate?
 
-    private var titleSaved: String
-    private var ingredientsSaved: String
-    private var methodSaved: String
-    private var timeSaved: String
-    private var categorySaved: String
-    private var yieldSaved: String
+    private var creation: CreationItem
 
     // MARK: - Initializer
 
-    init(repository: CreationRecipeRepositoryType, delegate: CreationsViewModelDelegate?, titleSaved: String, ingredientsSaved: String, methodSaved: String, timeSaved: String, categorySaved: String, yieldSaved: String) {
+    init(repository: CreationRecipeRepositoryType, delegate: CreationsViewModelDelegate?, creation: CreationItem) {
         self.repository = repository
         self.delegate = delegate
 
-        self.titleSaved = titleSaved
-        self.ingredientsSaved = ingredientsSaved
-        self.methodSaved = methodSaved
-        self.timeSaved = timeSaved
-        self.categorySaved = categorySaved
-        self.yieldSaved = yieldSaved
+        self.creation = creation
+    }
+
+    // MARK: - Properties
+
+    private var visibleCreation: [CreationItem] = [] {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.creationDisplayed?(self.visibleCreation)
+            }
+        }
     }
 
     // MARK: - Output
 
-    //       var creationDisplayed: ((CreationItem) -> Void)?
     var titleLabel: ((String) -> Void)?
-    var ingredients: ((String) -> Void)?
-    var method: ((String) -> Void)?
+    var ingredientsAndMethod: ((String) -> Void)?
 
     var timeLabel: ((String) -> Void)?
     var dietLabel: ((String) -> Void)?
@@ -52,26 +59,27 @@ final class CreationDetailViewModel {
 
     var creationButton: ((String) -> Void)?
 
-
+    var creationDisplayed: (([CreationItem]) -> Void)?
 
     // MARK: - Input
 
     func viewDidLoad() {
 
-        self.titleLabel?(titleSaved)
-        self.timeLabel?(timeSaved)
-        self.dietLabel?(categorySaved)
-        self.yieldLabel?(yieldSaved)
+        self.titleLabel?(creation.name)
+        self.ingredientsAndMethod?("\(creation.ingredient) \n \(creation.method)")
+        self.timeLabel?(creation.time)
+        self.dietLabel?(creation.category)
+        self.yieldLabel?(creation.yield)
         self.creationButton?("Creations")
+        self.creationDisplayed?([creation])
     }
 
     func didPressShowCreationsList() {
-
-        print("didPressShowCreationsList \(timeSaved)")
-
+        self.delegate?.didPressCreationsListButton(creation: creation)
     }
 
-    //       func didSelectCreationRecipe(titleTextField: String, ingredientTextField: String, methodTextField: String, timeTextField: String, dietCategoryTextField: String, yieldTextField: String) {
-    //           repository.didPressSaveButton(title: titleTextField, ingredients: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)
-    //    }
+    func didSelectCreationRecipe(creation: CreationItem) {
+        delegate?.selectCreation(creation: creation)
+    }
+
 }

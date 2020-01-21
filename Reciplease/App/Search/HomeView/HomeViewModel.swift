@@ -19,11 +19,11 @@ final class HomeViewModel {
     // MARK: - Properties
 
     private weak var delegate: HomeViewModelDelegate?
-        
+
     private var ingredientList: [String] = [] {
         didSet {
             guard ingredientList != [] else { return }
-                ingredients?(ingredientList)
+            ingredients?(ingredientList)
         }
     }
     

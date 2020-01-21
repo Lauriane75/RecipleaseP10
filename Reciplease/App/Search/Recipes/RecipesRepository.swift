@@ -55,7 +55,7 @@ final class RecipesRepository: RecipesRepositoryType {
         case .persistence:
             let requestRecipe: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
             guard let recipes = try? AppDelegate.viewContext.fetch(requestRecipe) else { return }
-
+            
             let recipeItem : [RecipeItem] = recipes.map  { return RecipeItem(name: $0.recipeName!,
                                                                              imageName: $0.recipeImage ?? "", url: $0.recipeURL ?? "",
                                                                              ingredient: ($0.recipeIngredients?.components(separatedBy: ", ") ?? [", "]), time: Int($0.recipeTime), yield: Int($0.recipeYield), dietLabels: ($0.dietLabelsRecipe?.components(separatedBy: "") ?? [""]))

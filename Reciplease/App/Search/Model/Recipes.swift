@@ -28,8 +28,3 @@ struct Recipe: Codable {
     let dietLabels: [String]
     let yield: Int
 }
-
-
-
-
-

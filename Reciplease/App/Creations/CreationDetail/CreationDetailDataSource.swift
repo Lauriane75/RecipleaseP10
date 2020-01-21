@@ -12,12 +12,12 @@ final class CreationDetailDataSource: NSObject, UITableViewDataSource {
 
     // MARK: - Properties
 
-    private var creation: CreationItem?
+    private var ingredientAndMethod: String?
 
     // MARK: - Data source
 
-    func update (with creation: CreationItem) {
-        self.creation = creation
+    func update (with ingredientAndMethod: String?) {
+        self.ingredientAndMethod = ingredientAndMethod
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,10 +28,10 @@ final class CreationDetailDataSource: NSObject, UITableViewDataSource {
 
         let tableViewCell = UITableViewCell()
 
-        guard let creation = self.creation else { return tableViewCell }
+        guard let ingredientAndMethod = self.ingredientAndMethod else { return tableViewCell }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "creationDetailTableViewCell", for: indexPath) as! CreationDetailTableViewCell
-        cell.updateCell(with: creation, row: indexPath.row)
+        cell.updateCell(with: ingredientAndMethod, row: indexPath.row)
 
         return cell
     }

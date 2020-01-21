@@ -27,9 +27,9 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var getDirectionButton: UIButton!
     
     var viewModel: RecipeDetailViewModel!
-
+    
     private lazy var recipeDetailDataSource = RecipeDetailDataSource()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,7 +93,7 @@ class RecipeDetailViewController: UIViewController {
     }
     
     private func navigationBar() {
-        navigationItem.title = Accessibility.DetailView.title
+        navigationItem.title = Accessibility.RecipeDetailView.title
     }
     
 }

@@ -28,9 +28,9 @@ final class RecipesTableViewCell: UITableViewCell {
         
         didSet {
             guard let recipe = self.recipe else { return }
-                nameLabel.text = recipe.name
-                recipeImageView.layer.cornerRadius = 20
-                recipeImageView.download(self.recipe!.imageName)
+            nameLabel.text = recipe.name
+            recipeImageView.layer.cornerRadius = 20
+            recipeImageView.download(self.recipe!.imageName)
             recipeIngredientLabel.text = recipe.ingredient.prefix(2).joined(separator: ", ")
             if recipe.time == 0 {
                 let defaultValue = "30 min"

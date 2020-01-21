@@ -25,12 +25,12 @@ final class TabBarSource: TabBarSourceType {
         UINavigationController(nibName: nil, bundle: nil)]
     
     let creationsItem = UIImage(named: "creations-item")
-
+    
     init() {
         self[.search].tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         self[.favorite].tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         self[.creations].tabBarItem.image = creationsItem
-
+        
     }
 }
 

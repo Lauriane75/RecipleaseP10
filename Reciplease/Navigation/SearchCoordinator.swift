@@ -15,6 +15,8 @@ final class SearchCoordinator {
     private let presenter: UINavigationController
     
     private let screens: Screens
+
+    var creationsArray: CreationItem? = nil
     
     // MARK: - Initializer
     
@@ -48,17 +50,27 @@ final class SearchCoordinator {
         let viewController = screens.createRecipeDetailViewController(recipeSelected: recipe)
         presenter.pushViewController(viewController, animated: true)
     }
-
+    
     private func showCreateMyRecipe() {
         let viewController = screens.createSavingMyCreationViewController(delegate: self)
         presenter.show(viewController, sender: nil)
     }
-
-    private func saveCreationRecipe(titleSaved: String, ingredientsSaved: String, methodSaved: String, timeSaved: String, categorySaved: String, yieldSaved: String) {
-        let viewController = screens.createCreationDetailViewController(title: titleSaved, ingredients: ingredientsSaved, method: methodSaved, time: timeSaved, category: categorySaved, yield: yieldSaved, delegate: self)
+    
+    private func saveCreationRecipe(creation: CreationItem) {
+        let viewController = screens.createCreationDetailViewController(creationSaved: creation, delegate: self)
+        presenter.pushViewController(viewController, animated: true)
+    }
+    
+    internal func showCreationsList(creation: CreationItem) {
+        let viewController = screens.createCreationsListViewController(creationSaved: creation, delegate: self)
         presenter.pushViewController(viewController, animated: true)
     }
 
+    private func update (updatedCreations: CreationItem?) {
+          self.creationsArray = updatedCreations
+//          print("creationArray = \(String(describing: creationsArray?.name))")
+      }
+    
 }
 
 extension SearchCoordinator: HomeViewModelDelegate {
@@ -85,17 +97,23 @@ extension SearchCoordinator: RecipesViewModelDelegate {
 }
 
 extension SearchCoordinator: SavingCreationViewModelDelegate {
-
-    func didPressSaveButton(title: String, ingredients: String, method: String, time: String, category: String, yield: String) {
-        saveCreationRecipe(titleSaved: title, ingredientsSaved: ingredients, methodSaved: method, timeSaved: time, categorySaved: category, yieldSaved: yield)
+    
+    func didPressSaveButton(creation: CreationItem) {
+        saveCreationRecipe(creation: creation)
     }
-
+    
     func displayAlert(for type: AlertType) {
         showAlert(for: type)
     }
 }
 
 extension SearchCoordinator: CreationsViewModelDelegate {
+    func selectCreation(creation: CreationItem) {
 
+    }
 
+    func didPressCreationsListButton(creation: CreationItem) {
+        showCreationsList(creation: creation)
+        update(updatedCreations: creation)
+    }
 }

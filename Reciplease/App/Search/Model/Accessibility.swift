@@ -14,11 +14,23 @@ enum Accessibility {
         static let title = "Recipes"
     }
     
-    enum DetailView {
+    enum FavoriteView {
+        static let title = "Favorites"
+    }
+    
+    enum RecipeDetailView {
         static let title = "Detail Recipes"
     }
     
     enum CreateMyRecipe {
         static let title = "Create my recipe"
+    }
+
+    enum CreationDetailView {
+        static let title = "Detail Creation"
+    }
+    
+    enum CreationsList {
+        static let title = "Creations"
     }
 }

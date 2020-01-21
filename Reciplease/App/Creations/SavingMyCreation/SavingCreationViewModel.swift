@@ -10,7 +10,7 @@ import Foundation
 
 protocol SavingCreationViewModelDelegate: class {
 
-    func didPressSaveButton(title: String, ingredients: String, method: String, time: String, category: String, yield: String)
+    func didPressSaveButton(creation: CreationItem)
 
     func displayAlert(for type: AlertType)
 }
@@ -19,8 +19,6 @@ final class SavingCreationViewModel {
 
     private var delegate: SavingCreationViewModelDelegate?
 
-//    private var creation: CreationItem
-
     private var repository: CreationRecipeRepositoryType
 
     // MARK: - Initializer
@@ -28,12 +26,20 @@ final class SavingCreationViewModel {
     init(delegate: SavingCreationViewModelDelegate?, repository: CreationRecipeRepositoryType) {
         self.delegate = delegate
         self.repository = repository
-//        self.creation = creation
+    }
+
+    private var visibleCreation: [CreationItem] = [] {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.creationDisplayed?(self.visibleCreation)
+            }
+        }
     }
 
     // MARK: - Output
 
-//    var creationDisplayed: ((CreationItem) -> Void)?
+    var creationDisplayed: (([CreationItem]) -> Void)?
 
     // MARK: - Input
 
@@ -42,9 +48,22 @@ final class SavingCreationViewModel {
     }
 
     func didPressSaveButton(titleTextField: String, ingredientTextField: String, methodTextField: String, timeTextField: String, dietCategoryTextField: String, yieldTextField: String) {
-        repository.didPressSaveButton(title: titleTextField, ingredients: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)
-         self.delegate?.didPressSaveButton(title: titleTextField, ingredients: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)
-        print("elements saved")
+//        repository.didPressSaveButton(title: titleTextField, ingredients: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)
+
+        repository.didPressSaveButton(creation: CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
+
+        self.visibleCreation.append(CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
+
+        self.creationDisplayed?([CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)])
+
+        self.delegate?.didPressSaveButton(creation: CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
+                print("elements saved")
+
+        print("visibleCreation : \(visibleCreation)")
     }
+
+
+
+
 
 }

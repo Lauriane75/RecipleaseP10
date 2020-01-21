@@ -31,8 +31,10 @@ class CreationDetailViewController: UIViewController {
         bind(to: viewModel)
 
         viewModel.viewDidLoad()
-        //        bind(to: creationDetailDataSource)
+
         self.tableView.dataSource = creationDetailDataSource
+
+        navigationBar()
     }
     
     // MARK: - View actions
@@ -64,11 +66,18 @@ class CreationDetailViewController: UIViewController {
             self?.showCreationListButton.setTitle(text, for: .normal)
         }
         
-        //        viewModel.ingredients = { [weak self] text in
-        //            self?.creationDetailDataSource.update(with: text)
-        //            self?.tableView.reloadData()
-        //        }
+        viewModel.ingredientsAndMethod = { [weak self] text in
+        self?.creationDetailDataSource.update(with: text)
+        self?.tableView.reloadData()
+        }
+    }
 
+    private func navigationBar() {
+        navigationItem.title = Accessibility.CreationDetailView.title
+        let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = titleColor
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = .orange
     }
     
     

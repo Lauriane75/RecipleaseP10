@@ -25,5 +25,4 @@ class RecipeDetailTableViewCell: UITableViewCell {
         self.row = row
         ingredientsLabel.text = "\(recipe.ingredient.joined(separator: "\n"))"
     }
-    
 }

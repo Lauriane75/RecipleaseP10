@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     
     @IBOutlet weak var ingredientListTableView: UITableView!
-            
+    
     @IBOutlet weak var createMyRecipe: UIButton!
     
     // MARK: - Properties
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
     var viewModel: HomeViewModel!
     
     private lazy var searchDataSource = SearchDataSource()
-        
+    
     // MARK: - View life cycle
     
     override func viewDidLoad() {

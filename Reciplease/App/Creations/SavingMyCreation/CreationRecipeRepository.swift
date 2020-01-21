@@ -8,37 +8,37 @@
 import CoreData
 
 protocol CreationRecipeRepositoryType {
-    func didPressSaveButton(title: String, ingredients: String, method: String, time: String, category: String, yield: String)
+    func didPressSaveButton(creation: CreationItem)
+    func getCreations()
 }
 
 final class CreationRecipeRepository: CreationRecipeRepositoryType {
 
-
-    func didPressSaveButton(title: String, ingredients: String, method: String, time: String, category: String, yield: String) {
+    func didPressSaveButton(creation: CreationItem) {
 
         let creationObject = CreationObject(context: AppDelegate.viewContext)
 
-        creationObject.titleCreation = title
-        creationObject.ingredientCreation = ingredients
-        creationObject.methodCreation = method
-        creationObject.timeCreation = time
-        creationObject.dietCategoryCreation = category
-        creationObject.yieldCreation = yield
+        creationObject.titleCreation = creation.name
+        creationObject.ingredientCreation = creation.ingredient
+        creationObject.methodCreation = creation.method
+        creationObject.timeCreation = creation.time
+        creationObject.dietCategoryCreation = creation.category
+        creationObject.yieldCreation = creation.yield
         
         try? AppDelegate.viewContext.save()
     }
 
-//    func getCreations(title: String, ingredients: String, method: String, time: String, category: String, yield: String) {
-//
-//        let creationObject = CreationObject(context: AppDelegate.viewContext)
-//
-//        creationObject.titleCreation = title
-//        creationObject.ingredientCreation = ingredients
-//        creationObject.methodCreation = method
-//        creationObject.timeCreation = time
-//        creationObject.dietCategoryCreation = category
-//        creationObject.yieldCreation = yield
-//
-//        print("getCreations call")
-//    }
+    // didPressDeleteCreation()
+
+
+    func getCreations() {
+        let requestCreation: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
+        guard let creations = try? AppDelegate.viewContext.fetch(requestCreation) else { return }
+
+        let _ : [CreationItem] = creations.map  {
+            return CreationItem(name: $0.titleCreation ?? "", ingredient: $0.ingredientCreation ?? "", method: $0.methodCreation ?? "", time: $0.timeCreation ?? "", category: $0.dietCategoryCreation ?? "", yield: $0.yieldCreation ?? "")
+        }
+
+    }
+
 }

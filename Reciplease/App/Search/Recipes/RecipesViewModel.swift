@@ -18,11 +18,11 @@ final class RecipesViewModel {
     // MARK: - Properties
     
     private weak var delegate: RecipesViewModelDelegate?
-        
+
     private var ingredients: String
     
     private var repository: RecipesRepositoryType
-        
+
     let route = Route()
     
     private var recipes: [RecipeItem] = [] {
@@ -48,7 +48,7 @@ final class RecipesViewModel {
     var recipesDisplayed: (([RecipeItem]) -> Void)?
     
     var activityIndicatorIsLoading: ((Bool) -> Void)?
-        
+
     // MARK: - Input
     
     func viewWillAppear() {

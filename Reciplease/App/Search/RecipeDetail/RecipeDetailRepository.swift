@@ -15,7 +15,7 @@ protocol RecipeDetailRepositoryType {
 }
 
 final class RecipeDetailRepository: RecipeDetailRepositoryType {
-
+    
     func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String) {
         
         let recipeObject = RecipeObject(context: AppDelegate.viewContext)
@@ -43,7 +43,7 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         }
         
         if recipes == [] { completion (false)
-
+            
             return
         }
         completion(true)

@@ -14,18 +14,16 @@ class CreationDetailTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ingredientLabel: UILabel!
 
-    private var creation: CreationItem?
+    private var ingredientAndMethod: String?
 
     private var row: Int?
 
-
     // MARK: - Private properties
 
-    func updateCell(with creation: CreationItem, row: Int) {
-        self.creation = creation
+    func updateCell(with ingredientAndMethod: String, row: Int) {
+        self.ingredientAndMethod = ingredientAndMethod
         self.row = row
-        ingredientLabel.text = "\(creation.ingredient)"
-
+        ingredientLabel.text = ingredientAndMethod
     }
 
 }

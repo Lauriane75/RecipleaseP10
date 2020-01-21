@@ -43,13 +43,13 @@ extension Screens {
             let repository = RecipesRepository(requestType: .network, network: network)
             let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
-            viewController.title = "Recipes"
+            viewController.title = Accessibility.RecipesView.title
         case .favoriteRecipes :
             let network = NetworkRequest()
             let repository = RecipesRepository(requestType: .persistence, network: network)
             let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
-            viewController.title = "Favorites"
+            viewController.title = Accessibility.FavoriteView.title
         }
         return viewController
     }
@@ -76,10 +76,10 @@ extension Screens {
 }
 
 extension Screens {
-    func createCreationDetailViewController(title: String, ingredients: String, method: String, time: String, category: String, yield: String, delegate: CreationsViewModelDelegate?) -> UIViewController {
+    func createCreationDetailViewController(creationSaved: CreationItem, delegate: CreationsViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "CreationDetailViewController") as! CreationDetailViewController
         let repository = CreationRecipeRepository()
-        let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, titleSaved: title, ingredientsSaved: ingredients, methodSaved: method, timeSaved: time, categorySaved: category, yieldSaved: yield)
+        let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creationSaved)
         viewController.viewModel = viewModel
         viewController.title = "My Creation"
         return viewController
@@ -87,8 +87,11 @@ extension Screens {
 }
 
 extension Screens {
-    func createCreationsViewController(title: String, ingredients: String, method: String, time: String, category: String, yield: String) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "CreationsViewController") as! CreationsViewController
+    func createCreationsListViewController(creationSaved: CreationItem, delegate: CreationsViewModelDelegate?) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CreationsListViewController") as! CreationsListViewController
+        let repository = CreationRecipeRepository()
+        let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creationSaved)
+        viewController.viewModel = viewModel
         viewController.title = "Creations"
         
         return viewController

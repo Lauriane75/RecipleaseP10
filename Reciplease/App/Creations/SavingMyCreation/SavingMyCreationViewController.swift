@@ -38,13 +38,12 @@ class SavingMyCreationViewController: UIViewController, UIImagePickerControllerD
         viewModel.viewDidLoad()
         
         elementsCustom()
+
+        navigationBar()
     }
     
     // MARK: - Private Functions
 
-    private func navigationBar() {
-        navigationItem.title = Accessibility.CreateMyRecipe.title
-    }
     
     // MARK: - View actions
     
@@ -68,7 +67,7 @@ class SavingMyCreationViewController: UIViewController, UIImagePickerControllerD
 
     // MARK: - Private Files
     
-    fileprivate func  PhotoPickerController() {
+    fileprivate func PhotoPickerController() {
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         myPickerController.sourceType = .photoLibrary
@@ -164,6 +163,13 @@ class SavingMyCreationViewController: UIViewController, UIImagePickerControllerD
         saveButton.layer.borderWidth = 1
         saveButton.layer.borderColor = UIColor.orange.cgColor
     }
-    
+
+    private func navigationBar() {
+    navigationItem.title = Accessibility.CreateMyRecipe.title
+    let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
+    navigationController?.navigationBar.titleTextAttributes = titleColor
+    self.navigationController?.navigationBar.tintColor = .white
+    self.navigationController?.navigationBar.barTintColor = .orange
+    }
 }
 

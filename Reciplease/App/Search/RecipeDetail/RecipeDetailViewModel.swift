@@ -67,7 +67,7 @@ final class RecipeDetailViewModel {
             case true:
                 repository.didPressRemoveFavoriteRecipe(recipeName: recipe.name)
                 favoriteState?(false)
-                                
+
                 print("state not favorite")
                 favoriteImageState?("star")
                 
