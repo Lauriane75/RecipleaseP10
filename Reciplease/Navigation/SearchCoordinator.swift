@@ -62,7 +62,7 @@ final class SearchCoordinator {
     }
 
     private func showCreationsListFromButton(creation: CreationItem) {
-        let viewController = screens.createCreationsListViewController(creationSaved: creation, delegate: self)
+        let viewController = screens.createCreationsListViewController(delegate: self)
         presenter.pushViewController(viewController, animated: true)
     }
 

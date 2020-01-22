@@ -56,6 +56,7 @@
 		F6A3326A23990E8D00822E0C /* FavoriteRecipesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A3326923990E8D00822E0C /* FavoriteRecipesTableViewCell.swift */; };
 		F6CF670923A14AA600C16923 /* RecipeDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF670823A14AA600C16923 /* RecipeDetailTableViewCell.swift */; };
 		F6CF670B23A28BAA00C16923 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF670A23A28BA900C16923 /* Accessibility.swift */; };
+		F6F51D5A23D86051003CA4CC /* CreationsListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F51D5923D86051003CA4CC /* CreationsListRepository.swift */; };
 		F6F5B84023D22DCB0077DF24 /* CreationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5B83F23D22DCB0077DF24 /* CreationDetailViewController.swift */; };
 		F6F842AE23D230A000D6226C /* CreationDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F842AD23D230A000D6226C /* CreationDetailTableViewCell.swift */; };
 		F6F842B023D2382600D6226C /* CreationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F842AF23D2382600D6226C /* CreationDetailDataSource.swift */; };
@@ -128,6 +129,7 @@
 		F6A3326923990E8D00822E0C /* FavoriteRecipesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesTableViewCell.swift; sourceTree = "<group>"; };
 		F6CF670823A14AA600C16923 /* RecipeDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F6CF670A23A28BA900C16923 /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
+		F6F51D5923D86051003CA4CC /* CreationsListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationsListRepository.swift; sourceTree = "<group>"; };
 		F6F5B83F23D22DCB0077DF24 /* CreationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationDetailViewController.swift; sourceTree = "<group>"; };
 		F6F842AD23D230A000D6226C /* CreationDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F6F842AF23D2382600D6226C /* CreationDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationDetailDataSource.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				F61657FF23CBC191003EB895 /* CreationsListViewController.swift */,
 				F68CB1F623D78D57007DFD0E /* CreationsListViewModel.swift */,
 				F67F59FE23D51CA600420F77 /* CreationsListDataSource.swift */,
+				F6F51D5923D86051003CA4CC /* CreationsListRepository.swift */,
 				F67F5A0023D51DC000420F77 /* Cell */,
 			);
 			path = "Creations List";
@@ -639,6 +642,7 @@
 				F689EC73237C5CC200747170 /* HomeViewModel.swift in Sources */,
 				F622520A238FB4F8008CCDBB /* CoreDataStack.swift in Sources */,
 				F689EC7B237C620B00747170 /* RecipeDetailViewController.swift in Sources */,
+				F6F51D5A23D86051003CA4CC /* CreationsListRepository.swift in Sources */,
 				F6225210238FBCC9008CCDBB /* SearchTableViewCell.swift in Sources */,
 				F664A4E9239F16F000515C29 /* RecipeDetailRepository.swift in Sources */,
 				F622520E238FBC2A008CCDBB /* SearchDataSource.swift in Sources */,

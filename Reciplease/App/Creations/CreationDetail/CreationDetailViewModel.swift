@@ -64,7 +64,7 @@ final class CreationDetailViewModel {
         self.timeLabel?(creation.time)
         self.dietLabel?(creation.category)
         self.yieldLabel?(creation.yield)
-        self.creationButton?("Creations")
+        self.creationButton?("My creations")
         self.creationDisplayed?([creation])
     }
 
@@ -72,4 +72,7 @@ final class CreationDetailViewModel {
         self.delegate?.didPressCreationsListButton(creation: creation)
     }
 
+    func didPressDeleteCreation() {
+        repository.didPressRemoveCreation(titleCreation: creation.name)
+    }
 }

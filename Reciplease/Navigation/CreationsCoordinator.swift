@@ -35,7 +35,7 @@ final class CreationsCoordinator {
     }
     
     private func showCreationsList() {
-        let viewController = screens.createCreationsListViewController(creationSaved: creation, delegate: self)
+        let viewController = screens.createCreationsListViewController(delegate: self)
         presenter.pushViewController(viewController, animated: true)
     }
 
@@ -44,11 +44,6 @@ final class CreationsCoordinator {
            presenter.pushViewController(viewController, animated: true)
        }
 
-    private func update (updatedCreations: CreationItem?) {
-        self.creationsArray = updatedCreations
-    }
-    
-    
     private func showAlert(for type: AlertType) {
         let alert = screens.createAlertView(for: type)
         presenter.visibleViewController?.present(alert, animated: true, completion: nil)
@@ -56,16 +51,9 @@ final class CreationsCoordinator {
 }
 
 extension CreationsCoordinator: CreationsListViewModelDelegate {
-    func openListFromItem(creations: [CreationItem]) {
-
-    }
-
-    func didPressCreationsListItem(creation: CreationItem) {
-        update(updatedCreations: creation)
-        showCreationsList()
-    }
 
     func selectCreation(creation: CreationItem) {
+//        update(updatedCreations: <#T##CreationItem?#>)
         showDetailCreationsList(creations: creation)
     }
     

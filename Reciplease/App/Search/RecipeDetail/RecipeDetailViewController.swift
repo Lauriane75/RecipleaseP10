@@ -45,6 +45,8 @@ class RecipeDetailViewController: UIViewController {
     }
     
     // MARK: - View actions
+
+
     
     @IBAction func didPressNameRecipeButton(_ sender: Any) {
         viewModel.didPressSafariButton()

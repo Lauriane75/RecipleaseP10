@@ -44,11 +44,13 @@ final class SavingCreationViewModel {
     // MARK: - Input
 
     func viewDidLoad() {
-        print("CreateMyRecipeViewModel call")
     }
 
     func didPressSaveButton(titleTextField: String, ingredientTextField: String, methodTextField: String, timeTextField: String, dietCategoryTextField: String, yieldTextField: String) {
-//        repository.didPressSaveButton(title: titleTextField, ingredients: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)
+
+        guard !titleTextField.isEmpty && !ingredientTextField.isEmpty && !methodTextField.isEmpty && !timeTextField.isEmpty  && !dietCategoryTextField.isEmpty && !yieldTextField.isEmpty else {
+            delegate?.displayAlert(for: .itemEmpty)
+            return }
 
         repository.didPressSaveButton(creation: CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
 
@@ -57,13 +59,7 @@ final class SavingCreationViewModel {
         self.creationDisplayed?([CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)])
 
         self.delegate?.didPressSaveButton(creation: CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
-                print("elements saved")
-
-        print("visibleCreation : \(visibleCreation)")
+        print("didPressSaveButton : \(visibleCreation)")
     }
-
-
-
-
 
 }

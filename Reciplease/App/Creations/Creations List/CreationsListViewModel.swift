@@ -9,73 +9,64 @@
 import Foundation
 
 protocol CreationsListViewModelDelegate: class {
+
     func displayAlert(for type: AlertType)
-
-    func didPressCreationsListItem(creation: CreationItem)
-
-    func openListFromItem(creations: [CreationItem])
-
+    
     func selectCreation(creation: CreationItem)
 }
 
 final class CreationsListViewModel {
 
-    private var repository: CreationRecipeRepositoryType
+    // MARK: - Properties
 
-    private var creation: CreationItem
+    private var repository: CreationListRepositoryType
 
     private var delegate: CreationsListViewModelDelegate?
 
-    // MARK: - Initializer
-
-    init(repository: CreationRecipeRepositoryType, delegate: CreationsListViewModelDelegate?, creation: CreationItem) {
-        self.repository = repository
-        self.delegate = delegate
-        self.creation = creation
-    }
-
-    // MARK: - Properties
-
-    private var visibleCreation: [CreationItem] = [] {
+    private var creation: [CreationItem] = [] {
         didSet {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.creationDisplayed?(self.visibleCreation)
+            if creation != [] {
+                creationItem?(creation)
+            } else {
+                delegate?.displayAlert(for: .noCreation)
             }
         }
+    }
+
+    // MARK: - Initializer
+
+    init(repository: CreationListRepositoryType, delegate: CreationsListViewModelDelegate?) {
+        self.repository = repository
+        self.delegate = delegate
     }
 
     // MARK: - Output
 
     var titleLabel: ((String) -> Void)?
     var ingredientsAndMethod: ((String) -> Void)?
-
     var timeLabel: ((String) -> Void)?
     var dietLabel: ((String) -> Void)?
     var yieldLabel: ((String) -> Void)?
-
     var creationButton: ((String) -> Void)?
 
-    var creationDisplayed: (([CreationItem]) -> Void)?
-
-    var creationItem: ((CreationItem) -> Void)?
+    var creationItem: (([CreationItem]) -> Void)?
 
 
     // MARK: - Input
 
-    func viewDidLoad() {
-
-        repository.didPressSaveButton(creation: creation)
-        self.creationDisplayed?([creation])
+    func viewWillAppear() {
+        repository.getCreations(callback: { (item) in
+            self.creation = item
+            self.creationItem?(self.creation)
+        })
     }
 
-    func updateCreations(creation: CreationItem) {
-        delegate?.didPressCreationsListItem(creation: creation)
-    }
-
-
-    func didSelectCreationRecipe(creation: CreationItem) {
+    func didSelectCreation(creation: CreationItem) {
         delegate?.selectCreation(creation: creation)
+    }
+
+    func didPressDeleteCreation(name: String) {
+        repository.didPressRemoveCreation(titleCreation: name)
     }
 }
 

@@ -16,6 +16,8 @@ class CreationsListTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var yieldLabel: UILabel!
+    @IBOutlet weak var creationImageView: UIImageView!
+
     
     // MARK: - Properties
     

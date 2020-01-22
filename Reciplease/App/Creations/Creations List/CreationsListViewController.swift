@@ -22,6 +22,10 @@ class CreationsListViewController: UIViewController {
 
     // MARK: - View life cycl
 
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.viewWillAppear()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,31 +34,30 @@ class CreationsListViewController: UIViewController {
         tableView.delegate = creationsListDataSource
         tableView.dataSource = creationsListDataSource
 
-        bind(to: creationsListDataSource)
         bind(to: viewModel)
 
-        viewModel.viewDidLoad()
-        print("CreationsListViewModel")
+        bind(to: creationsListDataSource)
     }
 
     // MARK: - Private Functions
 
     private func bind(to viewModel: CreationsListViewModel) {
-        viewModel.creationDisplayed = { [weak self] creations in
+        viewModel.creationItem = { [weak self] creations in
+            print("bind viewModel.creationItem  : \(creations)")
             self?.creationsListDataSource.update(updatedCreations: creations)
             self?.tableView.reloadData()
         }
     }
 
     private func bind(to source: CreationsListDataSource) {
-        creationsListDataSource.selectedCreation = viewModel.didSelectCreationRecipe
+        creationsListDataSource.selectedCreation = viewModel.didSelectCreation
 
     }
 
 
-//    private func bind(to source: RecipesDataSource) {
-//           source.selectedRecipe = viewModel.didSelectRecipe
-//       }
+    //    private func bind(to source: RecipesDataSource) {
+    //           source.selectedRecipe = viewModel.didSelectRecipe
+    //       }
 
 
     // MARK: - Private Functions
@@ -76,11 +79,25 @@ class CreationsListViewController: UIViewController {
 
     // MARK: - View actions
 
+    
+
+//
+//    @IBAction func didPressDeleteCreation(_ sender: Any) {
+//        var nameOfCreation = ""
+//
+//        viewModel.creationItem = { [weak self] creation in
+//            for (_, index) in creation.enumerated() {
+//                nameOfCreation = index.name
+//            }
+//            self?.viewModel.didPressDeleteCreation(name: nameOfCreation)
+//        }
+//    }
+
     private func navigationBar() {
         navigationItem.title = Accessibility.CreationsList.title
-           let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
-           navigationController?.navigationBar.titleTextAttributes = titleColor
-           self.navigationController?.navigationBar.tintColor = .white
-           self.navigationController?.navigationBar.barTintColor = .orange
-       }
+        let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = titleColor
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = .orange
+    }
 }
