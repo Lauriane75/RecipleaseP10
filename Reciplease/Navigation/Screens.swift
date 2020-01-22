@@ -86,14 +86,15 @@ extension Screens {
     }
 }
 
+
 extension Screens {
-    func createCreationsListViewController(creationSaved: CreationItem, delegate: CreationsViewModelDelegate?) -> UIViewController {
+    func createCreationsListViewController(creationSaved: CreationItem, delegate: CreationsListViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "CreationsListViewController") as! CreationsListViewController
         let repository = CreationRecipeRepository()
-        let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creationSaved)
+        let viewModel = CreationsListViewModel(repository: repository, delegate: delegate, creation: creationSaved)
         viewController.viewModel = viewModel
         viewController.title = "Creations"
-        
+
         return viewController
     }
 }

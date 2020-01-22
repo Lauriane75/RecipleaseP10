@@ -1,33 +1,36 @@
 //
-//  CreationViewModel.swift
+//  CreationsListViewModel.swift
 //  Reciplease
 //
-//  Created by Lauriane Haydari on 12/01/2020.
+//  Created by Lauriane Haydari on 21/01/2020.
 //  Copyright © 2020 Lauriane Haydari. All rights reserved.
 //
 
 import Foundation
 
-protocol CreationsViewModelDelegate: class {
+protocol CreationsListViewModelDelegate: class {
     func displayAlert(for type: AlertType)
-    func didPressCreationsListButton(creation: CreationItem)
+
+    func didPressCreationsListItem(creation: CreationItem)
+
+    func openListFromItem(creations: [CreationItem])
+
     func selectCreation(creation: CreationItem)
 }
 
-final class CreationDetailViewModel {
+final class CreationsListViewModel {
 
     private var repository: CreationRecipeRepositoryType
 
-    private var delegate: CreationsViewModelDelegate?
-
     private var creation: CreationItem
+
+    private var delegate: CreationsListViewModelDelegate?
 
     // MARK: - Initializer
 
-    init(repository: CreationRecipeRepositoryType, delegate: CreationsViewModelDelegate?, creation: CreationItem) {
+    init(repository: CreationRecipeRepositoryType, delegate: CreationsListViewModelDelegate?, creation: CreationItem) {
         self.repository = repository
         self.delegate = delegate
-
         self.creation = creation
     }
 
@@ -55,21 +58,24 @@ final class CreationDetailViewModel {
 
     var creationDisplayed: (([CreationItem]) -> Void)?
 
+    var creationItem: ((CreationItem) -> Void)?
+
+
     // MARK: - Input
 
     func viewDidLoad() {
 
-        self.titleLabel?(creation.name)
-        self.ingredientsAndMethod?("\(creation.ingredient) \n \(creation.method)")
-        self.timeLabel?(creation.time)
-        self.dietLabel?(creation.category)
-        self.yieldLabel?(creation.yield)
-        self.creationButton?("Creations")
+        repository.didPressSaveButton(creation: creation)
         self.creationDisplayed?([creation])
     }
 
-    func didPressShowCreationsList() {
-        self.delegate?.didPressCreationsListButton(creation: creation)
+    func updateCreations(creation: CreationItem) {
+        delegate?.didPressCreationsListItem(creation: creation)
     }
 
+
+    func didSelectCreationRecipe(creation: CreationItem) {
+        delegate?.selectCreation(creation: creation)
+    }
 }
+

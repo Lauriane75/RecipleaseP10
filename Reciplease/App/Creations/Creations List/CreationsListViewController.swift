@@ -16,7 +16,7 @@ class CreationsListViewController: UIViewController {
 
     // MARK: - Properties
 
-    var viewModel: CreationDetailViewModel!
+    var viewModel: CreationsListViewModel!
 
     private var creationsListDataSource = CreationsListDataSource()
 
@@ -30,24 +30,25 @@ class CreationsListViewController: UIViewController {
         tableView.delegate = creationsListDataSource
         tableView.dataSource = creationsListDataSource
 
-        bind(to: creationsListDataSource)
+//        bind(to: creationsListDataSource)
         bind(to: viewModel)
 
         viewModel.viewDidLoad()
+        print("CreationsListViewModel")
     }
 
     // MARK: - Private Functions
 
-    private func bind(to viewModel: CreationDetailViewModel) {
+    private func bind(to viewModel: CreationsListViewModel) {
         viewModel.creationDisplayed = { [weak self] creations in
             self?.creationsListDataSource.update(updatedCreations: creations)
             self?.tableView.reloadData()
         }
     }
 
-    private func bind(to source: CreationsListDataSource) {
-
-    }
+//    private func bind(to source: CreationsListDataSource) {
+//
+//    }
 
 
     // MARK: - Private Functions
@@ -76,6 +77,4 @@ class CreationsListViewController: UIViewController {
            self.navigationController?.navigationBar.tintColor = .white
            self.navigationController?.navigationBar.barTintColor = .orange
        }
-
-
 }

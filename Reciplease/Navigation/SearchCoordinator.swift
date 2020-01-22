@@ -56,20 +56,19 @@ final class SearchCoordinator {
         presenter.show(viewController, sender: nil)
     }
     
-    private func saveCreationRecipe(creation: CreationItem) {
+    private func showCreationDetail(creation: CreationItem) {
         let viewController = screens.createCreationDetailViewController(creationSaved: creation, delegate: self)
         presenter.pushViewController(viewController, animated: true)
     }
-    
-    internal func showCreationsList(creation: CreationItem) {
+
+    private func showCreationsListFromButton(creation: CreationItem) {
         let viewController = screens.createCreationsListViewController(creationSaved: creation, delegate: self)
         presenter.pushViewController(viewController, animated: true)
     }
 
     private func update (updatedCreations: CreationItem?) {
-          self.creationsArray = updatedCreations
-//          print("creationArray = \(String(describing: creationsArray?.name))")
-      }
+        self.creationsArray = updatedCreations
+    }
     
 }
 
@@ -99,7 +98,7 @@ extension SearchCoordinator: RecipesViewModelDelegate {
 extension SearchCoordinator: SavingCreationViewModelDelegate {
     
     func didPressSaveButton(creation: CreationItem) {
-        saveCreationRecipe(creation: creation)
+        showCreationDetail(creation: creation)
     }
     
     func displayAlert(for type: AlertType) {
@@ -108,12 +107,22 @@ extension SearchCoordinator: SavingCreationViewModelDelegate {
 }
 
 extension SearchCoordinator: CreationsViewModelDelegate {
-    func selectCreation(creation: CreationItem) {
-
-    }
 
     func didPressCreationsListButton(creation: CreationItem) {
-        showCreationsList(creation: creation)
-        update(updatedCreations: creation)
+        showCreationsListFromButton(creation: creation)
+    }
+
+    func selectCreation(creation: CreationItem) {
+        showCreationDetail(creation: creation)
+    }
+}
+
+extension SearchCoordinator: CreationsListViewModelDelegate {
+    func openListFromItem(creations: [CreationItem]) {
+        
+    }
+
+    func didPressCreationsListItem(creation: CreationItem) {
+        showCreationsListFromButton(creation: creation)
     }
 }

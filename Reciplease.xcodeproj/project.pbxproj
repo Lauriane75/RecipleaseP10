@@ -52,6 +52,7 @@
 		F689EC78237C5D3500747170 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC77237C5D3500747170 /* RecipesViewController.swift */; };
 		F689EC7B237C620B00747170 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC7A237C620B00747170 /* RecipeDetailViewController.swift */; };
 		F689EC7D237C621C00747170 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689EC7C237C621C00747170 /* RecipeDetailViewModel.swift */; };
+		F68CB1F723D78D57007DFD0E /* CreationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68CB1F623D78D57007DFD0E /* CreationsListViewModel.swift */; };
 		F6A3326A23990E8D00822E0C /* FavoriteRecipesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A3326923990E8D00822E0C /* FavoriteRecipesTableViewCell.swift */; };
 		F6CF670923A14AA600C16923 /* RecipeDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF670823A14AA600C16923 /* RecipeDetailTableViewCell.swift */; };
 		F6CF670B23A28BAA00C16923 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF670A23A28BA900C16923 /* Accessibility.swift */; };
@@ -123,6 +124,7 @@
 		F689EC77237C5D3500747170 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
 		F689EC7A237C620B00747170 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		F689EC7C237C621C00747170 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
+		F68CB1F623D78D57007DFD0E /* CreationsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationsListViewModel.swift; sourceTree = "<group>"; };
 		F6A3326923990E8D00822E0C /* FavoriteRecipesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesTableViewCell.swift; sourceTree = "<group>"; };
 		F6CF670823A14AA600C16923 /* RecipeDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F6CF670A23A28BA900C16923 /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				F61657FF23CBC191003EB895 /* CreationsListViewController.swift */,
+				F68CB1F623D78D57007DFD0E /* CreationsListViewModel.swift */,
 				F67F59FE23D51CA600420F77 /* CreationsListDataSource.swift */,
 				F67F5A0023D51DC000420F77 /* Cell */,
 			);
@@ -623,6 +626,7 @@
 				F622520C238FB604008CCDBB /* TabBarSource.swift in Sources */,
 				F616580723CBD84C003EB895 /* SavingCreationViewModel.swift in Sources */,
 				F6F842AE23D230A000D6226C /* CreationDetailTableViewCell.swift in Sources */,
+				F68CB1F723D78D57007DFD0E /* CreationsListViewModel.swift in Sources */,
 				F689EC63237C4ACE00747170 /* AppCoordinator.swift in Sources */,
 				F6F5B84023D22DCB0077DF24 /* CreationDetailViewController.swift in Sources */,
 				F616580923CBD85B003EB895 /* SavingMyCreationViewController.swift in Sources */,
