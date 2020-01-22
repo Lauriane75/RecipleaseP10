@@ -7,17 +7,19 @@
 ////
 import CoreData
 
-protocol CreationRecipeRepositoryType {
+protocol SavingCreationRepositoryType {
     func didPressSaveButton(creation: CreationItem)
     func didPressRemoveCreation(titleCreation: String)
+    func didPressAddPhoto(image: NSData)
 }
 
-final class CreationRecipeRepository: CreationRecipeRepositoryType {
-
+final class SavingCreationRepository: SavingCreationRepositoryType {
+    
     func didPressSaveButton(creation: CreationItem) {
-
+        
         let creationObject = CreationObject(context: AppDelegate.viewContext)
 
+//        creationObject.imageCreation = creation.image
         creationObject.titleCreation = creation.name
         creationObject.ingredientCreation = creation.ingredient
         creationObject.methodCreation = creation.method
@@ -27,7 +29,7 @@ final class CreationRecipeRepository: CreationRecipeRepositoryType {
         
         try? AppDelegate.viewContext.save()
     }
-
+    
     func didPressRemoveCreation(titleCreation: String) {
         let request: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
         request.predicate = NSPredicate(format: "titleCreation == %@", titleCreation)
@@ -41,4 +43,16 @@ final class CreationRecipeRepository: CreationRecipeRepositoryType {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+
+    func didPressAddPhoto(image: NSData) {
+
+        let creationObject = CreationObject(context: AppDelegate.viewContext)
+
+        creationObject.imageCreation = image as Data
+
+        try? AppDelegate.viewContext.save()
+
+    }
+
+
 }

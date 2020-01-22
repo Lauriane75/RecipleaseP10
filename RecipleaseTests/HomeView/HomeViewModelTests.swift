@@ -9,7 +9,7 @@
 import XCTest
 @ testable import Reciplease
 
-class MockHomeViewModelDelegate: HomeViewModelDelegate {
+class MockHomeViewModelDelegate: SearchHomeViewModelDelegate {
     func showCreateMyRecipeView() {
         
     }
@@ -35,7 +35,7 @@ class HomeViewModelTests: XCTestCase {
         
         let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate)
+        let viewModel = SearchHomeViewModel(delegate: delegate)
         
         let expectation1 = self.expectation(description: "Diplayed titleLabel")
         let expectation2 = self.expectation(description: "Diplayed placeHolderTextField")
@@ -87,7 +87,7 @@ class HomeViewModelTests: XCTestCase {
         
         let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate)
+        let viewModel = SearchHomeViewModel(delegate: delegate)
         
         viewModel.viewDidLoad()
         viewModel.didPressAdd(ingredientSelected: "lemon")
@@ -101,7 +101,7 @@ class HomeViewModelTests: XCTestCase {
         
         let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate)
+        let viewModel = SearchHomeViewModel(delegate: delegate)
         
         viewModel.viewDidLoad()
         viewModel.didPressAdd(ingredientSelected: "eggs")
@@ -117,7 +117,7 @@ class HomeViewModelTests: XCTestCase {
         
         let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate)
+        let viewModel = SearchHomeViewModel(delegate: delegate)
         
         let firstExpectation = self.expectation(description: "Displayed SearchButton")
         let secondExpectation = self.expectation(description: "Displayed SearchButton2")
@@ -144,7 +144,7 @@ class HomeViewModelTests: XCTestCase {
         
         let delegate = MockHomeViewModelDelegate()
         
-        let viewModel = HomeViewModel(delegate: delegate)
+        let viewModel = SearchHomeViewModel(delegate: delegate)
         
         viewModel.viewDidLoad()
         viewModel.didPressAdd(ingredientSelected: "eggs")
@@ -152,17 +152,17 @@ class HomeViewModelTests: XCTestCase {
         
         XCTAssertEqual(delegate.alert, .errorIngredientListEmpty)
     }
-//    
-//    func test_Given_ViewModel_When_AddIngredient_Then_() {
-//        
-//        let delegate = MockHomeViewModelDelegate()
-//        
-//        let viewModel = HomeViewModel(delegate: delegate)
-//        
-//        viewModel.viewDidLoad()
-//        viewModel.didPressAdd(ingredientSelected: "lemon")
-//        
-//        XCTAssertEqual(delegate.ingredient, "lemon")
-//    }
+
+    func test_Given_ViewModel_When_AddIngredient_Then_() {
+
+        let delegate = MockHomeViewModelDelegate()
+
+        let viewModel = SearchHomeViewModel(delegate: delegate)
+
+        viewModel.viewDidLoad()
+        viewModel.didPressAdd(ingredientSelected: "lemon")
+        
+        XCTAssertEqual(delegate.ingredient, "lemon")
+    }
     
 }

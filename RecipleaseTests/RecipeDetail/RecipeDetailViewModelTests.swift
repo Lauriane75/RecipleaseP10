@@ -20,12 +20,12 @@ final class MockRecipeDetailViewModelDelegate: RecipeDetailViewModelDelegate {
 }
 
 final class MockRecipeDetailRepository: RecipeDetailRepositoryType {
-    
-    var favoriteState = false
-    
-    func didPressSelectFavoriteRecipe(recipe: RecipeItem) {
+    func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String) {
         favoriteState = true
+
     }
+
+    var favoriteState = false
     
     func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void) {
     }
@@ -57,7 +57,7 @@ class RecipeDetailViewModelTests: XCTestCase {
             XCTAssertEqual(item, (self.recipe))
             expectation1.fulfill()
         }
-        viewModel.recipeImage = { image in
+        viewModel.image = { image in
             XCTAssertEqual(image, (self.recipe.imageName))
             expectation2.fulfill()
         }
@@ -77,7 +77,6 @@ class RecipeDetailViewModelTests: XCTestCase {
             XCTAssertEqual(time, ("Low-Fat"))
             expectation6.fulfill()
         }
-        
         viewModel.viewDidLoad()
         
         waitForExpectations(timeout: 1.0, handler: nil)
@@ -91,7 +90,7 @@ class RecipeDetailViewModelTests: XCTestCase {
         let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipe)
         
         viewModel.viewDidLoad()
-        repository.didPressSelectFavoriteRecipe(recipe: recipe)
+        repository.didPressSelectFavoriteRecipe(recipe: recipe, image: recipe.imageName)
         
         viewModel.favoriteState = { state in
             XCTAssertEqual(state, true)

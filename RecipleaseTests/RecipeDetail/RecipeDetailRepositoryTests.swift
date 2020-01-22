@@ -20,7 +20,7 @@ class RecipeDetailRepositoryTests: XCTestCase {
         
         let expectation = self.expectation(description: "Recipe is in favorite")
         
-        repository.didPressSelectFavoriteRecipe(recipe: recipe)
+        repository.didPressSelectFavoriteRecipe(recipe: recipe, image: recipe.imageName)
         
         repository.verifyingFavoriteState(recipeName: recipe.name) { (state) in
             XCTAssertEqual(state, true)

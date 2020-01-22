@@ -25,7 +25,7 @@ class CreationDetailViewController: UIViewController {
     var viewModel: CreationDetailViewModel!
     
     private lazy var creationDetailDataSource = CreationDetailDataSource()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind(to: viewModel)
@@ -35,25 +35,14 @@ class CreationDetailViewController: UIViewController {
         self.tableView.dataSource = creationDetailDataSource
         
         navigationBar()
-
+        
         elementsCustom()
-    }
-    
-    // MARK: - View actions
-
-    @IBAction func didPressDeleteCreation(_ sender: Any) {
-        viewModel.didPressDeleteCreation()
-        let _ = self.navigationController?.popViewController(animated: true)
-    }
-
-    @IBAction func didPressShowCreationsListButton(_ sender: Any) {
-        viewModel.didPressShowCreationsList()
     }
     
     // MARK: - Private Functions
     
     private func bind(to viewModel: CreationDetailViewModel) {
-
+        
         guard titleLabel.text != nil else { return }
         
         viewModel.titleLabel = { [weak self] text in
@@ -80,19 +69,33 @@ class CreationDetailViewController: UIViewController {
         }
     }
     
-    private func navigationBar() {
+    // MARK: - View actions
+    
+    @IBAction func didPressDeleteCreation(_ sender: Any) {
+        viewModel.didPressDeleteCreation()
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func didPressShowCreationsListButton(_ sender: Any) {
+        viewModel.didPressShowCreationsList()
+    }
+    
+    // MARK: - Private Files
+    
+    fileprivate func navigationBar() {
         navigationItem.title = Accessibility.CreationDetailView.title
         let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = titleColor
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
     }
-
+    
     fileprivate func elementsCustom() {
-         imageView.layer.cornerRadius = 20
-         tableView.layer.cornerRadius = 15
-         showCreationListButton.layer.borderWidth = 1
-         showCreationListButton.layer.borderColor = UIColor.orange.cgColor
-     }
+        imageView.layer.cornerRadius = 15
+        tableView.layer.cornerRadius = 15
+        showCreationListButton.layer.cornerRadius = 15
+        showCreationListButton.layer.borderWidth = 1
+        showCreationListButton.layer.borderColor = UIColor.orange.cgColor
+    }
     
 }

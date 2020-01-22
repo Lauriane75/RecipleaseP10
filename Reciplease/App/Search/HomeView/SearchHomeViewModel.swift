@@ -8,17 +8,17 @@
 
 import Foundation
 
-protocol HomeViewModelDelegate: class {
+protocol SearchHomeViewModelDelegate: class {
     func didSelectIngredient(ingredient: String)
     func displayHomeAlert(for type: AlertType)
     func showCreateMyRecipeView()
 }
 
-final class HomeViewModel {
+final class SearchHomeViewModel {
     
     // MARK: - Properties
 
-    private weak var delegate: HomeViewModelDelegate?
+    private weak var delegate: SearchHomeViewModelDelegate?
 
     private var ingredientList: [String] = [] {
         didSet {
@@ -29,7 +29,7 @@ final class HomeViewModel {
     
     // MARK: - Initializer
     
-    init(delegate: HomeViewModelDelegate?) {
+    init(delegate: SearchHomeViewModelDelegate?) {
         self.delegate = delegate
     }
     

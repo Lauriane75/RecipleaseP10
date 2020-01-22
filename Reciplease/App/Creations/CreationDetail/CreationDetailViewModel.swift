@@ -15,24 +15,24 @@ protocol CreationsViewModelDelegate: class {
 }
 
 final class CreationDetailViewModel {
-
-    private var repository: CreationRecipeRepositoryType
-
+    
+    private var repository: SavingCreationRepositoryType
+    
     private var delegate: CreationsViewModelDelegate?
-
+    
     private var creation: CreationItem
-
+    
     // MARK: - Initializer
-
-    init(repository: CreationRecipeRepositoryType, delegate: CreationsViewModelDelegate?, creation: CreationItem) {
+    
+    init(repository: SavingCreationRepositoryType, delegate: CreationsViewModelDelegate?, creation: CreationItem) {
         self.repository = repository
         self.delegate = delegate
-
+        
         self.creation = creation
     }
-
+    
     // MARK: - Properties
-
+    
     private var visibleCreation: [CreationItem] = [] {
         didSet {
             DispatchQueue.main.async { [weak self] in
@@ -41,24 +41,24 @@ final class CreationDetailViewModel {
             }
         }
     }
-
+    
     // MARK: - Output
-
+    
     var titleLabel: ((String) -> Void)?
     var ingredientsAndMethod: ((String) -> Void)?
-
+    
     var timeLabel: ((String) -> Void)?
     var dietLabel: ((String) -> Void)?
     var yieldLabel: ((String) -> Void)?
-
+    
     var creationButton: ((String) -> Void)?
-
+    
     var creationDisplayed: (([CreationItem]) -> Void)?
-
+    
     // MARK: - Input
-
+    
     func viewDidLoad() {
-
+        
         self.titleLabel?(creation.name)
         self.ingredientsAndMethod?("\(creation.ingredient) \n \(creation.method)")
         self.timeLabel?(creation.time)
@@ -67,11 +67,11 @@ final class CreationDetailViewModel {
         self.creationButton?("My creations")
         self.creationDisplayed?([creation])
     }
-
+    
     func didPressShowCreationsList() {
         self.delegate?.didPressCreationsListButton(creation: creation)
     }
-
+    
     func didPressDeleteCreation() {
         repository.didPressRemoveCreation(titleCreation: creation.name)
     }

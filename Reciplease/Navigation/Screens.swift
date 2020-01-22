@@ -18,9 +18,9 @@ final class Screens {
 
 extension Screens {
     
-    func createSearchViewController(delegate: HomeViewModelDelegate?) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! HomeViewController
-        let viewModel = HomeViewModel(delegate: delegate)
+    func createSearchViewController(delegate: SearchHomeViewModelDelegate?) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchHomeViewController
+        let viewModel = SearchHomeViewModel(delegate: delegate)
         viewController.viewModel = viewModel
         return viewController
     }
@@ -67,8 +67,8 @@ extension Screens {
 
 extension Screens {
     func createSavingMyCreationViewController(delegate: SavingCreationViewModelDelegate?) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SavingMyCreationViewController") as! SavingMyCreationViewController
-        let repository = CreationRecipeRepository()
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SavingMyCreationViewController") as! SavingCreationViewController
+        let repository = SavingCreationRepository()
         let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
         viewController.viewModel = viewModel
         return viewController
@@ -78,10 +78,9 @@ extension Screens {
 extension Screens {
     func createCreationDetailViewController(creationSaved: CreationItem, delegate: CreationsViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "CreationDetailViewController") as! CreationDetailViewController
-        let repository = CreationRecipeRepository()
+        let repository = SavingCreationRepository()
         let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creationSaved)
         viewController.viewModel = viewModel
-//        viewController.title = "My Creation"
         return viewController
     }
 }
@@ -93,7 +92,7 @@ extension Screens {
         let repository = CreationListRepository()
         let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
         viewController.viewModel = viewModel
-//        viewController.title = "Creations"
+        viewController.title = Accessibility.CreationsList.title
 
         return viewController
     }

@@ -18,7 +18,6 @@ class CreationsListTableViewCell: UITableViewCell {
     @IBOutlet weak var yieldLabel: UILabel!
     @IBOutlet weak var creationImageView: UIImageView!
 
-    
     // MARK: - Properties
     
     private var creation: CreationItem? = nil {

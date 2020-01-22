@@ -25,7 +25,7 @@ enum Accessibility {
     enum CreateMyRecipe {
         static let title = "Create my recipe"
     }
-
+    
     enum CreationDetailView {
         static let title = "Detail Creation"
     }

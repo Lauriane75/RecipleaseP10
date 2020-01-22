@@ -10,11 +10,12 @@ import CoreData
 
 protocol CreationListRepositoryType {
     func getCreations(callback: @escaping ([CreationItem]) -> Void)
+    func getImage(callback: @escaping ([CreationObject]) -> Void)
     func didPressRemoveCreation(titleCreation: String)
 }
 
 final class CreationListRepository: CreationListRepositoryType {
-
+    
     func getCreations(callback: @escaping ([CreationItem]) -> Void) {
         let requestCreation: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
         guard let creations = try? AppDelegate.viewContext.fetch(requestCreation) else { return }
@@ -25,19 +26,25 @@ final class CreationListRepository: CreationListRepositoryType {
         callback(creation)
     }
 
+    func getImage(callback: @escaping ([CreationObject]) -> Void) {
+        let requestCreation: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
+        guard let image = try? AppDelegate.viewContext.fetch(requestCreation) else { return }
+        callback(image)
+    }
+    
     func didPressRemoveCreation(titleCreation: String) {
-
-          let request: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
-          request.predicate = NSPredicate(format: "titleCreation == %@", titleCreation)
-          do {
-              let object = try AppDelegate.viewContext.fetch(request)
-              if !object.isEmpty {
-                  AppDelegate.viewContext.delete(object[0])
-                  try? AppDelegate.viewContext.save()
-              }
-          } catch let error as NSError {
-              print("Could not save. \(error), \(error.userInfo)")
-          }
-      }
+        
+        let request: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
+        request.predicate = NSPredicate(format: "titleCreation == %@", titleCreation)
+        do {
+            let object = try AppDelegate.viewContext.fetch(request)
+            if !object.isEmpty {
+                AppDelegate.viewContext.delete(object[0])
+                try? AppDelegate.viewContext.save()
+            }
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
 }
 

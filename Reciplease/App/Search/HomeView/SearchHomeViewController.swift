@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class SearchHomeViewController: UIViewController {
     
     // MARK: - Outlets
     
@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    var viewModel: HomeViewModel!
+    var viewModel: SearchHomeViewModel!
     
     private lazy var searchDataSource = SearchDataSource()
     
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - Private Functions
     
-    private func bind(to viewModel: HomeViewModel) {
+    private func bind(to viewModel: SearchHomeViewModel) {
         viewModel.titleLabel = { [weak self] text in
             self?.titleLabel.text = text
         }
@@ -90,7 +90,6 @@ class HomeViewController: UIViewController {
             self?.searchButton.setTitle(text, for: .normal)
         }
         viewModel.ingredients = { [weak self] item in
-            print("item = \(item)")
             DispatchQueue.main.async {
                 self?.searchDataSource.update(with: item)
                 self?.ingredientListTableView.reloadData()
@@ -101,8 +100,8 @@ class HomeViewController: UIViewController {
     // MARK: - View actions
     
     @IBAction func didPressAddButton(_ sender: Any) {
-        guard let newIngredient = self.searchTextField.text else { return }
-        print("\(newIngredient)")
+        guard let newIngredient = self.searchTextField.text else { return
+        }
         viewModel.didPressAdd(ingredientSelected: newIngredient)
     }
     
@@ -122,9 +121,20 @@ class HomeViewController: UIViewController {
     
     fileprivate func elementCustom() {
         addButton.layer.cornerRadius = 15
+        
+        ingredientListTableView.layer.cornerRadius = 15
+        ingredientListTableView.layer.borderWidth = 1
+        ingredientListTableView.layer.borderColor = UIColor.orange.cgColor
+        
         clearButton.layer.cornerRadius = 15
-        searchButton.layer.cornerRadius = 20
+        clearButton.layer.borderWidth = 1
+        clearButton.layer.borderColor = UIColor.orange.cgColor
+        
         createMyRecipe.layer.cornerRadius = 15
+        
+        searchButton.layer.cornerRadius = 15
+        searchButton.layer.borderWidth = 1
+        searchButton.layer.borderColor = UIColor.orange.cgColor
     }
     
     @objc private func hideKeyBoard() {

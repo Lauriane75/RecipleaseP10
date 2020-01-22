@@ -19,7 +19,7 @@ final class RecipeDetailViewModel {
     private var recipe: RecipeItem
     
     private var delegate: RecipeDetailViewModelDelegate?
-
+    
     // MARK: - Initializer
     
     init(repository: RecipeDetailRepositoryType, recipe: RecipeItem) {
@@ -67,7 +67,7 @@ final class RecipeDetailViewModel {
             case true:
                 repository.didPressRemoveFavoriteRecipe(recipeName: recipe.name)
                 favoriteState?(false)
-
+                
                 print("state not favorite")
                 favoriteImageState?("star")
                 

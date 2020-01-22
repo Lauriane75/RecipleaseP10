@@ -18,8 +18,6 @@ final class CreationsCoordinator {
 
     private var creationsArray: CreationItem? = nil
 
-    let creation = CreationItem(name: "Name", ingredient: "Ingrédient", method: "Method", time: "Time", category: "Category", yield: "Yield")
-
     // MARK: - Initializer
     
     init(presenter: UINavigationController, screens: Screens) {
@@ -30,7 +28,7 @@ final class CreationsCoordinator {
     // MARK: - Coodinator
     
     func start() {
-//        guard creationsArray != nil else { return }
+        //        guard creationsArray != nil else { return }
         showCreationsList()
     }
     
@@ -41,8 +39,8 @@ final class CreationsCoordinator {
 
     private func showDetailCreationsList(creations : CreationItem) {
         let viewController = screens.createCreationDetailViewController(creationSaved: creations, delegate: self as? CreationsViewModelDelegate)
-           presenter.pushViewController(viewController, animated: true)
-       }
+        presenter.pushViewController(viewController, animated: true)
+    }
 
     private func showAlert(for type: AlertType) {
         let alert = screens.createAlertView(for: type)
@@ -53,7 +51,7 @@ final class CreationsCoordinator {
 extension CreationsCoordinator: CreationsListViewModelDelegate {
 
     func selectCreation(creation: CreationItem) {
-//        update(updatedCreations: <#T##CreationItem?#>)
+        //        update(updatedCreations: <#T##CreationItem?#>)
         showDetailCreationsList(creations: creation)
     }
     

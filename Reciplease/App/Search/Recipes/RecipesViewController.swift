@@ -15,11 +15,11 @@ class RecipesViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var recipesTableView: UITableView!
-
+    
     // MARK: - Properties
     
     var viewModel: RecipesViewModel!
-
+    
     private lazy var recipeDataSource = RecipesDataSource()
     
     // MARK: - ViewLifeCycle
@@ -30,12 +30,11 @@ class RecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // problem
         navigationBar()
         
         recipesTableView.delegate = recipeDataSource
         recipesTableView.dataSource = recipeDataSource
-
+        
         bind(to: viewModel)
         bind(to: recipeDataSource)
     }
@@ -64,9 +63,8 @@ class RecipesViewController: UIViewController {
     private func bind(to source: RecipesDataSource) {
         source.selectedRecipe = viewModel.didSelectRecipe
     }
-
+    
     private func navigationBar() {
-
         let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = titleColor
         self.navigationController?.navigationBar.tintColor = .white

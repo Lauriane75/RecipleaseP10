@@ -12,7 +12,7 @@ final class CreationsListDataSource: NSObject, UITableViewDataSource, UITableVie
     
     private var creations: [CreationItem] = []
     var selectedCreation: ((CreationItem) -> Void)?
-
+    
     func update (updatedCreations: [CreationItem]) {
         self.creations = updatedCreations
     }

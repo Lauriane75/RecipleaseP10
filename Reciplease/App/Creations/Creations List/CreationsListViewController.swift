@@ -43,7 +43,6 @@ class CreationsListViewController: UIViewController {
 
     private func bind(to viewModel: CreationsListViewModel) {
         viewModel.creationItem = { [weak self] creations in
-            print("bind viewModel.creationItem  : \(creations)")
             self?.creationsListDataSource.update(updatedCreations: creations)
             self?.tableView.reloadData()
         }
@@ -54,13 +53,16 @@ class CreationsListViewController: UIViewController {
 
     }
 
+    // MARK: - Private Files
 
-    //    private func bind(to source: RecipesDataSource) {
-    //           source.selectedRecipe = viewModel.didSelectRecipe
-    //       }
+    private func navigationBar() {
+        navigationItem.title = Accessibility.CreationsList.title
+        let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = titleColor
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = .orange
+    }
 
-
-    // MARK: - Private Functions
 
     //    fileprivate func elementsCustom() {
     //        contentView.layer.cornerRadius = 20
@@ -78,26 +80,4 @@ class CreationsListViewController: UIViewController {
     //    }
 
     // MARK: - View actions
-
-    
-
-//
-//    @IBAction func didPressDeleteCreation(_ sender: Any) {
-//        var nameOfCreation = ""
-//
-//        viewModel.creationItem = { [weak self] creation in
-//            for (_, index) in creation.enumerated() {
-//                nameOfCreation = index.name
-//            }
-//            self?.viewModel.didPressDeleteCreation(name: nameOfCreation)
-//        }
-//    }
-
-    private func navigationBar() {
-        navigationItem.title = Accessibility.CreationsList.title
-        let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = titleColor
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
-    }
 }
