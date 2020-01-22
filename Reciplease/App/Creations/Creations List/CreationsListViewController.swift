@@ -30,7 +30,7 @@ class CreationsListViewController: UIViewController {
         tableView.delegate = creationsListDataSource
         tableView.dataSource = creationsListDataSource
 
-//        bind(to: creationsListDataSource)
+        bind(to: creationsListDataSource)
         bind(to: viewModel)
 
         viewModel.viewDidLoad()
@@ -46,9 +46,15 @@ class CreationsListViewController: UIViewController {
         }
     }
 
-//    private func bind(to source: CreationsListDataSource) {
-//
-//    }
+    private func bind(to source: CreationsListDataSource) {
+        creationsListDataSource.selectedCreation = viewModel.didSelectCreationRecipe
+
+    }
+
+
+//    private func bind(to source: RecipesDataSource) {
+//           source.selectedRecipe = viewModel.didSelectRecipe
+//       }
 
 
     // MARK: - Private Functions

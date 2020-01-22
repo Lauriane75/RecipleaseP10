@@ -39,6 +39,11 @@ final class CreationsCoordinator {
         presenter.pushViewController(viewController, animated: true)
     }
 
+    private func showDetailCreationsList(creations : CreationItem) {
+        let viewController = screens.createCreationDetailViewController(creationSaved: creations, delegate: self as? CreationsViewModelDelegate)
+           presenter.pushViewController(viewController, animated: true)
+       }
+
     private func update (updatedCreations: CreationItem?) {
         self.creationsArray = updatedCreations
     }
@@ -61,7 +66,7 @@ extension CreationsCoordinator: CreationsListViewModelDelegate {
     }
 
     func selectCreation(creation: CreationItem) {
-        
+        showDetailCreationsList(creations: creation)
     }
     
     func displayAlert(for type: AlertType) {
