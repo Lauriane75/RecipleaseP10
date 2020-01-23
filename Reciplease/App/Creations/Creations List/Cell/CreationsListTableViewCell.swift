@@ -17,8 +17,10 @@ class CreationsListTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var yieldLabel: UILabel!
     @IBOutlet weak var creationImageView: UIImageView!
-
+    
     // MARK: - Properties
+    
+    private var imageSaved: [Data?] = []
     
     private var creation: CreationItem? = nil {
         
@@ -31,7 +33,9 @@ class CreationsListTableViewCell: UITableViewCell {
         }
     }
     
-    func updateCell(with creation: CreationItem) {
+    func updateCell(with creation: CreationItem, imageData: [Data?]) {
         self.creation = creation
+        self.imageSaved = imageData
+        print("updateCell image = \(imageSaved)")
     }
 }

@@ -75,6 +75,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         guard self.methodTextField.text != nil else { return }
         
         viewModel.didPressSaveButton(titleTextField: titleTextField.text!, ingredientTextField: ingredientsTextField.text!, methodTextField: methodTextField.text!, timeTextField: timeTextField.text!, dietCategoryTextField: dietCategoryTextField.text!, yieldTextField: yieldTextField.text!)
+        viewModel.didPressSaveImage()
     }
     
     // MARK: - Private Files

@@ -51,7 +51,7 @@ final class CreationsListViewModel {
     
     var creationItem: (([CreationItem]) -> Void)?
 
-    var imageData: ((NSData) -> Void)?
+    var imageData: (([Data?]) -> Void)?
     
     
     // MARK: - Input
@@ -61,9 +61,10 @@ final class CreationsListViewModel {
             self.creation = item
             self.creationItem?(self.creation)
         })
-//        repository.getImage (callback: { (image) in
-//            self.imageData?(image)
-//        })
+        repository.getImage (callback: { (image) in
+            self.imageData?(image)
+            print(" repository.getImage = \(image)")
+        })
     }
     
     func didSelectCreation(creation: CreationItem) {

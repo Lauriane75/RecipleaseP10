@@ -21,6 +21,8 @@ final class SavingCreationViewModel {
     private var delegate: SavingCreationViewModelDelegate?
     
     private var repository: SavingCreationRepositoryType
+
+    var imageNSData: NSData? = nil
     
     // MARK: - Initializer
     
@@ -63,8 +65,15 @@ final class SavingCreationViewModel {
     }
 
     func didPressAddPhoto(imageAdded: NSData) {
+        imageNSData = imageAdded
         print("imageAdded \(imageAdded)")
-        repository.didPressAddPhoto(image: imageAdded)
+    }
+
+    func didPressSaveImage() {
+        guard imageNSData != nil else {
+            delegate?.displayAlert(for: .itemEmpty)
+            return }
+        repository.didPressSaveImage(image: imageNSData!)
     }
     
 }

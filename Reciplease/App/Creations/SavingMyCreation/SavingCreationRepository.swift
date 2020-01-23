@@ -10,7 +10,7 @@ import CoreData
 protocol SavingCreationRepositoryType {
     func didPressSaveButton(creation: CreationItem)
     func didPressRemoveCreation(titleCreation: String)
-    func didPressAddPhoto(image: NSData)
+    func didPressSaveImage(image: NSData)
 }
 
 final class SavingCreationRepository: SavingCreationRepositoryType {
@@ -18,8 +18,6 @@ final class SavingCreationRepository: SavingCreationRepositoryType {
     func didPressSaveButton(creation: CreationItem) {
         
         let creationObject = CreationObject(context: AppDelegate.viewContext)
-
-//        creationObject.imageCreation = creation.image
         creationObject.titleCreation = creation.name
         creationObject.ingredientCreation = creation.ingredient
         creationObject.methodCreation = creation.method
@@ -44,14 +42,15 @@ final class SavingCreationRepository: SavingCreationRepositoryType {
         }
     }
 
-    func didPressAddPhoto(image: NSData) {
+    func didPressSaveImage(image: NSData) {
 
         let creationObject = CreationObject(context: AppDelegate.viewContext)
 
-        creationObject.imageCreation = image as Data
+        creationObject.imageCreation = image as NSData as Data
+
+        print("image from repo : \(image)")
 
         try? AppDelegate.viewContext.save()
-
     }
 
 

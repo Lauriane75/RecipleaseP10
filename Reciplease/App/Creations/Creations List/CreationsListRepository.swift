@@ -10,7 +10,7 @@ import CoreData
 
 protocol CreationListRepositoryType {
     func getCreations(callback: @escaping ([CreationItem]) -> Void)
-    func getImage(callback: @escaping ([CreationObject]) -> Void)
+    func getImage(callback: @ escaping ([Data?]) -> Void)
     func didPressRemoveCreation(titleCreation: String)
 }
 
@@ -26,14 +26,22 @@ final class CreationListRepository: CreationListRepositoryType {
         callback(creation)
     }
 
-    func getImage(callback: @escaping ([CreationObject]) -> Void) {
-        let requestCreation: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
-        guard let image = try? AppDelegate.viewContext.fetch(requestCreation) else { return }
+    func getImage(callback: @escaping ([Data?]) -> Void) {
+        let requestImage: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
+        requestImage.predicate = NSPredicate(format: "imageCreation == %@")
+        requestImage.sortDescriptors = [NSSortDescriptor(keyPath: \CreationObject.imageCreation, ascending: true)]
+        guard let imageSaved = try?
+            AppDelegate.viewContext.fetch(requestImage) else {  print("error")
+                return
+        }
+        let image : [Data?] = imageSaved.map {
+            return $0.imageCreation
+        }
         callback(image)
     }
-    
+
     func didPressRemoveCreation(titleCreation: String) {
-        
+
         let request: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
         request.predicate = NSPredicate(format: "titleCreation == %@", titleCreation)
         do {
@@ -47,4 +55,3 @@ final class CreationListRepository: CreationListRepositoryType {
         }
     }
 }
-
