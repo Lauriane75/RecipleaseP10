@@ -19,7 +19,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var timeTextField: UITextField!
-    @IBOutlet weak var dietCategoryTextField: UITextField!
+    @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var yieldTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var ingredientsTextField: UITextField!
@@ -35,16 +35,18 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.viewDidLoad()
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        view.addGestureRecognizer(tap)
         
+        bind(to: viewModel)
+
+        viewModel.viewDidLoad()
+
         elementsCustom()
         
         navigationBar()
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
-        
-        view.addGestureRecognizer(tap)
-        
+
         settingNotificationCenter()
     }
     
@@ -55,8 +57,36 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     }
     
     // MARK: - Private Functions
-    
-    
+
+    private func bind(to viewModel: SavingCreationViewModel) {
+
+        viewModel.label = { [weak self] text in
+            self?.label.text = text
+        }
+
+        viewModel.timePlaceholder = { [weak self] text in
+            self?.timeTextField.placeholder = text
+        }
+        viewModel.categoryPlaceholder = { [weak self] text in
+                   self?.categoryTextField.placeholder = text
+        }
+        viewModel.yieldPlaceholder = { [weak self] text in
+            self?.yieldTextField.placeholder = text
+        }
+        viewModel.titlePlaceholder = { [weak self] text in
+            self?.titleTextField.placeholder = text
+        }
+        viewModel.ingredientsPlaceholder = { [weak self] text in
+            self?.ingredientsTextField.placeholder = text
+        }
+        viewModel.metohdPlaceholder = { [weak self] text in
+            self?.methodTextField.placeholder = text
+        }
+        viewModel.saveButton = { [weak self] text in
+            self?.saveButton.setTitle(text, for: .normal)
+        }
+    }
+
     // MARK: - View actions
     
     @IBAction func didPressAddButton(_ sender: Any) {
@@ -68,20 +98,19 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     @IBAction func didPressSaveButton(_ sender: Any) {
         
         guard self.timeTextField.text != nil else { return }
-        guard self.dietCategoryTextField.text != nil else { return }
+        guard self.categoryTextField.text != nil else { return }
         guard self.yieldTextField.text != nil else { return }
         guard self.titleTextField.text != nil else { return }
         guard self.ingredientsTextField.text != nil else { return }
         guard self.methodTextField.text != nil else { return }
         
-        viewModel.didPressSaveButton(titleTextField: titleTextField.text!, ingredientTextField: ingredientsTextField.text!, methodTextField: methodTextField.text!, timeTextField: timeTextField.text!, dietCategoryTextField: dietCategoryTextField.text!, yieldTextField: yieldTextField.text!)
+        viewModel.didPressSaveButton(titleTextField: titleTextField.text!, ingredientTextField: ingredientsTextField.text!, methodTextField: methodTextField.text!, timeTextField: timeTextField.text!, dietCategoryTextField: categoryTextField.text!, yieldTextField: yieldTextField.text!)
         viewModel.didPressSaveImage()
     }
     
     // MARK: - Private Files
     
-    // NavBar
-    
+    /// NavBar
     fileprivate func navigationBar() {
         navigationItem.title = Accessibility.CreateMyRecipe.title
         let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
@@ -90,8 +119,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         self.navigationController?.navigationBar.barTintColor = .orange
     }
     
-    // Pick photo
-    
+    /// Pick photo
     fileprivate func PhotoPickerController() {
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
@@ -106,16 +134,9 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.lastImageViewTapped?.image = image
             // Encoding
-            let imageData:NSData = image.pngData()! as NSData
+            let imageData:Data = image.pngData()! as Data
             print("image data : \(imageData)")
-
             viewModel.didPressAddPhoto(imageAdded: imageData)
-
-//            // Save
-//            UserDefaults.standard.set(imageData, forKey: "SavedImage")
-//            // Decode
-//            let data = UserDefaults.standard.object(forKey: "SavedImage") as! NSData
-//            lastImageViewTapped?.image = UIImage(data: data as Data)
         }
         dismiss(animated: true)
     }
@@ -123,14 +144,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
-    
-    /// func in case resticted requestAuthorization
-    fileprivate func restrictedCase() {
-        let alert = UIAlertController(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed", preferredStyle: .alert)
-        let okAction = UIAlertAction(title : "OK", style: .default)
-        alert.addAction(okAction)
-        self.present(alert, animated: true)
-    }
+
     /// func in case not determined requestAuthorization
     fileprivate func notDeterminedCase(_ status: PHAuthorizationStatus) {
         if status == PHAuthorizationStatus.authorized{
@@ -159,7 +173,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         let actionSheet = UIAlertController(title: "photo source", message: "choose a source", preferredStyle: .actionSheet)
         // Camera access
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
-            if UIImagePickerController.isSourceTypeAvailable(.camera){
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerController.sourceType = .camera
                 self.present(imagePickerController, animated: true, completion: nil)
             }else{
@@ -180,7 +194,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
                     case .notDetermined:
                         self.notDeterminedCase(status)
                     case .restricted:
-                        self.restrictedCase()
+                        self.viewModel.restrictedCase()
                     case .denied:
                         self.deniedCase()
                     default:break
@@ -201,15 +215,14 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         saveButton.layer.borderColor = UIColor.orange.cgColor
     }
     
-    // HideKeyBoard from textField
-    
+    /// HideKeyBoard from textField
     @objc private func hideKeyBoard() {
         titleTextField.resignFirstResponder()
         ingredientsTextField.resignFirstResponder()
         addButton.resignFirstResponder()
         methodTextField.resignFirstResponder()
         timeTextField.resignFirstResponder()
-        dietCategoryTextField.resignFirstResponder()
+        categoryTextField.resignFirstResponder()
         yieldTextField.resignFirstResponder()
     }
     
@@ -220,8 +233,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     }
     
     @objc private func keyboardWillChange(notification: Notification) {
-        
-        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?          NSValue else { return }
+        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         
@@ -232,7 +244,6 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
             view.frame.origin.y = 0
         }
     }
-    
     
     internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyBoard()

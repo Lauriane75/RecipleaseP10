@@ -83,6 +83,7 @@ class RecipeDetailViewController: UIViewController {
     @objc func didPressSelectFavoriteRecipe() {
         viewModel.didPressSelectFavoriteRecipe()
     }
+
     fileprivate func elementsCustom() {
         contentView.layer.cornerRadius = 20
         tableView.layer.cornerRadius = 15

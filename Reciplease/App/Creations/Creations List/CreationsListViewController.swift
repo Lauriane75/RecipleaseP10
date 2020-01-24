@@ -22,10 +22,6 @@ class CreationsListViewController: UIViewController {
 
     // MARK: - View life cycl
 
-    override func viewWillAppear(_ animated: Bool) {
-        viewModel.viewWillAppear()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +31,8 @@ class CreationsListViewController: UIViewController {
         tableView.dataSource = creationsListDataSource
 
         bind(to: viewModel)
+
+        viewModel.viewDidLoad()
 
         bind(to: creationsListDataSource)
     }
@@ -67,22 +65,4 @@ class CreationsListViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
     }
-
-
-    //    fileprivate func elementsCustom() {
-    //        contentView.layer.cornerRadius = 20
-    //        getDirectionButton.layer.cornerRadius = 15
-    //        tableView.layer.cornerRadius = 15
-    //        getDirectionButton.layer.borderWidth = 1
-    //        getDirectionButton.layer.borderColor = UIColor.orange.cgColor
-    //    }
-    //
-    //    private func navigationBar() {
-    //        let image = UIImage(named: "reciplease-favorite-logo")
-    //        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didPressSelectFavoriteRecipe))
-    //        navigationItem.title = Accessibility.DetailView.title
-    //
-    //    }
-
-    // MARK: - View actions
 }

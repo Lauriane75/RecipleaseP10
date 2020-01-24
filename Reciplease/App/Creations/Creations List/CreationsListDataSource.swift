@@ -18,6 +18,7 @@ final class CreationsListDataSource: NSObject, UITableViewDataSource, UITableVie
     func update (updatedCreations: [CreationItem], imageData: [Data?]) {
         self.creations = updatedCreations
         self.image = imageData
+        print("imageData = \(imageData) ")
     }
     
     // MARK: - DataSource

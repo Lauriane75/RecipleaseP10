@@ -56,7 +56,7 @@ final class CreationsListViewModel {
     
     // MARK: - Input
     
-    func viewWillAppear() {
+    func viewDidLoad() {
         repository.getCreations(callback: { (item) in
             self.creation = item
             self.creationItem?(self.creation)

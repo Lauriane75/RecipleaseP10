@@ -23,9 +23,11 @@ class CreationsListTableViewCell: UITableViewCell {
     private var imageSaved: [Data?] = []
     
     private var creation: CreationItem? = nil {
-        
+
         didSet {
             guard let creation = self.creation else { return }
+            creationImageView.layer.cornerRadius = 15
+//            creationImageView.image =
             nameLabel.text = creation.name
             timeLabel.text = creation.time
             categoryLabel.text = creation.category

@@ -39,7 +39,11 @@ class SearchHomeViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+
+        bind(to: viewModel)
         
+        viewModel.viewDidLoad()
+
         ingredientListTableView.dataSource = searchDataSource
         bind(to: viewModel)
         viewModel.viewDidLoad()
@@ -160,7 +164,7 @@ class SearchHomeViewController: UIViewController {
     
     @objc private func keyboardWillChange(notification: Notification) {
         
-        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?          NSValue else { return }
+        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         

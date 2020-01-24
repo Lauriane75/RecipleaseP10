@@ -9,7 +9,7 @@
 import UIKit
 
 enum AlertType {
-    case errorService, errorNoRecipeFound, errorIngredientListEmpty, noCreation, itemEmpty
+    case errorService, errorNoRecipeFound, errorIngredientListEmpty, noCreation, itemEmpty, restricted, denied
 }
 
 struct Alert {
@@ -30,7 +30,11 @@ extension Alert {
             self = Alert(title: "No creation saved yet", message: "You can create your own recipe, go back to the home page")
         case .itemEmpty:
             self = Alert(title: "You forgot to fill an item", message: "Please make sure to fill all items to create your recipe and don't forget the picture!")
+            
+        case .restricted:
+            self = Alert(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed")
+        case .denied:
+            self = Alert(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings if you want to change it")
         }
     }
 }
-

@@ -37,6 +37,7 @@ final class CreationListRepository: CreationListRepositoryType {
         let image : [Data?] = imageSaved.map {
             return $0.imageCreation
         }
+        print("image = \(image)")
         callback(image)
     }
 

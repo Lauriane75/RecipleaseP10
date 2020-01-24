@@ -704,8 +704,8 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="JHj-LX-mr5" id="tZj-3B-xAN"/>
+                        <outlet property="categoryTextField" destination="WaV-MR-sYP" id="2aF-l2-sWb"/>
                         <outlet property="contentView" destination="C38-3a-BQu" id="BHI-xT-J3G"/>
-                        <outlet property="dietCategoryTextField" destination="WaV-MR-sYP" id="2aF-l2-sWb"/>
                         <outlet property="imageView" destination="dSX-IS-FVD" id="C5c-YL-uuR"/>
                         <outlet property="ingredientsTextField" destination="RGd-AE-6bm" id="4xM-zm-UwM"/>
                         <outlet property="label" destination="blB-ym-82D" id="pRg-5m-x8D"/>
@@ -1084,7 +1084,7 @@
     </scenes>
     <resources>
         <image name="book.fill" catalog="system" width="64" height="50"/>
-        <image name="clock" catalog="system" width="64" height="60"/>
+        <image name="clock" catalog="system" width="32" height="32"/>
         <image name="clock.fill" catalog="system" width="64" height="60"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="photo.fill" catalog="system" width="64" height="46"/>
