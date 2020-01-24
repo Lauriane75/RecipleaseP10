@@ -32,7 +32,7 @@ final class RecipeDetailViewModel {
     var recipeDisplayed: ((RecipeItem) -> Void)?
     var image: ((String) -> Void)?
     var timeLabel: ((String) -> Void)?
-    var dietLabel: ((String) -> Void)?
+    var categoryLabel: ((String) -> Void)?
     var yieldLabel: ((String) -> Void)?
     var nameRecipeButton: ((String) -> Void)?
     var favoriteState: ((Bool) -> Void)?
@@ -44,9 +44,9 @@ final class RecipeDetailViewModel {
         
         recipeDisplayed?(recipe)
         image?("\(recipe.imageName)")
-        setUpTimeLabel()
-        setUpDietLabel()
-        setUpYieldLabel()
+        setUpTime()
+        setUpCategory()
+        setUpYield()
         nameRecipeButton?("\(recipe.name)")
         
         self.repository.verifyingFavoriteState(recipeName: self.recipe.name) {
@@ -94,7 +94,7 @@ final class RecipeDetailViewModel {
     
     // MARK: - Private Functions
     
-    fileprivate func setUpYieldLabel() {
+    fileprivate func setUpYield() {
         if recipe.yield == 0 {
             let defaultValue = 2
             yieldLabel?("\(defaultValue)")
@@ -103,7 +103,7 @@ final class RecipeDetailViewModel {
         }
     }
     
-    fileprivate func setUpTimeLabel() {
+    fileprivate func setUpTime() {
         if recipe.time == 0 {
             let defaultValue = 30
             timeLabel?("\(defaultValue) min")
@@ -112,17 +112,17 @@ final class RecipeDetailViewModel {
         }
     }
     
-    fileprivate func setUpDietLabel() {
+    fileprivate func setUpCategory() {
         var diet = editingDietLabels()
         if diet == "" {
             diet = "Low-Fat"
         }
-        dietLabel?("\(diet)")
+        categoryLabel?("\(diet)")
     }
     
     /// To remove '[]'
     fileprivate func editingDietLabels() -> String {
-        let first = "\(recipe.dietLabels)".dropFirst(2)
+        let first = "\(recipe.category)".dropFirst(2)
         let last = first.dropLast(2)
         
         return String(last)

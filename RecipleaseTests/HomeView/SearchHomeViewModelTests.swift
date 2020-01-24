@@ -9,17 +9,11 @@
 import XCTest
 @ testable import Reciplease
 
-class MockHomeViewModelDelegate: SearchHomeViewModelDelegate {
-    func showCreateMyRecipeView() {
-        
-    }
+class MockSearchHomeViewModelDelegate: SearchHomeViewModelDelegate {
     
     var alert: AlertType? = nil
-    
     var ingredient = "lemon"
-    
-//    var ing: RecipeItem? = nil
-    
+
     func didSelectIngredient(ingredient: String) {
         self.ingredient = ingredient
     }
@@ -27,13 +21,16 @@ class MockHomeViewModelDelegate: SearchHomeViewModelDelegate {
     func displayHomeAlert(for type: AlertType) {
         self.alert = type
     }
+    func showCreateMyRecipeView() {
+
+    }
 }
 
-class HomeViewModelTests: XCTestCase {
+class SearchHomeViewModelTests: XCTestCase {
     
     func test_Given_HomeViewModel_When_ViewDidLoad_Then_ReactivePropertiesAreDiplayed() {
         
-        let delegate = MockHomeViewModelDelegate()
+        let delegate = MockSearchHomeViewModelDelegate()
         
         let viewModel = SearchHomeViewModel(delegate: delegate)
         
@@ -85,7 +82,7 @@ class HomeViewModelTests: XCTestCase {
     
     func test_Given_ViewModel_When_didPressAdd_Then_ingredientsIsDisplayed() {
         
-        let delegate = MockHomeViewModelDelegate()
+        let delegate = MockSearchHomeViewModelDelegate()
         
         let viewModel = SearchHomeViewModel(delegate: delegate)
         
@@ -99,7 +96,7 @@ class HomeViewModelTests: XCTestCase {
     
     func test_Given_ViewModel_When_didPressAddAnddidPressClear_Then_IngredientsIsEmpty() {
         
-        let delegate = MockHomeViewModelDelegate()
+        let delegate = MockSearchHomeViewModelDelegate()
         
         let viewModel = SearchHomeViewModel(delegate: delegate)
         
@@ -115,7 +112,7 @@ class HomeViewModelTests: XCTestCase {
     
     func test_Given_ViewModel_When_didPressAdd_Then_SearchButtonIsDisplayed() {
         
-        let delegate = MockHomeViewModelDelegate()
+        let delegate = MockSearchHomeViewModelDelegate()
         
         let viewModel = SearchHomeViewModel(delegate: delegate)
         
@@ -142,7 +139,7 @@ class HomeViewModelTests: XCTestCase {
     
     func test_Given_ViewModel_When_didPressClear_Then_Alert() {
         
-        let delegate = MockHomeViewModelDelegate()
+        let delegate = MockSearchHomeViewModelDelegate()
         
         let viewModel = SearchHomeViewModel(delegate: delegate)
         
@@ -153,16 +150,28 @@ class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(delegate.alert, .errorIngredientListEmpty)
     }
 
-    func test_Given_ViewModel_When_AddIngredient_Then_() {
+    func test_Given_ViewModel_When_didPressSearchForRecipes_Then_DelegateIsCalled() {
 
-        let delegate = MockHomeViewModelDelegate()
+        let delegate = MockSearchHomeViewModelDelegate()
 
         let viewModel = SearchHomeViewModel(delegate: delegate)
 
         viewModel.viewDidLoad()
-        viewModel.didPressAdd(ingredientSelected: "lemon")
-        
-        XCTAssertEqual(delegate.ingredient, "lemon")
+        viewModel.didPressAdd(ingredientSelected: "eggs")
+        viewModel.didPressSearchForRecipes()
+
+        XCTAssertEqual(delegate.ingredient, "eggs")
     }
-    
+
+    func test_Given_ViewModel_When_didPressCreateRecipe_Then_DelegateIsCalled() {
+
+        let delegate = MockSearchHomeViewModelDelegate()
+
+        let viewModel = SearchHomeViewModel(delegate: delegate)
+
+        viewModel.viewDidLoad()
+        viewModel.didPressCreateRecipe()
+
+//        XCTAssertEqual(delegate.showCreateMyRecipeView())
+    }
 }

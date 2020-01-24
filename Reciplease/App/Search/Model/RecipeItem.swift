@@ -16,10 +16,10 @@ struct RecipeItem: Equatable {
     let ingredient: [String]
     let time: Int
     let yield: Int
-    let dietLabels: [String]
+    let category: [String]
     
     static func == (parameterLhs: RecipeItem, parameterRhs: RecipeItem) -> Bool {
-        return parameterLhs.name == parameterRhs.name && parameterLhs.imageName == parameterRhs.imageName && parameterLhs.url == parameterRhs.url && parameterLhs.ingredient == parameterRhs.ingredient && parameterLhs.time == parameterRhs.time && parameterLhs.yield == parameterRhs.yield && parameterLhs.dietLabels == parameterRhs.dietLabels
+        return parameterLhs.name == parameterRhs.name && parameterLhs.imageName == parameterRhs.imageName && parameterLhs.url == parameterRhs.url && parameterLhs.ingredient == parameterRhs.ingredient && parameterLhs.time == parameterRhs.time && parameterLhs.yield == parameterRhs.yield && parameterLhs.category == parameterRhs.category
     }
 }
 

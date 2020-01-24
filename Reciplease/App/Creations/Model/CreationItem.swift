@@ -8,7 +8,6 @@
 import Foundation
 
 struct CreationItem: Equatable {
-//    let image: NSData
     let name: String
     let ingredient: String
     let method: String

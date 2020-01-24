@@ -54,7 +54,7 @@ class RecipesRepositoryTests: XCTestCase {
                 XCTAssertEqual(recipeItems[0].url, "http://www.edamam.com/ontologies/edamam.owl#recipe_f00df78e779c210808de541c2a476a07")
                 XCTAssertEqual(recipeItems[0].time, 0)
                 XCTAssertEqual(recipeItems[0].yield, 6)
-                XCTAssertEqual(recipeItems[0].dietLabels, ["Low-Fat"])
+                XCTAssertEqual(recipeItems[0].category, ["Low-Fat"])
                 
             case .error(error: let error):
                 print(error)

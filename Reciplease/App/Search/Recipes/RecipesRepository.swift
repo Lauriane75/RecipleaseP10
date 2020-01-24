@@ -45,7 +45,7 @@ final class RecipesRepository: RecipesRepositoryType {
                         return      RecipeItem(name: $0.recipe.label,
                                                imageName: $0.recipe.image,
                                                url: $0.recipe.url,
-                                               ingredient: $0.recipe.ingredientLines.map { $0}, time:  $0.recipe.totalTime, yield: $0.recipe.yield, dietLabels: $0.recipe.dietLabels)}
+                                               ingredient: $0.recipe.ingredientLines.map { $0}, time:  $0.recipe.totalTime, yield: $0.recipe.yield, category: $0.recipe.dietLabels)}
                     success(.success(value: result))
                     
                 case .error(error: let alert):
@@ -56,9 +56,9 @@ final class RecipesRepository: RecipesRepositoryType {
             let requestRecipe: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
             guard let recipes = try? AppDelegate.viewContext.fetch(requestRecipe) else { return }
             
-            let recipeItem : [RecipeItem] = recipes.map  { return RecipeItem(name: $0.recipeName!,
-                                                                             imageName: $0.recipeImage ?? "", url: $0.recipeURL ?? "",
-                                                                             ingredient: ($0.recipeIngredients?.components(separatedBy: ", ") ?? [", "]), time: Int($0.recipeTime), yield: Int($0.recipeYield), dietLabels: ($0.dietLabelsRecipe?.components(separatedBy: "") ?? [""]))
+            let recipeItem : [RecipeItem] = recipes.map  { return RecipeItem(name: $0.nameRecipe ?? "",
+                                                                             imageName: $0.imageRecipe ?? "", url: $0.urlRecipe ?? "",
+                                                                             ingredient: ($0.ingredientsRecipe?.components(separatedBy: ", ") ?? [", "]), time: Int($0.timeRecipe), yield: Int($0.yieldRecipe), category: ($0.categoryRecipe?.components(separatedBy: "") ?? [""]))
             }
             success(.success(value: recipeItem))
         }

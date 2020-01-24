@@ -22,7 +22,7 @@ final class SavingCreationRepository: SavingCreationRepositoryType {
         creationObject.ingredientCreation = creation.ingredient
         creationObject.methodCreation = creation.method
         creationObject.timeCreation = creation.time
-        creationObject.dietCategoryCreation = creation.category
+        creationObject.categoryCreation = creation.category
         creationObject.yieldCreation = creation.yield
         
         try? AppDelegate.viewContext.save()

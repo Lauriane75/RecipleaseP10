@@ -73,7 +73,7 @@ class RecipeDetailViewModelTests: XCTestCase {
             XCTAssertEqual(time, ("30 min"))
             expectation5.fulfill()
         }
-        viewModel.dietLabel = { time in
+        viewModel.categoryLabel = { time in
             XCTAssertEqual(time, ("Low-Fat"))
             expectation6.fulfill()
         }

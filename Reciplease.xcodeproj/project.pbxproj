@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		216F350176A2BF9B120251BE /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9377CB23BE5C0BD56FF00A53 /* Pods_Reciplease.framework */; };
 		F60B7C8323CFDFAE0015D715 /* SavingCreationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7C8223CFDFAE0015D715 /* SavingCreationRepository.swift */; };
-		F60BADD623A7985D0035907E /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60BADD523A7985D0035907E /* HomeViewModelTests.swift */; };
+		F60BADD623A7985D0035907E /* SearchHomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60BADD523A7985D0035907E /* SearchHomeViewModelTests.swift */; };
 		F60BADD823A79C510035907E /* RecipesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60BADD723A79C510035907E /* RecipesViewModelTests.swift */; };
 		F60BADDA23A79C610035907E /* RecipesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60BADD923A79C610035907E /* RecipesRepositoryTests.swift */; };
 		F60BADDC23A7A64B0035907E /* RecipeDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60BADDB23A7A64B0035907E /* RecipeDetailViewModelTests.swift */; };
@@ -78,7 +78,7 @@
 		9377CB23BE5C0BD56FF00A53 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B152BFAC10112DB0D2674FA3 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
 		F60B7C8223CFDFAE0015D715 /* SavingCreationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingCreationRepository.swift; sourceTree = "<group>"; };
-		F60BADD523A7985D0035907E /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		F60BADD523A7985D0035907E /* SearchHomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHomeViewModelTests.swift; sourceTree = "<group>"; };
 		F60BADD723A79C510035907E /* RecipesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModelTests.swift; sourceTree = "<group>"; };
 		F60BADD923A79C610035907E /* RecipesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesRepositoryTests.swift; sourceTree = "<group>"; };
 		F60BADDB23A7A64B0035907E /* RecipeDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModelTests.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		F60BADD223A797790035907E /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				F60BADD523A7985D0035907E /* HomeViewModelTests.swift */,
+				F60BADD523A7985D0035907E /* SearchHomeViewModelTests.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -676,7 +676,7 @@
 			files = (
 				F60BADDA23A79C610035907E /* RecipesRepositoryTests.swift in Sources */,
 				F60BADDE23A7A6680035907E /* RecipeDetailRepositoryTests.swift in Sources */,
-				F60BADD623A7985D0035907E /* HomeViewModelTests.swift in Sources */,
+				F60BADD623A7985D0035907E /* SearchHomeViewModelTests.swift in Sources */,
 				F60BADDC23A7A64B0035907E /* RecipeDetailViewModelTests.swift in Sources */,
 				F60BADD823A79C510035907E /* RecipesViewModelTests.swift in Sources */,
 			);

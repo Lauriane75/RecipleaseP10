@@ -20,7 +20,7 @@ final class CreationListRepository: CreationListRepositoryType {
         let requestCreation: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
         guard let creations = try? AppDelegate.viewContext.fetch(requestCreation) else { return }
         let creation : [CreationItem] = creations.map  {
-            return CreationItem(name: $0.titleCreation ?? "", ingredient: $0.ingredientCreation ?? "", method: $0.methodCreation ?? "", time: $0.timeCreation ?? "", category: $0.dietCategoryCreation ?? "", yield: $0.yieldCreation ?? "")
+            return CreationItem(name: $0.titleCreation ?? "", ingredient: $0.ingredientCreation ?? "", method: $0.methodCreation ?? "", time: $0.timeCreation ?? "", category: $0.categoryCreation ?? "", yield: $0.yieldCreation ?? "")
         }
         print("getCreations : \(creation)")
         callback(creation)

@@ -55,7 +55,7 @@ class RecipeDetailViewController: UIViewController {
         viewModel.image = { [weak self] url in
             self?.imageView.download(url)
         }
-        viewModel.dietLabel = { [weak self] text in
+        viewModel.categoryLabel = { [weak self] text in
             self?.bookMarkedLabel.text = text
         }
         viewModel.nameRecipeButton = { [weak self] text in

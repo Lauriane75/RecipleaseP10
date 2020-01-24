@@ -21,22 +21,21 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         let recipeObject = RecipeObject(context: AppDelegate.viewContext)
         let favoriteImage = FavoriteImage(context: AppDelegate.viewContext)
         favoriteImage.imageStatus = image
-        recipeObject.recipeURL = recipe.url
-        recipeObject.recipeImage = recipe.imageName
-        recipeObject.recipeName = recipe.name
-        recipeObject.recipeIngredients =
-            recipe.ingredient.joined(separator: " ")
-        recipeObject.recipeTime = Int16(Int(recipe.time))
-        recipeObject.recipeYield = Int16(Int(recipe.yield))
-        recipeObject.dietLabelsRecipe = recipe.dietLabels.joined(separator: " ")
+        recipeObject.urlRecipe = recipe.url
+        recipeObject.imageRecipe = recipe.imageName
+        recipeObject.nameRecipe = recipe.name
+        recipeObject.ingredientsRecipe = recipe.ingredient.joined(separator: " ")
+        recipeObject.timeRecipe = Int16(Int(recipe.time))
+        recipeObject.yieldRecipe = Int16(Int(recipe.yield))
+        recipeObject.categoryRecipe = recipe.category.joined(separator: " ")
         try? AppDelegate.viewContext.save()
     }
     
     func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void) {
         
         let request: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
-        request.predicate = NSPredicate(format: "recipeName == %@", recipeName)
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \RecipeObject.recipeName, ascending: true)]
+        request.predicate = NSPredicate(format: "nameRecipe == %@", recipeName)
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \RecipeObject.nameRecipe, ascending: true)]
         
         guard let recipes = try? AppDelegate.viewContext.fetch(request) else { print("error")
             return
@@ -52,7 +51,7 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
     func didPressRemoveFavoriteRecipe(recipeName: String) {
         
         let request: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
-        request.predicate = NSPredicate(format: "recipeName == %@", recipeName)
+        request.predicate = NSPredicate(format: "nameRecipe == %@", recipeName)
         do {
             let object = try AppDelegate.viewContext.fetch(request)
             if !object.isEmpty {

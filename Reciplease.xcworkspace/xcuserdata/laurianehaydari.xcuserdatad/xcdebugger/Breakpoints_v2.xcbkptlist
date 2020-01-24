@@ -88,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "69303690-DC13-4124-B4D7-609FB5F541A7"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reciplease/App/Creations/SavingMyCreation/SavingCreationRepository.swift"
@@ -104,7 +104,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4415B633-26EA-4C9E-8097-FED2E6AB68FC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reciplease/App/Creations/Creations List/CreationsListViewModel.swift"
@@ -117,7 +117,7 @@
             <Locations>
                <Location
                   uuid = "4415B633-26EA-4C9E-8097-FED2E6AB68FC - c3db96569d71971"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Reciplease.CreationsListViewModel.viewDidLoad() -&gt; ()"
@@ -131,11 +131,11 @@
                   offsetFromSymbolStart = "324">
                </Location>
                <Location
-                  uuid = "4415B633-26EA-4C9E-8097-FED2E6AB68FC - 26a76e3616bb3a2e"
-                  shouldBeEnabled = "Yes"
+                  uuid = "4415B633-26EA-4C9E-8097-FED2E6AB68FC - f29b475590d46bde"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Array&lt;Foundation.Data&gt;) -&gt; () in Reciplease.CreationsListViewModel.viewDidLoad() -&gt; ()"
+                  symbolName = "closure #2 (Swift.Array&lt;Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in Reciplease.CreationsListViewModel.viewDidLoad() -&gt; ()"
                   moduleName = "Reciplease"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurianehaydari/Documents/E%CC%81ducatif/Formation%20IOS/Openclassrooms/projets/projet10/RecipleaseP10/Reciplease/App/Creations/Creations%20List/CreationsListViewModel.swift"
@@ -152,7 +152,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2C04E79C-118A-406F-9B56-D6B1D2EB8225"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reciplease/App/Creations/Creations List/CreationsListViewModel.swift"
@@ -168,7 +168,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "818D731E-62B5-4846-AB08-FC729D5CEE64"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reciplease/App/Creations/Creations List/CreationsListViewModel.swift"
@@ -184,7 +184,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "AB8BFE26-6F44-49B3-A1F4-C747CAC13BFF"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reciplease/App/Creations/Creations List/CreationsListDataSource.swift"
@@ -200,7 +200,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BEEBCA8C-D1C3-4B50-B34E-E0F20A3CBB02"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reciplease/App/Creations/Creations List/CreationsListDataSource.swift"
