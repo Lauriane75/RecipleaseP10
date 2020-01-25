@@ -38,16 +38,16 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         view.addGestureRecognizer(tap)
+
+        elementsCustom()
+
+        navigationBar()
+
+        settingNotificationCenter()
         
         bind(to: viewModel)
 
         viewModel.viewDidLoad()
-
-        elementsCustom()
-        
-        navigationBar()
-
-        settingNotificationCenter()
     }
     
     deinit {

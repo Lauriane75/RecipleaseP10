@@ -11,14 +11,13 @@ import UIKit
 final class CreationsListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private var creations: [CreationItem] = []
-    private var image: [Data?] = []
+    private var image: Data? = nil
 
     var selectedCreation: ((CreationItem) -> Void)?
     
-    func update (updatedCreations: [CreationItem], imageData: [Data?]) {
+    func update (updatedCreations: [CreationItem], imageData: Data?) {
         self.creations = updatedCreations
         self.image = imageData
-        print("imageData = \(imageData) ")
     }
     
     // MARK: - DataSource

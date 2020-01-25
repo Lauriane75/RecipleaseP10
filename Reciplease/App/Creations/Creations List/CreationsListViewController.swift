@@ -31,10 +31,9 @@ class CreationsListViewController: UIViewController {
         tableView.dataSource = creationsListDataSource
 
         bind(to: viewModel)
+        bind(to: creationsListDataSource)
 
         viewModel.viewDidLoad()
-
-        bind(to: creationsListDataSource)
     }
 
     // MARK: - Private Functions
@@ -47,7 +46,6 @@ class CreationsListViewController: UIViewController {
             }
         }
         viewModel.imageData = { data in
-            print("imageData in vclList = \(data)")
         }
     }
 

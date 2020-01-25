@@ -32,6 +32,8 @@ final class CreationsListViewModel {
             }
         }
     }
+
+    var dataImage: [Data?] = []
     
     // MARK: - Initializer
     
@@ -51,7 +53,7 @@ final class CreationsListViewModel {
     
     var creationItem: (([CreationItem]) -> Void)?
 
-    var imageData: (([Data?]) -> Void)?
+    var imageData: ((Data?) -> Void)?
     
     
     // MARK: - Input
@@ -62,8 +64,9 @@ final class CreationsListViewModel {
             self.creationItem?(self.creation)
         })
         repository.getImage (callback: { (image) in
-            self.imageData?(image)
-            print(" repository.getImage = \(image)")
+            for (_, index) in image.enumerated() {
+                self.imageData?(index?.advanced(by: 0))
+            }
         })
     }
     

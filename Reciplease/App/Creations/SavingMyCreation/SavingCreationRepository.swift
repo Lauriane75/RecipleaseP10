@@ -10,7 +10,7 @@ import CoreData
 protocol SavingCreationRepositoryType {
     func didPressSaveButton(creation: CreationItem)
     func didPressRemoveCreation(titleCreation: String)
-    func didPressSaveImage(image: Data)
+    func didPressSaveImage(image: Data?)
 }
 
 final class SavingCreationRepository: SavingCreationRepositoryType {
@@ -24,6 +24,14 @@ final class SavingCreationRepository: SavingCreationRepositoryType {
         creationObject.timeCreation = creation.time
         creationObject.categoryCreation = creation.category
         creationObject.yieldCreation = creation.yield
+        
+        try? AppDelegate.viewContext.save()
+    }
+
+    func didPressSaveImage(image: Data?) {
+        
+        let creationImage = CreationImage(context: AppDelegate.viewContext)
+        creationImage.image = image
         
         try? AppDelegate.viewContext.save()
     }
@@ -41,17 +49,4 @@ final class SavingCreationRepository: SavingCreationRepositoryType {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-
-    func didPressSaveImage(image: Data) {
-
-        let creationObject = CreationObject(context: AppDelegate.viewContext)
-
-        creationObject.imageCreation = image as Data
-
-        print("image from repo : \(image)")
-
-        try? AppDelegate.viewContext.save()
-    }
-
-
 }

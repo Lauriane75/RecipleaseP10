@@ -22,29 +22,25 @@ final class CreationListRepository: CreationListRepositoryType {
         let creation : [CreationItem] = creations.map  {
             return CreationItem(name: $0.titleCreation ?? "", ingredient: $0.ingredientCreation ?? "", method: $0.methodCreation ?? "", time: $0.timeCreation ?? "", category: $0.categoryCreation ?? "", yield: $0.yieldCreation ?? "")
         }
-        print("getCreations : \(creation)")
         callback(creation)
     }
 
-    func getImage(callback: @escaping ([Data?]) -> Void) {
-        let requestImage: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
-        requestImage.predicate = NSPredicate(format: "imageCreation == %@")
-        requestImage.sortDescriptors = [NSSortDescriptor(keyPath: \CreationObject.imageCreation, ascending: true)]
-        guard let imageSaved = try?
-            AppDelegate.viewContext.fetch(requestImage) else {  print("error")
-                return
-        }
-        let image : [Data?] = imageSaved.map {
-            return $0.imageCreation
-        }
-        print("image = \(image)")
-        callback(image)
+    func getImage(callback: @ escaping ([Data?]) -> Void) {
+    let creationImage = NSFetchRequest<CreationImage>(entityName: "CreationImage")
+    guard let creations = try?
+    AppDelegate.viewContext.fetch(creationImage) else { return }
+        let imageData : [Data?] = creations.map {
+            return $0.image
+    }
+        callback(imageData)
     }
 
     func didPressRemoveCreation(titleCreation: String) {
 
         let request: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
+
         request.predicate = NSPredicate(format: "titleCreation == %@", titleCreation)
+
         do {
             let object = try AppDelegate.viewContext.fetch(request)
             if !object.isEmpty {
@@ -54,5 +50,18 @@ final class CreationListRepository: CreationListRepositoryType {
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+
+//        let creationImage = NSFetchRequest<CreationImage>(entityName: "CreationImage")
+//
+//        do {
+//                  let object = try AppDelegate.viewContext.fetch(creationImage)
+//                  if !object.isEmpty {
+//                      AppDelegate.viewContext.delete(object[0])
+//                      try? AppDelegate.viewContext.save()
+//                  }
+//              } catch let error as NSError {
+//                  print("Could not save. \(error), \(error.userInfo)")
+//              }
+
     }
 }

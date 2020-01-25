@@ -30,7 +30,7 @@ final class RecipesViewModel {
             if recipes != [] {
                 recipesDisplayed?(recipes)
             } else {
-                delegate?.displayRecipesAlert(for: .errorNoRecipeFound)
+                delegate?.displayRecipesAlert(for: .errorNoRecipe)
             }
         }
     }

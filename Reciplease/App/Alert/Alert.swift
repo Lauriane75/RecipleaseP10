@@ -9,7 +9,7 @@
 import UIKit
 
 enum AlertType {
-    case errorService, errorNoRecipeFound, errorIngredientListEmpty, noCreation, itemEmpty, restricted, denied
+    case errorService, errorNoRecipe, errorIngredientListEmpty, noCreation, itemEmpty, restricted, denied
 }
 
 struct Alert {
@@ -22,8 +22,8 @@ extension Alert {
         switch type {
         case .errorService:
             self = Alert(title: "Error", message: "No service connection")
-        case .errorNoRecipeFound:
-            self = Alert(title: "Error", message: "No recipe found please try again")
+        case .errorNoRecipe:
+            self = Alert(title: "No recipe found yet", message: "Please ingredients you have in your fridge and look for recipes")
         case .errorIngredientListEmpty:
             self = Alert(title: "Is your fridge empty ?", message: "Please add your first ingredient then press +")
         case .noCreation:

@@ -84,9 +84,9 @@ final class SavingCreationViewModel {
         self.delegate?.didPressSaveButton(creation: CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
     }
 
-    func didPressAddPhoto(imageAdded: Data) {
+    func didPressAddPhoto(imageAdded: Data?) {
         imageData = imageAdded
-        print("imageAdded \(imageAdded)")
+//        print("imageAdded \(String(describing: imageAdded))")
     }
 
     func didPressSaveImage() {

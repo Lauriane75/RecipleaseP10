@@ -23,21 +23,23 @@ class CreationDetailViewController: UIViewController {
     @IBOutlet weak var showCreationListButton: UIButton!
     
     var viewModel: CreationDetailViewModel!
+
+    var creationsListViewController = CreationsListViewController()
     
     private lazy var creationDetailDataSource = CreationDetailDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationBar()
+
+        elementsCustom()
+
+        self.tableView.dataSource = creationDetailDataSource
+
         bind(to: viewModel)
         
         viewModel.viewDidLoad()
-        
-        self.tableView.dataSource = creationDetailDataSource
-        
-        navigationBar()
-        
-        elementsCustom()
     }
     
     // MARK: - Private Functions

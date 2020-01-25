@@ -46,10 +46,11 @@ final class CreationDetailViewModel {
     
     var titleLabel: ((String) -> Void)?
     var ingredientsAndMethod: ((String) -> Void)?
-    
     var timeLabel: ((String) -> Void)?
     var dietLabel: ((String) -> Void)?
     var yieldLabel: ((String) -> Void)?
+
+    var imageData: ((Data?) -> Void)?
     
     var creationButton: ((String) -> Void)?
     
@@ -58,6 +59,7 @@ final class CreationDetailViewModel {
     // MARK: - Input
     
     func viewDidLoad() {
+
         
         self.titleLabel?(creation.name)
         self.ingredientsAndMethod?("\(creation.ingredient) \n \(creation.method)")

@@ -83,7 +83,7 @@ final class RecipeDetailViewModel {
     
     func didPressSafariButton() {
         guard URL(string: recipe.url) != nil else {
-            self.delegate?.displayAlert(for: .errorNoRecipeFound)
+            self.delegate?.displayAlert(for: .errorNoRecipe)
             return
         }
     }
