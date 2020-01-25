@@ -12,10 +12,16 @@ class CreationDetailViewController: UIViewController {
     
     // MARK: - Outlet
     
+    @IBOutlet weak var contentView: UIView!
+
     @IBOutlet weak var imageView: UIImageView!
+
     @IBOutlet weak var titleLabel: UILabel!
+
     @IBOutlet weak var timeLabel: UILabel!
+
     @IBOutlet weak var categoryLabel: UILabel!
+
     @IBOutlet weak var yieldLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
@@ -65,7 +71,6 @@ class CreationDetailViewController: UIViewController {
         viewModel.creationButton = { [weak self] text in
             self?.showCreationListButton.setTitle(text, for: .normal)
         }
-        
         viewModel.ingredientsAndMethod = { [weak self] text in
             self?.creationDetailDataSource.update(with: text)
             self?.tableView.reloadData()
@@ -78,12 +83,11 @@ class CreationDetailViewController: UIViewController {
     // MARK: - View actions
     
     @IBAction func didPressDeleteCreation(_ sender: Any) {
-        viewModel.didPressDeleteCreation()
-        let _ = self.navigationController?.popViewController(animated: true)
+        viewModel.didPressDeleteCreationButton()
     }
     
     @IBAction func didPressShowCreationsListButton(_ sender: Any) {
-        viewModel.didPressShowCreationsList()
+        viewModel.didPressMyCreationsButton()
     }
     
     // MARK: - Private Files
@@ -97,6 +101,7 @@ class CreationDetailViewController: UIViewController {
     }
     
     fileprivate func elementsCustom() {
+        contentView.layer.cornerRadius = 20
         tableView.layer.cornerRadius = 15
         showCreationListButton.layer.cornerRadius = 15
         showCreationListButton.layer.borderWidth = 1

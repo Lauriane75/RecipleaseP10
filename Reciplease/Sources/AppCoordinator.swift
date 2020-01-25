@@ -32,7 +32,6 @@ final class AppCoordinator {
         if ProcessInfo.processInfo.environment["IS_RUNNING_UNIT_TESTS"] == "YES" {
             return
         }
-        
         showMain()
     }
     

@@ -33,7 +33,7 @@ final class CreationsListViewModel {
         }
     }
 
-    var dataImage: [Data?] = []
+    private var dataImage: [Data?] = []
     
     // MARK: - Initializer
     
@@ -73,4 +73,3 @@ final class CreationsListViewModel {
         repository.didPressRemoveCreation(titleCreation: name)
     }
 }
-

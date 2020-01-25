@@ -15,9 +15,9 @@ final class CreationsCoordinator {
     private let presenter: UINavigationController
     
     private let screens: Screens
-
+    
     private var creationsArray: CreationItem? = nil
-
+    
     // MARK: - Initializer
     
     init(presenter: UINavigationController, screens: Screens) {
@@ -28,7 +28,6 @@ final class CreationsCoordinator {
     // MARK: - Coodinator
     
     func start() {
-        //        guard creationsArray != nil else { return }
         showCreationsList()
     }
     
@@ -36,12 +35,12 @@ final class CreationsCoordinator {
         let viewController = screens.createCreationsListViewController(delegate: self)
         presenter.pushViewController(viewController, animated: true)
     }
-
-    private func showDetailCreationsList(creations : CreationItem) {
-        let viewController = screens.createCreationDetailViewController(creationSaved: creations, delegate: self as? CreationsViewModelDelegate)
+    
+    private func showCreationDetailList(creations : CreationItem) {
+        let viewController = screens.createCreationDetailViewController(creationSaved: creations, delegate: self)
         presenter.pushViewController(viewController, animated: true)
     }
-
+    
     private func showAlert(for type: AlertType) {
         let alert = screens.createAlertView(for: type)
         presenter.visibleViewController?.present(alert, animated: true, completion: nil)
@@ -49,13 +48,18 @@ final class CreationsCoordinator {
 }
 
 extension CreationsCoordinator: CreationsListViewModelDelegate {
-
+    
     func selectCreation(creation: CreationItem) {
-        //        update(updatedCreations: <#T##CreationItem?#>)
-        showDetailCreationsList(creations: creation)
+        showCreationDetailList(creations: creation)
     }
     
     func displayAlert(for type: AlertType) {
         showAlert(for: type)
+    }
+}
+
+extension CreationsCoordinator: CreationDetailViewModelDelegate {
+    func showCreationsListView() {
+        showCreationsList()
     }
 }

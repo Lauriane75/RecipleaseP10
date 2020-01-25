@@ -14,15 +14,23 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     // MARK: - Outlet
     
     @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var label: UILabel!
+    
     @IBOutlet weak var addButton: UIButton!
+    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var timeTextField: UITextField!
+    
     @IBOutlet weak var categoryTextField: UITextField!
+    
     @IBOutlet weak var yieldTextField: UITextField!
+    
     @IBOutlet weak var titleTextField: UITextField!
+    
     @IBOutlet weak var ingredientsTextField: UITextField!
+    
     @IBOutlet weak var methodTextField: UITextField!
     
     @IBOutlet weak var saveButton: UIButton!
@@ -35,18 +43,18 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         view.addGestureRecognizer(tap)
-
+        
         elementsCustom()
-
+        
         navigationBar()
-
+        
         settingNotificationCenter()
         
         bind(to: viewModel)
-
+        
         viewModel.viewDidLoad()
     }
     
@@ -57,18 +65,18 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     }
     
     // MARK: - Private Functions
-
+    
     private func bind(to viewModel: SavingCreationViewModel) {
-
+        
         viewModel.label = { [weak self] text in
             self?.label.text = text
         }
-
+        
         viewModel.timePlaceholder = { [weak self] text in
             self?.timeTextField.placeholder = text
         }
         viewModel.categoryPlaceholder = { [weak self] text in
-                   self?.categoryTextField.placeholder = text
+            self?.categoryTextField.placeholder = text
         }
         viewModel.yieldPlaceholder = { [weak self] text in
             self?.yieldTextField.placeholder = text
@@ -86,7 +94,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
             self?.saveButton.setTitle(text, for: .normal)
         }
     }
-
+    
     // MARK: - View actions
     
     @IBAction func didPressAddButton(_ sender: Any) {
@@ -105,7 +113,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         guard self.methodTextField.text != nil else { return }
         
         viewModel.didPressSaveButton(titleTextField: titleTextField.text!, ingredientTextField: ingredientsTextField.text!, methodTextField: methodTextField.text!, timeTextField: timeTextField.text!, dietCategoryTextField: categoryTextField.text!, yieldTextField: yieldTextField.text!)
-//        viewModel.didPressSaveImage()
+        //        viewModel.didPressSaveImage()
     }
     
     // MARK: - Private Files
@@ -143,14 +151,14 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
-
+    
     /// func in case not determined requestAuthorization
     fileprivate func notDeterminedCase(_ status: PHAuthorizationStatus) {
         if status == PHAuthorizationStatus.authorized{
             self.PhotoPickerController()
         }
     }
-
+    
     /// func in case denied requestAuthorization
     fileprivate func deniedCase() {
         let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings if you want to change it", preferredStyle: .alert)

@@ -76,7 +76,7 @@ extension Screens {
 }
 
 extension Screens {
-    func createCreationDetailViewController(creationSaved: CreationItem, delegate: CreationsViewModelDelegate?) -> UIViewController {
+    func createCreationDetailViewController(creationSaved: CreationItem, delegate: CreationDetailViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "CreationDetailViewController") as! CreationDetailViewController
         let repository = SavingCreationRepository()
         let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creationSaved)
@@ -93,7 +93,7 @@ extension Screens {
         let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
         viewController.viewModel = viewModel
         viewController.title = Accessibility.CreationsList.title
-
+        
         return viewController
     }
 }

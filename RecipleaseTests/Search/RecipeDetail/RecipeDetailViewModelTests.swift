@@ -37,7 +37,7 @@ final class MockRecipeDetailRepository: RecipeDetailRepositoryType {
 
 class RecipeDetailViewModelTests: XCTestCase {
     
-    let recipe = RecipeItem(name: "Lemon Sparkler", imageName: "https://www.edamam.com/web-img/ce3/ce3d3cd4befd6690b6e7bef84e0e9c45.jpg", url: "https://www.marthastewart.com/1154944/lemon-sparkler", ingredient: ["1 tablespoon Galliano", "1 tablespoon fresh lemon juice", "1 tablespoon orange-flavored liqueur, such as Cointreau", "1/2 cup club soda", "1/2 teaspoon chopped fresh lemon balm or lemon verbena (optional), plus leaves for garnish", "1 lemon slice, for garnish"], time: 0, yield: 2, dietLabels: ["Low-Fat"])
+    let recipe = RecipeItem(name: "Lemon Sparkler", imageName: "https://www.edamam.com/web-img/ce3/ce3d3cd4befd6690b6e7bef84e0e9c45.jpg", url: "https://www.marthastewart.com/1154944/lemon-sparkler", ingredient: ["1 tablespoon Galliano", "1 tablespoon fresh lemon juice", "1 tablespoon orange-flavored liqueur, such as Cointreau", "1/2 cup club soda", "1/2 teaspoon chopped fresh lemon balm or lemon verbena (optional), plus leaves for garnish", "1 lemon slice, for garnish"], time: 0, yield: 2, category: ["Low-Fat"])
     
     let mockRepository = MockRecipeDetailRepository()
     

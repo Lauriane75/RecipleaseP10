@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol CreationsViewModelDelegate: class {
+protocol CreationDetailViewModelDelegate: class {
     func displayAlert(for type: AlertType)
-    func didPressCreationsListButton(creation: CreationItem)
+    func showCreationsListView()
     func selectCreation(creation: CreationItem)
 }
 
@@ -18,16 +18,15 @@ final class CreationDetailViewModel {
     
     private var repository: SavingCreationRepositoryType
     
-    private var delegate: CreationsViewModelDelegate?
+    private var delegate: CreationDetailViewModelDelegate?
     
     private var creation: CreationItem
     
     // MARK: - Initializer
     
-    init(repository: SavingCreationRepositoryType, delegate: CreationsViewModelDelegate?, creation: CreationItem) {
+    init(repository: SavingCreationRepositoryType, delegate: CreationDetailViewModelDelegate?, creation: CreationItem) {
         self.repository = repository
         self.delegate = delegate
-        
         self.creation = creation
     }
     
@@ -60,7 +59,7 @@ final class CreationDetailViewModel {
     
     func viewDidLoad() {
         self.titleLabel?(creation.name)
-        self.ingredientsAndMethod?("\(creation.ingredient) \n \(creation.method)")
+        self.ingredientsAndMethod?("\(creation.ingredient)\n\(creation.method)")
         self.timeLabel?(creation.time)
         self.dietLabel?(creation.category)
         self.yieldLabel?(creation.yield)
@@ -69,11 +68,12 @@ final class CreationDetailViewModel {
         self.imageData?(creation.image)
     }
     
-    func didPressShowCreationsList() {
-        self.delegate?.didPressCreationsListButton(creation: creation)
+    func didPressMyCreationsButton() {
+        self.delegate?.showCreationsListView()
     }
     
-    func didPressDeleteCreation() {
+    func didPressDeleteCreationButton() {
         repository.didPressRemoveCreation(titleCreation: creation.name)
+        delegate?.showCreationsListView()
     }
 }

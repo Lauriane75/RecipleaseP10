@@ -17,9 +17,9 @@ protocol SearchHomeViewModelDelegate: class {
 final class SearchHomeViewModel {
     
     // MARK: - Properties
-
+    
     private weak var delegate: SearchHomeViewModelDelegate?
-
+    
     private var ingredientList: [String] = [] {
         didSet {
             guard ingredientList != [] else { return }

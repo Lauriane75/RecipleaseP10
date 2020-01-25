@@ -29,7 +29,6 @@ final class CreationsListDataSource: NSObject, UITableViewDataSource, UITableVie
         guard indexPath.item < creations.count else {
             fatalError("Error! No service connection")
         }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CreationsListTableViewCell", for: indexPath) as! CreationsListTableViewCell
         cell.updateCell(with: creations[indexPath.row])
         return cell

@@ -71,19 +71,19 @@ class RecipeDetailViewController: UIViewController {
             self?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: text), style: .done, target: self, action: #selector(self!.didPressSelectFavoriteRecipe))
         }
     }
-
+    
     // MARK: - View actions
-
+    
     @IBAction func didPressNameRecipeButton(_ sender: Any) {
         viewModel.didPressSafariButton()
         let url = viewModel.returnUrl()
         UIApplication.shared.open(url)
     }
-
+    
     @objc func didPressSelectFavoriteRecipe() {
         viewModel.didPressSelectFavoriteRecipe()
     }
-
+    
     fileprivate func elementsCustom() {
         contentView.layer.cornerRadius = 20
         tableView.layer.cornerRadius = 15

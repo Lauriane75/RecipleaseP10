@@ -11,7 +11,7 @@ import XCTest
 
 class RecipeDetailRepositoryTests: XCTestCase {
     
-    let recipe = RecipeItem(name: "Lemon Salt Lemon Cupcakes", imageName: "https://www.edamam.com/web-img/12a/12ada1de7390e796f6babe36cf6bae38.jpg", url: "http://www.tarteletteblog.com/2011/10/recipe-gluten-free-lemon-salt-lemon.html", ingredient: ["1 stick unsalted butter, at room temperature", "1 cup sugar", "3 large eggs", "1½ cups Jeanne's gluten free all-purpose flour", "1 teaspoon baking powder", "½ teaspoon salt", "½ cup buttermilk", "zest and juice of one lemon", "3 egg yolks", "1/2 cup sugar", "1/4 cup water + 1 tablespoon lemon juice", "1 1/2 sticks unsalted butter, at room temperature", "zest of a lemon"], time: 0, yield: 16, dietLabels: [" "])
+    let recipe = RecipeItem(name: "Lemon Salt Lemon Cupcakes", imageName: "https://www.edamam.com/web-img/12a/12ada1de7390e796f6babe36cf6bae38.jpg", url: "http://www.tarteletteblog.com/2011/10/recipe-gluten-free-lemon-salt-lemon.html", ingredient: ["1 stick unsalted butter, at room temperature", "1 cup sugar", "3 large eggs", "1½ cups Jeanne's gluten free all-purpose flour", "1 teaspoon baking powder", "½ teaspoon salt", "½ cup buttermilk", "zest and juice of one lemon", "3 egg yolks", "1/2 cup sugar", "1/4 cup water + 1 tablespoon lemon juice", "1 1/2 sticks unsalted butter, at room temperature", "zest of a lemon"], time: 0, yield: 16, category: [" "])
     
     let repository = RecipeDetailRepository()
     
@@ -44,6 +44,4 @@ class RecipeDetailRepositoryTests: XCTestCase {
         
         waitForExpectations(timeout: 1.0, handler: nil)
     }
-    
-    
 }

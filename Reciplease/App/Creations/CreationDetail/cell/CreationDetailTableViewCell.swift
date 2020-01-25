@@ -25,6 +25,4 @@ class CreationDetailTableViewCell: UITableViewCell {
         self.row = row
         ingredientLabel.text = ingredientAndMethod
     }
-    
 }
-

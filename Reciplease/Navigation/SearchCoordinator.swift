@@ -61,13 +61,9 @@ final class SearchCoordinator {
         presenter.pushViewController(viewController, animated: true)
     }
     
-    private func showCreationsListFromButton(creation: CreationItem) {
+    private func showCreationsList() {
         let viewController = screens.createCreationsListViewController(delegate: self)
         presenter.pushViewController(viewController, animated: true)
-    }
-    
-    private func update (updatedCreations: CreationItem?) {
-        self.creationsArray = updatedCreations
     }
     
 }
@@ -96,7 +92,7 @@ extension SearchCoordinator: RecipesViewModelDelegate {
 }
 
 extension SearchCoordinator: SavingCreationViewModelDelegate {
-
+    
     func didPressSaveButton(creation: CreationItem) {
         showCreationDetail(creation: creation)
     }
@@ -106,10 +102,9 @@ extension SearchCoordinator: SavingCreationViewModelDelegate {
     }
 }
 
-extension SearchCoordinator: CreationsViewModelDelegate {
-    
-    func didPressCreationsListButton(creation: CreationItem) {
-        showCreationsListFromButton(creation: creation)
+extension SearchCoordinator: CreationDetailViewModelDelegate {
+    func showCreationsListView() {
+        showCreationsList()
     }
     
     func selectCreation(creation: CreationItem) {
@@ -118,11 +113,5 @@ extension SearchCoordinator: CreationsViewModelDelegate {
 }
 
 extension SearchCoordinator: CreationsListViewModelDelegate {
-    func openListFromItem(creations: [CreationItem]) {
-        
-    }
     
-    func didPressCreationsListItem(creation: CreationItem) {
-        showCreationsListFromButton(creation: creation)
-    }
 }

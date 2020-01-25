@@ -1069,6 +1069,7 @@
                     </view>
                     <connections>
                         <outlet property="categoryLabel" destination="xPf-01-QFR" id="nTD-M3-Azw"/>
+                        <outlet property="contentView" destination="57m-va-ysc" id="Kmq-u8-kfe"/>
                         <outlet property="imageView" destination="PrA-kk-p7i" id="sHD-6c-wc8"/>
                         <outlet property="showCreationListButton" destination="FiC-uq-pcK" id="KCq-hr-5nL"/>
                         <outlet property="tableView" destination="JTn-xQ-7S1" id="Yq2-5R-dPG"/>

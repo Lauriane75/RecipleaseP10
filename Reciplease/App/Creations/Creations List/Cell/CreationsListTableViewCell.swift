@@ -24,7 +24,6 @@ class CreationsListTableViewCell: UITableViewCell {
     private var creation: CreationItem? = nil {
         didSet {
             guard let creation = self.creation else { return }
-            print("image = \(String(describing: creation.image))")
             creationImageView.image = UIImage(data: creation.image!)
             creationImageView.layer.cornerRadius = 15
             
@@ -32,7 +31,6 @@ class CreationsListTableViewCell: UITableViewCell {
             timeLabel.text = creation.time
             categoryLabel.text = creation.category
             yieldLabel.text = creation.yield
-
         }
     }
 

@@ -20,7 +20,7 @@ final class SavingCreationViewModel {
     private var delegate: SavingCreationViewModelDelegate?
     
     private var repository: SavingCreationRepositoryType
-
+    
     var imageData: Data? = nil
     
     // MARK: - Initializer
@@ -42,18 +42,18 @@ final class SavingCreationViewModel {
     // MARK: - Output
     
     var creationDisplayed: (([CreationItem]) -> Void)?
-
+    
     var label: ((String) -> Void)?
-
+    
     var timePlaceholder: ((String) -> Void)?
     var categoryPlaceholder: ((String) -> Void)?
     var yieldPlaceholder: ((String) -> Void)?
     var titlePlaceholder: ((String) -> Void)?
     var ingredientsPlaceholder: ((String) -> Void)?
     var metohdPlaceholder: ((String) -> Void)?
-
+    
     var saveButton: ((String) -> Void)?
-
+    
     
     // MARK: - Input
     
@@ -82,18 +82,18 @@ final class SavingCreationViewModel {
         
         self.delegate?.didPressSaveButton(creation: CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
     }
-
+    
     func didPressAddPhoto(imageAdded: Data?) {
         imageData = imageAdded
     }
-
-
+    
+    
     // Alert
-
+    
     func restrictedCase() {
         delegate?.displayAlert(for: .restricted)
     }
-
+    
     func denied() {
         delegate?.displayAlert(for: .denied)
     }

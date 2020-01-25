@@ -39,11 +39,11 @@ class SearchHomeViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         bind(to: viewModel)
         
         viewModel.viewDidLoad()
-
+        
         ingredientListTableView.dataSource = searchDataSource
         bind(to: viewModel)
         viewModel.viewDidLoad()
