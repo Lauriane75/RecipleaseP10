@@ -64,6 +64,4 @@ class RecipesRepositoryTests: XCTestCase {
         }
         waitForExpectations(timeout: 1.0, handler: nil)
     }
-
-
 }

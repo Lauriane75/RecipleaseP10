@@ -22,7 +22,6 @@ final class MockRecipeDetailViewModelDelegate: RecipeDetailViewModelDelegate {
 final class MockRecipeDetailRepository: RecipeDetailRepositoryType {
     func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String) {
         favoriteState = true
-
     }
 
     var favoriteState = false

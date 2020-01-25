@@ -98,6 +98,4 @@ class RecipesViewModelTests: XCTestCase {
         
         XCTAssertEqual(delegate.alert, .errorService)
     }
-    
-    
 }

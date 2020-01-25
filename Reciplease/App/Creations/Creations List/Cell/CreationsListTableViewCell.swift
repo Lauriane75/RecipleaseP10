@@ -5,8 +5,6 @@
 //  Created by Lauriane Haydari on 20/01/2020.
 //  Copyright © 2020 Lauriane Haydari. All rights reserved.
 //
-
-
 import UIKit
 
 class CreationsListTableViewCell: UITableViewCell {
@@ -26,7 +24,7 @@ class CreationsListTableViewCell: UITableViewCell {
             guard let creation = self.creation else { return }
             creationImageView.image = UIImage(data: creation.image!)
             creationImageView.layer.cornerRadius = 15
-            
+            print("image = \(String(describing: creation.image))")
             nameLabel.text = creation.name
             timeLabel.text = creation.time
             categoryLabel.text = creation.category

@@ -8,12 +8,12 @@
 
 import CoreData
 
-protocol CreationListRepositoryType {
+protocol CreationsListRepositoryType {
     func getCreations(callback: @escaping ([CreationItem]) -> Void)
     func didPressRemoveCreation(titleCreation: String)
 }
 
-final class CreationListRepository: CreationListRepositoryType {
+final class CreationsListRepository: CreationsListRepositoryType {
     
     func getCreations(callback: @escaping ([CreationItem]) -> Void) {
         let requestCreation: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()

@@ -9,7 +9,6 @@
 import Foundation
 
 protocol CreationDetailViewModelDelegate: class {
-    func displayAlert(for type: AlertType)
     func showCreationsListView()
     func selectCreation(creation: CreationItem)
 }

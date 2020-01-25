@@ -19,7 +19,7 @@ final class CreationsListViewModel {
     
     // MARK: - Properties
     
-    private var repository: CreationListRepositoryType
+    private var repository: CreationsListRepositoryType
     
     private var delegate: CreationsListViewModelDelegate?
     
@@ -37,7 +37,7 @@ final class CreationsListViewModel {
     
     // MARK: - Initializer
     
-    init(repository: CreationListRepositoryType, delegate: CreationsListViewModelDelegate?) {
+    init(repository: CreationsListRepositoryType, delegate: CreationsListViewModelDelegate?) {
         self.repository = repository
         self.delegate = delegate
     }

@@ -23,153 +23,107 @@ class MockSavingCreationViewModelDelegate: SavingCreationViewModelDelegate {
     }
 }
 
-class SavingCreationViewModelTests: XCTestCase {
-//
-//    func test_Given_HomeViewModel_When_ViewDidLoad_Then_ReactivePropertiesAreDiplayed() {
-//
-//        let delegate = MockSearchHomeViewModelDelegate()
-//
-//        let viewModel = SearchHomeViewModel(delegate: delegate)
-//
-//        let expectation1 = self.expectation(description: "Diplayed titleLabel")
-//        let expectation2 = self.expectation(description: "Diplayed placeHolderTextField")
-//        let expectation3 = self.expectation(description: "Diplayed addButton")
-//        let expectation4 = self.expectation(description: "Diplayed ingredientListLabel")
-//        let expectation5 = self.expectation(description: "Diplayed clearButton")
-//        let expectation6 = self.expectation(description: "Diplayed searchButton")
-//        let expectation7 = self.expectation(description: "Diplayed searchButtonIsHidden")
-//
-//        viewModel.titleLabel = { text in
-//            XCTAssertEqual(text, "What's in your fridge?")
-//            expectation1.fulfill()
-//        }
-//
-//        viewModel.placeHolderTextField = { text in
-//            XCTAssertEqual(text, "Lemon, Sugar, Honey ...")
-//            expectation2.fulfill()
-//        }
-//
-//        viewModel.addButton = { text in
-//            XCTAssertEqual(text, "+")
-//            expectation3.fulfill()
-//        }
-//
-//        viewModel.listTitleLabel = { text in
-//            XCTAssertEqual(text, "In your fridge :")
-//            expectation4.fulfill()
-//        }
-//
-//        viewModel.clearButton = { text in
-//            XCTAssertEqual(text, "x")
-//            expectation5.fulfill()
-//        }
-//
-//        viewModel.searchButton = { text in
-//            XCTAssertEqual(text, "Go !")
-//            expectation6.fulfill()
-//        }
-//
-//        viewModel.searchButtonIsHidden = { state in
-//            XCTAssertEqual(state, true)
-//            expectation7.fulfill()
-//        }
-//        viewModel.viewDidLoad()
-//        waitForExpectations(timeout: 1.0, handler: nil)
-//    }
-//
-//    func test_Given_ViewModel_When_didPressAdd_Then_ingredientsIsDisplayed() {
-//
-//        let delegate = MockSearchHomeViewModelDelegate()
-//
-//        let viewModel = SearchHomeViewModel(delegate: delegate)
-//
-//        viewModel.viewDidLoad()
-//        viewModel.didPressAdd(ingredientSelected: "lemon")
-//
-//        viewModel.ingredients = { text in
-//            XCTAssertEqual(text, ["lemon"])
-//        }
-//    }
-//
-//    func test_Given_ViewModel_When_didPressAddAnddidPressClear_Then_IngredientsIsEmpty() {
-//
-//        let delegate = MockSearchHomeViewModelDelegate()
-//
-//        let viewModel = SearchHomeViewModel(delegate: delegate)
-//
-//        viewModel.viewDidLoad()
-//        viewModel.didPressAdd(ingredientSelected: "eggs")
-//        viewModel.didPressClear()
-//
-//        viewModel.ingredients = { text in
-//            XCTAssertEqual(text, [""])
-//        }
-//
-//    }
-//
-//    func test_Given_ViewModel_When_didPressAdd_Then_SearchButtonIsDisplayed() {
-//
-//        let delegate = MockSearchHomeViewModelDelegate()
-//
-//        let viewModel = SearchHomeViewModel(delegate: delegate)
-//
-//        let firstExpectation = self.expectation(description: "Displayed SearchButton")
-//        let secondExpectation = self.expectation(description: "Displayed SearchButton2")
-//
-//
-//        viewModel.searchButtonIsHidden = { state in
-//            XCTAssertEqual(state, true)
-//            firstExpectation.fulfill()
-//        }
-//
-//        viewModel.viewDidLoad()
-//
-//        viewModel.searchButtonIsHidden = { state in
-//            XCTAssertEqual(state, false)
-//            secondExpectation.fulfill()
-//        }
-//
-//        viewModel.didPressAdd(ingredientSelected: "chocolate")
-//
-//        waitForExpectations(timeout: 1.0, handler: nil)
-//    }
-//
-//    func test_Given_ViewModel_When_didPressClear_Then_Alert() {
-//
-//        let delegate = MockSearchHomeViewModelDelegate()
-//
-//        let viewModel = SearchHomeViewModel(delegate: delegate)
-//
-//        viewModel.viewDidLoad()
-//        viewModel.didPressAdd(ingredientSelected: "eggs")
-//        viewModel.didPressClear()
-//
-//        XCTAssertEqual(delegate.alert, .errorIngredientListEmpty)
-//    }
-//
-//    func test_Given_ViewModel_When_didPressSearchForRecipes_Then_DelegateIsCalled() {
-//
-//        let delegate = MockSearchHomeViewModelDelegate()
-//
-//        let viewModel = SearchHomeViewModel(delegate: delegate)
-//
-//        viewModel.viewDidLoad()
-//        viewModel.didPressAdd(ingredientSelected: "eggs")
-//        viewModel.didPressSearchForRecipes()
-//
-//        XCTAssertEqual(delegate.ingredient, "eggs")
-//    }
-//
-//    func test_Given_ViewModel_When_didPressCreateRecipe_Then_DelegateIsCalled() {
-//
-//        let delegate = MockSearchHomeViewModelDelegate()
-//
-//        let viewModel = SearchHomeViewModel(delegate: delegate)
-//
-//        viewModel.viewDidLoad()
-//        viewModel.didPressCreateRecipe()
-//
-////        XCTAssertEqual(delegate.showCreateMyRecipeView())
-//    }
+//Optional(11314165 bytes)
+
+class MockSavingCreationRepository: SavingCreationRepositoryType {
+
+
+    var creationItem: CreationItem?
+    var isSuccess = true
+
+    func didPressSaveButton(creation: CreationItem) {
+    }
+
+    func didPressRemoveCreation(titleCreation: String) {
+    }
 }
 
+class SavingCreationViewModelTests: XCTestCase {
+
+    let delegate = MockSavingCreationViewModelDelegate()
+    let repository = MockSavingCreationRepository()
+
+    func test_Given_ViewModel_When_ViewDidLoad_Then_ReactivePropertiesAreDiplayed() {
+
+        let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
+
+        let expectation1 = self.expectation(description: "Diplayed label")
+        let expectation2 = self.expectation(description: "Diplayed timePlaceholder")
+        let expectation3 = self.expectation(description: "Diplayed categoryPlaceholder")
+        let expectation4 = self.expectation(description: "Diplayed yieldPlaceholder")
+        let expectation5 = self.expectation(description: "Diplayed titlePlaceholder")
+        let expectation6 = self.expectation(description: "Diplayed ingredientsPlaceholder")
+        let expectation7 = self.expectation(description: "Diplayed metohdPlaceholder")
+        let expectation8 = self.expectation(description: "Diplayed saveButton")
+
+
+        viewModel.label = { text in
+            XCTAssertEqual(text, "Take a picture of your recipe")
+            expectation1.fulfill()
+        }
+
+        viewModel.timePlaceholder = { text in
+            XCTAssertEqual(text, "30 min")
+            expectation2.fulfill()
+        }
+
+        viewModel.categoryPlaceholder = { text in
+            XCTAssertEqual(text, "Veggie")
+            expectation3.fulfill()
+        }
+
+        viewModel.yieldPlaceholder = { text in
+            XCTAssertEqual(text, "4")
+            expectation4.fulfill()
+        }
+
+        viewModel.titlePlaceholder = { text in
+            XCTAssertEqual(text, "Mushroom Risotto")
+            expectation5.fulfill()
+        }
+
+        viewModel.ingredientsPlaceholder = { text in
+            XCTAssertEqual(text, "40 g Parmesan cheese")
+            expectation6.fulfill()
+        }
+
+        viewModel.metohdPlaceholder = { state in
+            XCTAssertEqual(state, "Put 50g dried porcini mushrooms into ...")
+            expectation7.fulfill()
+        }
+        viewModel.saveButton = { state in
+            XCTAssertEqual(state, "Save")
+            expectation8.fulfill()
+        }
+
+        viewModel.viewDidLoad()
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+
+    func test_Given_ViewModel_When_didPressSaveButton_Then_creationDisplayed() {
+
+        let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
+
+        let expectedResult = CreationItem(image: Optional(11314165) as! Data?, name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")
+
+        repository.creationItem = expectedResult
+
+        viewModel.viewDidLoad()
+
+        viewModel.didPressSaveButton(titleTextField: "Mushroom risotto", ingredientTextField: "rice", methodTextField: "boil the rice into water", timeTextField: "30", dietCategoryTextField: "Veggie", yieldTextField: "4")
+
+        viewModel.didPressAddPhoto(imageAdded: Optional(11314165) as! Data?)
+
+        viewModel.viewDidLoad()
+
+        viewModel.creationDisplayed = { creation in
+            XCTAssertEqual(creation, [expectedResult])
+        }
+    }
+
+//    self.creationDisplayed?([CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)])
+//
+//    self.delegate?.didPressSaveButton(creation: CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
+
+}

@@ -86,8 +86,7 @@ final class SavingCreationViewModel {
     func didPressAddPhoto(imageAdded: Data?) {
         imageData = imageAdded
     }
-    
-    
+
     // Alert
     
     func restrictedCase() {
