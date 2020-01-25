@@ -105,7 +105,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         guard self.methodTextField.text != nil else { return }
         
         viewModel.didPressSaveButton(titleTextField: titleTextField.text!, ingredientTextField: ingredientsTextField.text!, methodTextField: methodTextField.text!, timeTextField: timeTextField.text!, dietCategoryTextField: categoryTextField.text!, yieldTextField: yieldTextField.text!)
-        viewModel.didPressSaveImage()
+//        viewModel.didPressSaveImage()
     }
     
     // MARK: - Private Files
@@ -135,7 +135,6 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
             self.lastImageViewTapped?.image = image
             // Encoding
             let imageData:Data = image.pngData()! as Data
-            print("image data : \(imageData)")
             viewModel.didPressAddPhoto(imageAdded: imageData)
         }
         dismiss(animated: true)

@@ -11,13 +11,11 @@ import UIKit
 final class CreationsListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private var creations: [CreationItem] = []
-    private var image: Data? = nil
 
     var selectedCreation: ((CreationItem) -> Void)?
     
-    func update (updatedCreations: [CreationItem], imageData: Data?) {
+    func update (updatedCreations: [CreationItem]) {
         self.creations = updatedCreations
-        self.image = imageData
     }
     
     // MARK: - DataSource
@@ -33,7 +31,7 @@ final class CreationsListDataSource: NSObject, UITableViewDataSource, UITableVie
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CreationsListTableViewCell", for: indexPath) as! CreationsListTableViewCell
-        cell.updateCell(with: creations[indexPath.row], imageData: image)
+        cell.updateCell(with: creations[indexPath.row])
         return cell
     }
     
@@ -46,6 +44,5 @@ final class CreationsListDataSource: NSObject, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row < creations.count else { return }
         selectedCreation?(creations[indexPath.row])
-        print("select")
     }
 }

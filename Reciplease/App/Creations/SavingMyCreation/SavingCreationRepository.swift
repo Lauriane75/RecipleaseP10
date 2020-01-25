@@ -14,10 +14,15 @@ protocol SavingCreationRepositoryType {
 }
 
 final class SavingCreationRepository: SavingCreationRepositoryType {
+    func didPressSaveImage(image: Data?) {
+
+    }
+
     
     func didPressSaveButton(creation: CreationItem) {
         
         let creationObject = CreationObject(context: AppDelegate.viewContext)
+        creationObject.imageCreation = creation.image
         creationObject.titleCreation = creation.name
         creationObject.ingredientCreation = creation.ingredient
         creationObject.methodCreation = creation.method
@@ -28,13 +33,13 @@ final class SavingCreationRepository: SavingCreationRepositoryType {
         try? AppDelegate.viewContext.save()
     }
 
-    func didPressSaveImage(image: Data?) {
-        
-        let creationImage = CreationImage(context: AppDelegate.viewContext)
-        creationImage.image = image
-        
-        try? AppDelegate.viewContext.save()
-    }
+//    func didPressSaveImage(image: Data?) {
+//
+//        let creationObject = CreationObject(context: AppDelegate.viewContext)
+//        creationObject.imaageCreation = creation.image
+//
+//        try? AppDelegate.viewContext.save()
+//    }
     
     func didPressRemoveCreation(titleCreation: String) {
         let request: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()

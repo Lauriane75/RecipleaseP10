@@ -13,7 +13,6 @@ protocol SavingCreationViewModelDelegate: class {
     func didPressSaveButton(creation: CreationItem)
     
     func displayAlert(for type: AlertType)
-
 }
 
 final class SavingCreationViewModel {
@@ -75,26 +74,19 @@ final class SavingCreationViewModel {
             delegate?.displayAlert(for: .itemEmpty)
             return }
         
-        repository.didPressSaveButton(creation: CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
+        repository.didPressSaveButton(creation: CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
         
-        self.visibleCreation.append(CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
+        self.visibleCreation.append(CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
         
-        self.creationDisplayed?([CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)])
+        self.creationDisplayed?([CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)])
         
-        self.delegate?.didPressSaveButton(creation: CreationItem(name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
+        self.delegate?.didPressSaveButton(creation: CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
     }
 
     func didPressAddPhoto(imageAdded: Data?) {
         imageData = imageAdded
-//        print("imageAdded \(String(describing: imageAdded))")
     }
 
-    func didPressSaveImage() {
-        guard imageData != nil else {
-            delegate?.displayAlert(for: .itemEmpty)
-            return }
-        repository.didPressSaveImage(image: imageData!)
-    }
 
     // Alert
 

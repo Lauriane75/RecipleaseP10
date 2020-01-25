@@ -39,6 +39,5 @@ final class RecipesDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row < recipes.count else { return }
         selectedRecipe?(recipes[indexPath.row])
-        print("select")
     }
 }

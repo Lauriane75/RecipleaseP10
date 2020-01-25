@@ -59,8 +59,6 @@ final class CreationDetailViewModel {
     // MARK: - Input
     
     func viewDidLoad() {
-
-        
         self.titleLabel?(creation.name)
         self.ingredientsAndMethod?("\(creation.ingredient) \n \(creation.method)")
         self.timeLabel?(creation.time)
@@ -68,6 +66,7 @@ final class CreationDetailViewModel {
         self.yieldLabel?(creation.yield)
         self.creationButton?("My creations")
         self.creationDisplayed?([creation])
+        self.imageData?(creation.image)
     }
     
     func didPressShowCreationsList() {

@@ -21,18 +21,13 @@ class CreationsListTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    private var imageSaved: Data? = nil {
-        didSet {
-            guard let imageSaved = self.imageSaved else { return }
-            creationImageView.image = UIImage(data: imageSaved)
-            creationImageView.layer.cornerRadius = 15
-        }
-
-    }
-
     private var creation: CreationItem? = nil {
         didSet {
             guard let creation = self.creation else { return }
+            print("image = \(String(describing: creation.image))")
+            creationImageView.image = UIImage(data: creation.image!)
+            creationImageView.layer.cornerRadius = 15
+            
             nameLabel.text = creation.name
             timeLabel.text = creation.time
             categoryLabel.text = creation.category
@@ -41,8 +36,7 @@ class CreationsListTableViewCell: UITableViewCell {
         }
     }
 
-    func updateCell(with creation: CreationItem, imageData: Data?) {
+    func updateCell(with creation: CreationItem) {
         self.creation = creation
-        self.imageSaved = imageData
     }
 }

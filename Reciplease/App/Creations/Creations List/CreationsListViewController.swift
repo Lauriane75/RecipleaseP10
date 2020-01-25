@@ -40,12 +40,8 @@ class CreationsListViewController: UIViewController {
 
     private func bind(to viewModel: CreationsListViewModel) {
         viewModel.creationItem = { [weak self] creations in
-            viewModel.imageData = { [weak self] image in
-                self?.creationsListDataSource.update(updatedCreations: creations, imageData: image)
-                self?.tableView.reloadData()
-            }
-        }
-        viewModel.imageData = { data in
+            self?.creationsListDataSource.update(updatedCreations: creations)
+            self?.tableView.reloadData()
         }
     }
 

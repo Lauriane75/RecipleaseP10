@@ -29,7 +29,6 @@ final class FavoriteCoordinator {
     }
     
     private func showFavoriteRecipes() {
-        print("tableViewtype: Favorite")
         let viewController = screens.createRecipesViewController(ingredientSelected: "", delegate: self, tableViewtype: .favoriteRecipes)
         presenter.viewControllers = [viewController]
     }

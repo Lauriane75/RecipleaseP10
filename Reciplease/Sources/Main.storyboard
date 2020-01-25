@@ -803,7 +803,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="RR2-c4-PRA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4pa-0g-Z54">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4pa-0g-Z54">
                                                     <rect key="frame" x="140" y="20" width="170" height="170"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="170" id="Keh-JU-eP9"/>

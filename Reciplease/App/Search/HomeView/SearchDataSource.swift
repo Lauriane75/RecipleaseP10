@@ -13,7 +13,6 @@ final class SearchDataSource: NSObject, UITableViewDataSource {
     private var ingredients: [String] = []
     
     func update(with ingredients: [String]) {
-        print("ingredients : \(ingredients)")
         self.ingredients = ingredients
     }
     

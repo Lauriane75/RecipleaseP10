@@ -63,11 +63,6 @@ final class CreationsListViewModel {
             self.creation = item
             self.creationItem?(self.creation)
         })
-        repository.getImage (callback: { (image) in
-            for (_, index) in image.enumerated() {
-                self.imageData?(index?.advanced(by: 0))
-            }
-        })
     }
     
     func didSelectCreation(creation: CreationItem) {

@@ -70,6 +70,9 @@ class CreationDetailViewController: UIViewController {
             self?.creationDetailDataSource.update(with: text)
             self?.tableView.reloadData()
         }
+        viewModel.imageData = { [weak self] data in
+            self?.imageView.image = UIImage(data: data!)
+        }
     }
     
     // MARK: - View actions
@@ -94,7 +97,6 @@ class CreationDetailViewController: UIViewController {
     }
     
     fileprivate func elementsCustom() {
-        imageView.layer.cornerRadius = 15
         tableView.layer.cornerRadius = 15
         showCreationListButton.layer.cornerRadius = 15
         showCreationListButton.layer.borderWidth = 1
