@@ -246,7 +246,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
             notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            view.frame.origin.y = -(keyboardHeight/5)
+            view.frame.origin.y = -(keyboardHeight/3)
         } else {
             view.frame.origin.y = 0
         }
