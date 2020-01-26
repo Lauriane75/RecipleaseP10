@@ -30,15 +30,6 @@ final class SavingCreationViewModel {
         self.repository = repository
     }
     
-    private var visibleCreation: [CreationItem] = [] {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.creationDisplayed?(self.visibleCreation)
-            }
-        }
-    }
-    
     // MARK: - Output
     
     var creationDisplayed: (([CreationItem]) -> Void)?
@@ -75,8 +66,6 @@ final class SavingCreationViewModel {
             return }
         
         repository.didPressSaveButton(creation: CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
-        
-        self.visibleCreation.append(CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
         
         self.creationDisplayed?([CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)])
         

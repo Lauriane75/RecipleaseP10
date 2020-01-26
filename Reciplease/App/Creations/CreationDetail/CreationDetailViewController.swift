@@ -62,7 +62,7 @@ class CreationDetailViewController: UIViewController {
             self?.timeLabel.text = text
         }
         
-        viewModel.dietLabel = { [weak self] text in
+        viewModel.categoryLabel = { [weak self] text in
             self?.categoryLabel.text = text
         }
         viewModel.yieldLabel = { [weak self] text in
@@ -71,7 +71,7 @@ class CreationDetailViewController: UIViewController {
         viewModel.creationButton = { [weak self] text in
             self?.showCreationListButton.setTitle(text, for: .normal)
         }
-        viewModel.ingredientsAndMethod = { [weak self] text in
+        viewModel.ingredientsAndMethodLabel = { [weak self] text in
             self?.creationDetailDataSource.update(with: text)
             self?.tableView.reloadData()
         }

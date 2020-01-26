@@ -14,7 +14,9 @@ protocol CreationDetailViewModelDelegate: class {
 }
 
 final class CreationDetailViewModel {
-    
+
+    // MARK: - Private properties
+
     private var repository: SavingCreationRepositoryType
     
     private var delegate: CreationDetailViewModelDelegate?
@@ -29,23 +31,12 @@ final class CreationDetailViewModel {
         self.creation = creation
     }
     
-    // MARK: - Properties
-    
-    private var visibleCreation: [CreationItem] = [] {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.creationDisplayed?(self.visibleCreation)
-            }
-        }
-    }
-    
     // MARK: - Output
     
     var titleLabel: ((String) -> Void)?
-    var ingredientsAndMethod: ((String) -> Void)?
+    var ingredientsAndMethodLabel: ((String) -> Void)?
     var timeLabel: ((String) -> Void)?
-    var dietLabel: ((String) -> Void)?
+    var categoryLabel: ((String) -> Void)?
     var yieldLabel: ((String) -> Void)?
 
     var imageData: ((Data?) -> Void)?
@@ -58,9 +49,9 @@ final class CreationDetailViewModel {
     
     func viewDidLoad() {
         self.titleLabel?(creation.name)
-        self.ingredientsAndMethod?("\(creation.ingredient)\n\(creation.method)")
+        self.ingredientsAndMethodLabel?("\(creation.ingredient)\n\(creation.method)")
         self.timeLabel?(creation.time)
-        self.dietLabel?(creation.category)
+        self.categoryLabel?(creation.category)
         self.yieldLabel?(creation.yield)
         self.creationButton?("My creations")
         self.creationDisplayed?([creation])

@@ -62,7 +62,7 @@ class CreationDetailViewModelTests: XCTestCase {
             XCTAssertEqual(text, (self.creation.name))
             expectation2.fulfill()
         }
-        viewModel.ingredientsAndMethod = { text in
+        viewModel.ingredientsAndMethodLabel = { text in
             XCTAssertEqual(text, "\(self.creation.ingredient)\n\(self.creation.method)")
             expectation3.fulfill()
         }
@@ -70,7 +70,7 @@ class CreationDetailViewModelTests: XCTestCase {
             XCTAssertEqual(text, (self.creation.time))
             expectation4.fulfill()
         }
-        viewModel.dietLabel = { text in
+        viewModel.categoryLabel = { text in
             XCTAssertEqual(text, (self.creation.category))
             expectation5.fulfill()
         }
