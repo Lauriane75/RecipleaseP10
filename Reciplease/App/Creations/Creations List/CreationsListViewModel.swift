@@ -33,8 +33,6 @@ final class CreationsListViewModel {
         }
     }
 
-    private var dataImage: [Data?] = []
-    
     // MARK: - Initializer
     
     init(repository: CreationsListRepositoryType, delegate: CreationsListViewModelDelegate?) {
@@ -44,17 +42,7 @@ final class CreationsListViewModel {
     
     // MARK: - Output
     
-    var titleLabel: ((String) -> Void)?
-    var ingredientsAndMethod: ((String) -> Void)?
-    var timeLabel: ((String) -> Void)?
-    var dietLabel: ((String) -> Void)?
-    var yieldLabel: ((String) -> Void)?
-    var creationButton: ((String) -> Void)?
-    
     var creationItem: (([CreationItem]) -> Void)?
-
-    var imageData: ((Data?) -> Void)?
-    
     
     // MARK: - Input
     

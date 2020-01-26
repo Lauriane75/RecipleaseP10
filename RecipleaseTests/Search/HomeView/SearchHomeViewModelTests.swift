@@ -172,6 +172,6 @@ class SearchHomeViewModelTests: XCTestCase {
         viewModel.viewDidLoad()
         viewModel.didPressCreateRecipe()
 
-//        XCTAssertEqual(delegate.showCreateMyRecipeView())
+//        XCTAssertEqual(delegate.showCreateMyRecipeView)
     }
 }

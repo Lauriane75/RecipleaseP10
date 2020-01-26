@@ -35,7 +35,6 @@ class MockCreationsListRepository: CreationsListRepositoryType {
     }
 
     func didPressRemoveCreation(titleCreation: String) {
-
     }
 }
 
@@ -44,17 +43,18 @@ class CreationsListViewModelTests: XCTestCase {
     let delegate = MockCreationsListViewModelDelegate()
     let repository = MockCreationsListRepository()
 
+    let expectedResult = CreationItem(image: "11314165".data(using: .utf8), name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")
+
     func test_Given_ViewModel_When_viewDidLoad_Then_ReactivePropertiesAreDisplayed() {
 
         let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
 
-        let expectedResult = [CreationItem(image: Optional(11314165) as! Data?, name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")]
-
         viewModel.viewDidLoad()
-        repository.creationItem = expectedResult
+        repository.creationItem = [expectedResult]
 
         viewModel.creationItem = { creation in
-                XCTAssertEqual(creation, expectedResult)
+
+        XCTAssertEqual(creation, [self.expectedResult])
         }
     }
 
@@ -62,10 +62,32 @@ class CreationsListViewModelTests: XCTestCase {
 
         let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
 
-        let expectedResult = CreationItem(image: Optional(11314165) as! Data?, name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")
+        viewModel.viewDidLoad()
+        repository.creationItem = [expectedResult]
+        viewModel.didSelectCreation(creation: expectedResult)
+
+        XCTAssertEqual(delegate.creation, expectedResult)
+    }
+
+    func test_Given_ViewModel_When_didPressDeleteCreation_Then_creationItemIsNil() {
+
+        let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
 
         viewModel.viewDidLoad()
         repository.creationItem = [expectedResult]
+        repository.didPressRemoveCreation(titleCreation: "Mushroom risotto")
+
+        viewModel.creationItem = { creation in
+
+        XCTAssertEqual(creation, [nil])
+        }
+    }
+
+    func test_Given_When_Then() {
+
+        let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
+
+        viewModel.viewDidLoad()
 
         viewModel.didSelectCreation(creation: expectedResult)
 
@@ -75,11 +97,10 @@ class CreationsListViewModelTests: XCTestCase {
     func test_Given_ViewModel_When_NoCreation_Then_Alert() {
 
         let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
-//
-//        let expectedResult = CreationItem(image: Optional(11314165) as! Data?, name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")
 
         viewModel.viewDidLoad()
+        repository.creationItem = nil
 
-        XCTAssertEqual(delegate.alert, .errorService)
+        //        XCTAssertEqual(delegate.alert, .noCreation)
     }
 }

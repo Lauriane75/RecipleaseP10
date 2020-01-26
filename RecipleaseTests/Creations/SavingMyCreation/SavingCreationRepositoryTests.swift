@@ -10,27 +10,28 @@ import XCTest
 @testable import Reciplease
 
 class SavingCreationRepositoryTests: XCTestCase {
-
-    let creation = CreationItem(image: Optional(11314165) as! Data?, name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")
+    
+    let expectedResult = CreationItem(image: "11314165".data(using: .utf8), name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")
+    
     let repository = SavingCreationRepository()
-
+    
     func test_Given_SavingCreationRepository_When_didPressSaveButton_Then_CreationIsSaved() {
-
+        
         let expectation = self.expectation(description: "CreationIsSaved")
-
-        repository.didPressSaveButton(creation: creation)
+        
+        repository.didPressSaveButton(creation: expectedResult)
         expectation.fulfill()
-
+        
         waitForExpectations(timeout: 1.0, handler: nil)
     }
-
+    
     func test_Given_SavingCreationRepositor_When_didPressRemoveCreation_Then_CreationIsDeleted() {
-
+        
         let expectation = self.expectation(description: "CreationIsDeleted")
-
-        repository.didPressRemoveCreation(titleCreation: creation.name)
+        
+        repository.didPressRemoveCreation(titleCreation: expectedResult.name)
         expectation.fulfill()
-
+        
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 }

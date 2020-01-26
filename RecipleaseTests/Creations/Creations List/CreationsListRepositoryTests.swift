@@ -11,23 +11,18 @@ import XCTest
 
 class CreationsListRepositoryTests: XCTestCase {
 
-    let creation = [CreationItem(image: Optional(11314165) as! Data?, name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")]
+     let expectedResult = [CreationItem(image: "11314165".data(using: .utf8), name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")]
+
+    let repository = CreationsListRepository()
 
     func test_Given_CreationsListRepository_When_ItsCalled_Then_DataIsCorrectlyReturned() {
 
         let repository = CreationsListRepository()
 
-        guard let bundleMainPath = Bundle.main.path(forResource: "FakeRecipes", ofType: "json") else { return }
-
-        let url = URL(fileURLWithPath: bundleMainPath)
-
-        let expectation1 = self.expectation(description: "Returned not nil")
-
-        let expectation2 = self.expectation(description: "Returned correctly")
-
         repository.getCreations { (creations) in
+
+//        XCTAssertEqual(creations, self.expectedResult)
         }
-        waitForExpectations(timeout: 1.0, handler: nil)
     }
 
 
