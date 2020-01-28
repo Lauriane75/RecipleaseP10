@@ -24,13 +24,18 @@ final class MockCreationsListViewModelDelegate: CreationsListViewModelDelegate {
 }
 
 
-class MockCreationsListRepository: CreationsListRepositoryType {
+class MockCreationRepository: CreationRepositoryType {
 
     var creationItem: [CreationItem]?
+
+    func didPressSaveCreation(creation: CreationItem) {
+    }
 
     func getCreations(callback: @escaping ([CreationItem]) -> Void) {
         if let creationItem = creationItem {
             callback(creationItem)
+        } else {
+            callback([])
         }
     }
 
@@ -41,7 +46,8 @@ class MockCreationsListRepository: CreationsListRepositoryType {
 class CreationsListViewModelTests: XCTestCase {
 
     let delegate = MockCreationsListViewModelDelegate()
-    let repository = MockCreationsListRepository()
+
+    let repository = MockCreationRepository()
 
     let expectedResult = CreationItem(image: "11314165".data(using: .utf8), name: "Mushroom risotto", ingredient: "rice", method: "boil the rice into water", time: "30", category: "Veggie", yield: "4")
 
@@ -54,7 +60,7 @@ class CreationsListViewModelTests: XCTestCase {
 
         viewModel.creationItem = { creation in
 
-        XCTAssertEqual(creation, [self.expectedResult])
+            XCTAssertEqual(creation, [self.expectedResult])
         }
     }
 
@@ -75,11 +81,11 @@ class CreationsListViewModelTests: XCTestCase {
 
         viewModel.viewDidLoad()
         repository.creationItem = [expectedResult]
-        repository.didPressRemoveCreation(titleCreation: "Mushroom risotto")
+        repository.didPressRemoveCreation(titleCreation: expectedResult.name)
 
         viewModel.creationItem = { creation in
 
-        XCTAssertEqual(creation, [nil])
+        XCTAssertEqual(creation, [])
         }
     }
 
@@ -99,8 +105,15 @@ class CreationsListViewModelTests: XCTestCase {
         let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
 
         viewModel.viewDidLoad()
-        repository.creationItem = nil
 
-        //        XCTAssertEqual(delegate.alert, .noCreation)
+        repository.didPressSaveCreation(creation: expectedResult)
+
+        repository.didPressRemoveCreation(titleCreation: expectedResult.name)
+
+        repository.getCreations(callback: { items in
+            XCTAssertEqual(items, Optional([]))
+        })
+
+        XCTAssertEqual(delegate.alert, .noCreation)
     }
 }

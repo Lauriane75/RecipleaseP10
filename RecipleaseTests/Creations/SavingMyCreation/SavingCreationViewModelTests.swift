@@ -23,10 +23,17 @@ class MockSavingCreationViewModelDelegate: SavingCreationViewModelDelegate {
     }
 }
 
-class MockSavingCreationRepository: SavingCreationRepositoryType {
-    
+class MockSavingCreationRepository: CreationRepositoryType {
+
     var creationItem: CreationItem?
+
     var isSuccess = true
+
+    func didPressSaveCreation(creation: CreationItem) {
+    }
+
+    func getCreations(callback: @escaping ([CreationItem]) -> Void) {
+    }
     
     func didPressSaveButton(creation: CreationItem) {
     }
@@ -57,7 +64,7 @@ class SavingCreationViewModelTests: XCTestCase {
         
         
         viewModel.label = { text in
-            XCTAssertEqual(text, "Take a picture of your recipe")
+            XCTAssertEqual(text, "Add the picture of your recipe then fill every field")
             expectation1.fulfill()
         }
         
@@ -105,18 +112,23 @@ class SavingCreationViewModelTests: XCTestCase {
         let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
         
         repository.creationItem = expectedResult
-        
-        viewModel.viewDidLoad()
-        
+
         viewModel.didPressSaveButton(titleTextField: "Mushroom risotto", ingredientTextField: "rice", methodTextField: "boil the rice into water", timeTextField: "30", dietCategoryTextField: "Veggie", yieldTextField: "4")
-        
         viewModel.didPressAddPhoto(imageAdded: "11314165".data(using: .utf8))
-        
         viewModel.viewDidLoad()
         
         viewModel.creationDisplayed = { creation in
             XCTAssertEqual(creation, [self.expectedResult])
         }
+    }
+
+    func test_Given_ViewModel_When_didPressSaveButton_Then_AlertItemEmpty() {
+
+        let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
+
+        viewModel.didPressSaveButton(titleTextField: "", ingredientTextField: "rice", methodTextField: "boil the rice into water", timeTextField: "30", dietCategoryTextField: "Veggie", yieldTextField: "4")
+
+        XCTAssertEqual(delegate.alert, .itemEmpty)
     }
     
 }

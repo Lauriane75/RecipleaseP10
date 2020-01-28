@@ -28,10 +28,13 @@ final class RecipesRepository: RecipesRepositoryType {
     private let network: NetworkRequestType
     
     let requestType: RequestType
+
+    private let stack: CoreDataStack
     
-    init(requestType: RequestType, network: NetworkRequestType) {
+    init(requestType: RequestType, network: NetworkRequestType, stack: CoreDataStack) {
         self.requestType = requestType
         self.network = network
+        self.stack = stack
     }
     
     func getRecipes(url: URL, success: @escaping (Result<[RecipeItem]>) -> Void, error: @escaping (String) -> Void) {
@@ -39,7 +42,7 @@ final class RecipesRepository: RecipesRepositoryType {
         case .network:
             network.request(type: Recipes.self, url: url) { (result) in
                 switch result {
-                    
+
                 case .success(value: let recipeItems):
                     let result: [RecipeItem] = recipeItems.hits.map {
                         return      RecipeItem(name: $0.recipe.label,
@@ -47,21 +50,32 @@ final class RecipesRepository: RecipesRepositoryType {
                                                url: $0.recipe.url,
                                                ingredient: $0.recipe.ingredientLines.map { $0}, time:  $0.recipe.totalTime, yield: $0.recipe.yield, category: $0.recipe.dietLabels)}
                     success(.success(value: result))
-                    
+
                 case .error(error: let alert):
                     error(alert.localizedDescription)
                 }
             }
         case .persistence:
             let requestRecipe: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
-            guard let recipes = try? AppDelegate.viewContext.fetch(requestRecipe) else { return }
-            
-            let recipeItem : [RecipeItem] = recipes.map  { return RecipeItem(name: $0.nameRecipe ?? "",
-                                                                             imageName: $0.imageRecipe ?? "", url: $0.urlRecipe ?? "",
-                                                                             ingredient: ($0.ingredientsRecipe?.components(separatedBy: ", ") ?? [", "]), time: Int($0.timeRecipe), yield: Int($0.yieldRecipe), category: ($0.categoryRecipe?.components(separatedBy: "") ?? [""]))
+            guard let recipes = try? stack.context.fetch(requestRecipe) else { return }
+
+            let recipeItem : [RecipeItem] = recipes.map  { return RecipeItem(object: $0)
             }
             success(.success(value: recipeItem))
         }
     }
 }
+
+extension RecipeItem {
+    init(object: RecipeObject) {
+        self.url = object.urlRecipe ?? ""
+        self.imageName = object.imageRecipe ?? ""
+        self.name = object.nameRecipe ?? ""
+        self.ingredient = object.ingredientsRecipe?.components(separatedBy: ", ") ?? [", "]
+        self.time = Int(object.timeRecipe)
+        self.category = [object.categoryRecipe ?? ""]
+        self.yield = Int(object.yieldRecipe)
+    }
+}
+
 

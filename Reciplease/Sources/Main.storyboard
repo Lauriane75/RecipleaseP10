@@ -530,16 +530,13 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHj-LX-mr5">
-                                <rect key="frame" x="260" y="30" width="20" height="20"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="250" y="30" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="J7H-JF-Xq5"/>
-                                    <constraint firstAttribute="width" constant="20" id="Rpd-Bw-LsQ"/>
+                                    <constraint firstAttribute="height" constant="30" id="J7H-JF-Xq5"/>
+                                    <constraint firstAttribute="width" constant="30" id="Rpd-Bw-LsQ"/>
                                 </constraints>
                                 <color key="tintColor" red="0.94509803920000002" green="0.6443206668" blue="0.19815355539999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="photo.fill" catalog="system">
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" image="photo.fill" catalog="system"/>
                                 <connections>
                                     <action selector="didPressAddButton:" destination="vdg-IJ-8ym" eventType="touchUpInside" id="Ecf-00-EaF"/>
                                 </connections>
@@ -665,9 +662,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a picture of your recipe" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blB-ym-82D">
-                                <rect key="frame" x="45" y="30" width="200" height="20"/>
+                                <rect key="frame" x="60" y="80" width="200" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Dtt-ul-Rlx"/>
+                                    <constraint firstAttribute="height" constant="50" id="Dtt-ul-Rlx"/>
                                     <constraint firstAttribute="width" constant="200" id="hiu-bJ-eP0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
@@ -685,12 +682,12 @@
                             <constraint firstItem="C38-3a-BQu" firstAttribute="top" secondItem="dSX-IS-FVD" secondAttribute="top" constant="65" id="Hke-rH-vRB"/>
                             <constraint firstItem="2Wf-yU-pGM" firstAttribute="top" secondItem="Bu1-VF-yaY" secondAttribute="bottom" constant="10" id="JK7-cC-ZDM"/>
                             <constraint firstItem="qRB-rw-yd5" firstAttribute="width" secondItem="dSX-IS-FVD" secondAttribute="width" id="Mfk-xd-R1w"/>
-                            <constraint firstItem="JHj-LX-mr5" firstAttribute="leading" secondItem="blB-ym-82D" secondAttribute="trailing" constant="15" id="QLu-tb-HJn"/>
                             <constraint firstItem="Bu1-VF-yaY" firstAttribute="trailing" secondItem="dSX-IS-FVD" secondAttribute="trailing" id="SDn-Se-VqH"/>
                             <constraint firstItem="dCl-sp-Kbz" firstAttribute="trailing" secondItem="JHj-LX-mr5" secondAttribute="trailing" constant="40" id="SQl-YF-1kv"/>
                             <constraint firstItem="dCl-sp-Kbz" firstAttribute="bottom" secondItem="2Wf-yU-pGM" secondAttribute="bottom" constant="30" id="Tv8-83-Vlv"/>
                             <constraint firstItem="dCl-sp-Kbz" firstAttribute="trailing" secondItem="dSX-IS-FVD" secondAttribute="trailing" constant="30" id="aUr-AO-P96"/>
-                            <constraint firstItem="blB-ym-82D" firstAttribute="top" secondItem="dCl-sp-Kbz" secondAttribute="top" constant="30" id="beT-zP-sfE"/>
+                            <constraint firstItem="blB-ym-82D" firstAttribute="centerX" secondItem="dSX-IS-FVD" secondAttribute="centerX" id="bBG-JY-89K"/>
+                            <constraint firstItem="blB-ym-82D" firstAttribute="top" secondItem="dCl-sp-Kbz" secondAttribute="top" constant="80" id="beT-zP-sfE"/>
                             <constraint firstItem="2Wf-yU-pGM" firstAttribute="leading" secondItem="dCl-sp-Kbz" secondAttribute="leading" constant="30" id="chb-vM-SNU"/>
                             <constraint firstItem="dSX-IS-FVD" firstAttribute="leading" secondItem="dCl-sp-Kbz" secondAttribute="leading" constant="30" id="lEh-4v-F3e"/>
                             <constraint firstItem="C38-3a-BQu" firstAttribute="leading" secondItem="dSX-IS-FVD" secondAttribute="leading" constant="20" id="npv-QB-r89"/>
@@ -704,6 +701,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="JHj-LX-mr5" id="tZj-3B-xAN"/>
+                        <outlet property="addPhotoButton" destination="JHj-LX-mr5" id="SnP-cR-sE5"/>
                         <outlet property="categoryTextField" destination="WaV-MR-sYP" id="2aF-l2-sWb"/>
                         <outlet property="contentView" destination="C38-3a-BQu" id="BHI-xT-J3G"/>
                         <outlet property="imageView" destination="dSX-IS-FVD" id="C5c-YL-uuR"/>

@@ -12,6 +12,14 @@ import UIKit
 final class Screens {
     
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: Screens.self))
+
+    private let context: Context
+    private let stack: CoreDataStack
+
+    init(context: Context, stack: CoreDataStack) {
+        self.context = context
+        self.stack = stack
+    }
 }
 
 // MARK : - Main
@@ -40,13 +48,13 @@ extension Screens {
         switch tableViewtype {
         case .foundRecipes :
             let network = NetworkRequest()
-            let repository = RecipesRepository(requestType: .network, network: network)
+            let repository = RecipesRepository(requestType: .network, network: network, stack: stack)
             let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
             viewController.title = Accessibility.RecipesView.title
         case .favoriteRecipes :
             let network = NetworkRequest()
-            let repository = RecipesRepository(requestType: .persistence, network: network)
+            let repository = RecipesRepository(requestType: .persistence, network: network, stack: stack)
             let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: ingredientSelected)
             viewController.viewModel = viewModel
             viewController.title = Accessibility.FavoriteView.title
@@ -58,7 +66,7 @@ extension Screens {
 extension Screens {
     func createRecipeDetailViewController(recipeSelected: RecipeItem) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
-        let repository = RecipeDetailRepository()
+        let repository = RecipeDetailRepository(stack: context.stack)
         let viewModel = RecipeDetailViewModel(repository: repository, recipe: recipeSelected)
         viewController.viewModel = viewModel
         return viewController
@@ -68,7 +76,7 @@ extension Screens {
 extension Screens {
     func createSavingMyCreationViewController(delegate: SavingCreationViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "SavingMyCreationViewController") as! SavingCreationViewController
-        let repository = SavingCreationRepository()
+        let repository = CreationRepository(stack: stack)
         let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
         viewController.viewModel = viewModel
         return viewController
@@ -78,18 +86,17 @@ extension Screens {
 extension Screens {
     func createCreationDetailViewController(creationSaved: CreationItem, delegate: CreationDetailViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "CreationDetailViewController") as! CreationDetailViewController
-        let repository = SavingCreationRepository()
+        let repository = CreationRepository(stack: stack)
         let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creationSaved)
         viewController.viewModel = viewModel
         return viewController
     }
 }
 
-
 extension Screens {
     func createCreationsListViewController(delegate: CreationsListViewModelDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "CreationsListViewController") as! CreationsListViewController
-        let repository = CreationsListRepository()
+        let repository = CreationRepository(stack: stack)
         let viewModel = CreationsListViewModel(repository: repository, delegate: delegate)
         viewController.viewModel = viewModel
         viewController.title = Accessibility.CreationsList.title
@@ -97,7 +104,6 @@ extension Screens {
         return viewController
     }
 }
-
 
 // MARK: - Alert
 

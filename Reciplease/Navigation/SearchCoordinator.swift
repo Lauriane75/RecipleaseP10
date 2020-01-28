@@ -69,7 +69,7 @@ final class SearchCoordinator {
 }
 
 extension SearchCoordinator: SearchHomeViewModelDelegate {
-    func showCreateMyRecipeView() {
+    func showSavingCreationView() {
         showCreateMyRecipe()
     }
     
@@ -113,5 +113,4 @@ extension SearchCoordinator: CreationDetailViewModelDelegate {
 }
 
 extension SearchCoordinator: CreationsListViewModelDelegate {
-    
 }

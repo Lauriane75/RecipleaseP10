@@ -41,7 +41,6 @@ final class RecipeDetailViewModel {
     // MARK: - Input
     
     func viewDidLoad() {
-        
         recipeDisplayed?(recipe)
         image?("\(recipe.imageName)")
         setUpTime()
@@ -87,7 +86,7 @@ final class RecipeDetailViewModel {
             return
         }
     }
-    
+
     func returnUrl() -> URL {
         return URL(string: recipe.url)!
     }

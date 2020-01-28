@@ -19,23 +19,13 @@ final class CreationsListViewModel {
     
     // MARK: - Properties
     
-    private var repository: CreationsListRepositoryType
+    private var repository: CreationRepositoryType
     
     private var delegate: CreationsListViewModelDelegate?
-    
-    private var creation: [CreationItem] = [] {
-        didSet {
-            if creation != [] {
-                creationItem?(creation)
-            } else {
-                delegate?.displayAlert(for: .noCreation)
-            }
-        }
-    }
 
     // MARK: - Initializer
     
-    init(repository: CreationsListRepositoryType, delegate: CreationsListViewModelDelegate?) {
+    init(repository: CreationRepositoryType, delegate: CreationsListViewModelDelegate?) {
         self.repository = repository
         self.delegate = delegate
     }
@@ -48,8 +38,10 @@ final class CreationsListViewModel {
     
     func viewDidLoad() {
         repository.getCreations(callback: { (item) in
-            self.creation = item
-            self.creationItem?(self.creation)
+            guard item != [] else {
+                self.delegate?.displayAlert(for: .noCreation)
+                return }
+            self.creationItem?(item)
         })
     }
     

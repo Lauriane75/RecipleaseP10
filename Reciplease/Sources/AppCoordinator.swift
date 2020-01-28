@@ -15,11 +15,17 @@ final class AppCoordinator {
     private unowned var appDelegate: AppDelegate
     
     private var mainCoordinator: MainCoordinator?
+
+    private let context: Context
+
+    private let stack: CoreDataStack
     
     // MARK: - Initializer
     
-    init(appDelegate: AppDelegate) {
+    init(appDelegate: AppDelegate, context: Context, stack: CoreDataStack) {
         self.appDelegate = appDelegate
+        self.context = context
+        self.stack = stack
     }
     
     // MARK: - Start
@@ -39,7 +45,7 @@ final class AppCoordinator {
     
     private func showMain() {
         
-        mainCoordinator = MainCoordinator(presenter: appDelegate.window!)
+        mainCoordinator = MainCoordinator(presenter: appDelegate.window!, context: context, stack: stack)
         UITabBar.appearance().tintColor = .white
         UITabBar.appearance().barTintColor = .orange
         

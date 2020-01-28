@@ -17,7 +17,7 @@ final class CreationDetailViewModel {
 
     // MARK: - Private properties
 
-    private var repository: SavingCreationRepositoryType
+    private var repository: CreationRepositoryType
     
     private var delegate: CreationDetailViewModelDelegate?
     
@@ -25,7 +25,7 @@ final class CreationDetailViewModel {
     
     // MARK: - Initializer
     
-    init(repository: SavingCreationRepositoryType, delegate: CreationDetailViewModelDelegate?, creation: CreationItem) {
+    init(repository: CreationRepositoryType, delegate: CreationDetailViewModelDelegate?, creation: CreationItem) {
         self.repository = repository
         self.delegate = delegate
         self.creation = creation
@@ -59,7 +59,7 @@ final class CreationDetailViewModel {
     }
     
     func didPressMyCreationsButton() {
-        self.delegate?.showCreationsListView()
+        delegate?.showCreationsListView()
     }
     
     func didPressDeleteCreationButton() {

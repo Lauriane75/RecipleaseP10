@@ -9,10 +9,14 @@
 import XCTest
 @ testable import Reciplease
 
+    // MARK: - Mock
+
 class MockSearchHomeViewModelDelegate: SearchHomeViewModelDelegate {
-    
+
     var alert: AlertType? = nil
     var ingredient = "lemon"
+    var didShowSavingCreationView = false
+
 
     func didSelectIngredient(ingredient: String) {
         self.ingredient = ingredient
@@ -21,10 +25,12 @@ class MockSearchHomeViewModelDelegate: SearchHomeViewModelDelegate {
     func displayHomeAlert(for type: AlertType) {
         self.alert = type
     }
-    func showCreateMyRecipeView() {
-
+    func showSavingCreationView() {
+        didShowSavingCreationView = true
     }
 }
+
+    // MARK: - Tests
 
 class SearchHomeViewModelTests: XCTestCase {
     
@@ -172,6 +178,6 @@ class SearchHomeViewModelTests: XCTestCase {
         viewModel.viewDidLoad()
         viewModel.didPressCreateRecipe()
 
-//        XCTAssertEqual(delegate.showCreateMyRecipeView)
+        XCTAssertTrue(delegate.didShowSavingCreationView)
     }
 }

@@ -9,22 +9,27 @@ import XCTest
 @ testable import Reciplease
 
 final class MockCreationDetailViewModelDelegate: CreationDetailViewModelDelegate {
-    
-    var alert: AlertType? = nil
-    
-    func displayAlert(for type: AlertType) {
-        self.alert = type
-    }
-    
+
+    var didShowCreationListView = false
+    var creationItem: CreationItem! = nil
+
     func showCreationsListView() {
+        didShowCreationListView = true
     }
     
     func selectCreation(creation: CreationItem) {
+        creationItem = creation
     }
 }
 
-final class MockSavingCreationRepo: SavingCreationRepositoryType {
-    
+final class MockSavingCreationRepo: CreationRepositoryType {
+
+    func didPressSaveCreation(creation: CreationItem) {
+    }
+
+    func getCreations(callback: @escaping ([CreationItem]) -> Void) {
+    }
+
     func didPressSaveButton(creation: CreationItem) {
         
     }
@@ -53,7 +58,6 @@ class CreationDetailViewModelTests: XCTestCase {
         let expectation5 = self.expectation(description: "Displayed dietLabel")
         let expectation6 = self.expectation(description: "Displayed yieldLabel")
         
-        
         viewModel.creationDisplayed = { creation in
             XCTAssertEqual(creation, ([self.creation]))
             expectation1.fulfill()
@@ -78,8 +82,27 @@ class CreationDetailViewModelTests: XCTestCase {
             XCTAssertEqual(text, (self.creation.yield))
             expectation6.fulfill()
         }
+
         viewModel.viewDidLoad()
         
         waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    func testDidPressMyCreationsButton() {
+        let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creation)
+
+        viewModel.viewDidLoad()
+        viewModel.didPressMyCreationsButton()
+
+        XCTAssertTrue(delegate.didShowCreationListView)
+    }
+
+    func testdidPressDeleteCreationButton() {
+        let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creation)
+
+        viewModel.viewDidLoad()
+        viewModel.didPressDeleteCreationButton()
+
+        XCTAssertTrue(delegate.didShowCreationListView)
     }
 }

@@ -19,13 +19,13 @@ final class SavingCreationViewModel {
     
     private var delegate: SavingCreationViewModelDelegate?
     
-    private var repository: SavingCreationRepositoryType
+    private var repository: CreationRepositoryType
     
     var imageData: Data? = nil
     
     // MARK: - Initializer
     
-    init(delegate: SavingCreationViewModelDelegate?, repository: SavingCreationRepositoryType) {
+    init(delegate: SavingCreationViewModelDelegate?, repository: CreationRepositoryType) {
         self.delegate = delegate
         self.repository = repository
     }
@@ -49,7 +49,7 @@ final class SavingCreationViewModel {
     // MARK: - Input
     
     func viewDidLoad() {
-        self.label?("Take a picture of your recipe")
+        self.label?("Add the picture of your recipe then fill every field")
         self.timePlaceholder?("30 min")
         self.categoryPlaceholder?("Veggie")
         self.yieldPlaceholder?("4")
@@ -65,7 +65,7 @@ final class SavingCreationViewModel {
             delegate?.displayAlert(for: .itemEmpty)
             return }
         
-        repository.didPressSaveButton(creation: CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
+        repository.didPressSaveCreation(creation: CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField))
         
         self.creationDisplayed?([CreationItem(image: imageData, name: titleTextField, ingredient: ingredientTextField, method: methodTextField, time: timeTextField, category: dietCategoryTextField, yield: yieldTextField)])
         

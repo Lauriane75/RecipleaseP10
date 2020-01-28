@@ -11,7 +11,7 @@ import Foundation
 protocol SearchHomeViewModelDelegate: class {
     func didSelectIngredient(ingredient: String)
     func displayHomeAlert(for type: AlertType)
-    func showCreateMyRecipeView()
+    func showSavingCreationView()
 }
 
 final class SearchHomeViewModel {
@@ -84,6 +84,6 @@ final class SearchHomeViewModel {
     }
     
     func didPressCreateRecipe() {
-        delegate?.showCreateMyRecipeView()
+        delegate?.showSavingCreationView()
     }
 }

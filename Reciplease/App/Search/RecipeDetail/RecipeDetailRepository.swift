@@ -15,11 +15,17 @@ protocol RecipeDetailRepositoryType {
 }
 
 final class RecipeDetailRepository: RecipeDetailRepositoryType {
+
+    private let stack: CoreDataStack
+
+    init(stack: CoreDataStack) {
+        self.stack = stack
+    }
     
     func didPressSelectFavoriteRecipe(recipe: RecipeItem, image: String) {
         
-        let recipeObject = RecipeObject(context: AppDelegate.viewContext)
-        let favoriteImage = FavoriteImage(context: AppDelegate.viewContext)
+        let recipeObject = RecipeObject(context: stack.context)
+        let favoriteImage = FavoriteImage(context: stack.context)
         favoriteImage.imageStatus = image
         recipeObject.urlRecipe = recipe.url
         recipeObject.imageRecipe = recipe.imageName
@@ -28,7 +34,7 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         recipeObject.timeRecipe = Int16(Int(recipe.time))
         recipeObject.yieldRecipe = Int16(Int(recipe.yield))
         recipeObject.categoryRecipe = recipe.category.joined(separator: " ")
-        try? AppDelegate.viewContext.save()
+        stack.saveContext()
     }
     
     func verifyingFavoriteState(recipeName: String, completion: (Bool) -> Void) {
@@ -37,7 +43,7 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         request.predicate = NSPredicate(format: "nameRecipe == %@", recipeName)
         request.sortDescriptors = [NSSortDescriptor(keyPath: \RecipeObject.nameRecipe, ascending: true)]
         
-        guard let recipes = try? AppDelegate.viewContext.fetch(request) else { print("error")
+        guard let recipes = try? stack.context.fetch(request) else { print("error")
             return
         }
         
@@ -53,10 +59,10 @@ final class RecipeDetailRepository: RecipeDetailRepositoryType {
         let request: NSFetchRequest<RecipeObject> = RecipeObject.fetchRequest()
         request.predicate = NSPredicate(format: "nameRecipe == %@", recipeName)
         do {
-            let object = try AppDelegate.viewContext.fetch(request)
+            let object = try stack.context.fetch(request)
             if !object.isEmpty {
-                AppDelegate.viewContext.delete(object[0])
-                try? AppDelegate.viewContext.save()
+                stack.context.delete(object[0])
+                stack.saveContext()
             }
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")

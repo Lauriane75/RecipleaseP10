@@ -15,30 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var appCoordinator: AppCoordinator?
+    var context: Context!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        appCoordinator = AppCoordinator(appDelegate: self)
+        let stack = CoreDataStack(modelName: "Reciplease",
+                                  type: .prod)
+        context = Context(stack: stack)
+        appCoordinator = AppCoordinator(appDelegate: self,
+                                        context: context, stack: stack)
         appCoordinator?.start()
         return true
     }
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Reciplease")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    static var persistentContainer: NSPersistentContainer {
-        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        
     }
-    
-    static var viewContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }
-    
 }
 

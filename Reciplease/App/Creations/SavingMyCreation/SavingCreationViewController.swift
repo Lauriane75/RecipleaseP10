@@ -34,7 +34,9 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var methodTextField: UITextField!
     
     @IBOutlet weak var saveButton: UIButton!
-    
+
+    @IBOutlet weak var addPhotoButton: UIButton!
+
     // MARK: - Properties
     
     private var lastImageViewTapped: UIImageView?
@@ -113,7 +115,6 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         guard self.methodTextField.text != nil else { return }
         
         viewModel.didPressSaveButton(titleTextField: titleTextField.text!, ingredientTextField: ingredientsTextField.text!, methodTextField: methodTextField.text!, timeTextField: timeTextField.text!, dietCategoryTextField: categoryTextField.text!, yieldTextField: yieldTextField.text!)
-        //        viewModel.didPressSaveImage()
     }
     
     // MARK: - Private Files
@@ -220,6 +221,9 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         contentView.layer.cornerRadius = 15
         saveButton.layer.borderWidth = 1
         saveButton.layer.borderColor = UIColor.orange.cgColor
+        addPhotoButton.layer.borderWidth = 1
+        addPhotoButton.layer.borderColor = UIColor.orange.cgColor
+        addPhotoButton.layer.cornerRadius = 15
     }
     
     /// HideKeyBoard from textField

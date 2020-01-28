@@ -9,6 +9,8 @@
 import XCTest
 @ testable import Reciplease
 
+    // MARK: - Mock
+
 final class MockRecipesViewModelDelegate: RecipesViewModelDelegate {
     
     var alert: AlertType? = nil
@@ -24,6 +26,7 @@ final class MockRecipesViewModelDelegate: RecipesViewModelDelegate {
     }
 }
 
+    // MARK: - Tests
 
 class MockRecipesRepository: RecipesRepositoryType {
     
@@ -43,14 +46,14 @@ class RecipesViewModelTests: XCTestCase {
     
     let delegate = MockRecipesViewModelDelegate()
     let repository = MockRecipesRepository()
+
+    let expectedResult = RecipeItem(name: "Lemon Sorbet", imageName: "https://www.edamam.com/web-img/78e/78ef0e463d0aadbf2caf7b6237cd5f12.jpg", url: "http://www.bbcgoodfood.com/recipes/4583/", ingredient: ["500.0g caster sugar", "1 lemon , unwaxed, zested", "250 ml lemon juice (6-8 lemons)"], time: 0, yield: 6, category: ["Low-Fat"])
     
-    func test_Given_RecipesViewModel_When_viewWillAppear_Then_ReactivePropertiesAreDisplayed() {
+    func test_Given_RecipesViewModel_When_viewWillAppear_Then_recipesDisplayed() {
         
         let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: "")
         
-        let expectedResult = [RecipeItem(name: "Lemon Sorbet", imageName: "https://www.edamam.com/web-img/78e/78ef0e463d0aadbf2caf7b6237cd5f12.jpg", url: "http://www.bbcgoodfood.com/recipes/4583/", ingredient: ["500.0g caster sugar", "1 lemon , unwaxed, zested", "250 ml lemon juice (6-8 lemons)"], time: 0, yield: 6, category: ["Low-Fat"])]
-        
-        repository.recipeItem = expectedResult
+        repository.recipeItem = [expectedResult]
         
         let expectation = self.expectation(description: "Displayed recipesDisplayed")
         
@@ -58,7 +61,7 @@ class RecipesViewModelTests: XCTestCase {
         
         viewModel.recipesDisplayed = { recipe in
             if counter == 1 {
-                XCTAssertEqual(recipe, expectedResult)
+                XCTAssertEqual(recipe, [self.expectedResult])
                 expectation.fulfill()
                 
             }
@@ -68,33 +71,51 @@ class RecipesViewModelTests: XCTestCase {
         viewModel.viewWillAppear()
         
         waitForExpectations(timeout: 1.0, handler: nil)
-        
+    }
+
+    func test_Given_RecipesViewModel_When_viewWillAppear_Then_activityIndicatorIsDisplayed() {
+
+        let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: "")
+
+        repository.recipeItem = [expectedResult]
+
+        let expectation = self.expectation(description: "Displayed recipesDisplayed")
+
+        var counter = 0
+
+        viewModel.activityIndicatorIsLoading = { state in
+            if counter == 1 {
+                XCTAssertEqual(state, false)
+                expectation.fulfill()
+            }
+            counter += 1
+        }
+
+        viewModel.viewWillAppear()
+
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
     
     func test_Given_RecipesViewModel_When_didSelectRecipe_Then_expectedResult() {
         
         let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: "")
         
-        let expectedResult = RecipeItem(name: "Lemon Sorbet", imageName: "https://www.edamam.com/web-img/78e/78ef0e463d0aadbf2caf7b6237cd5f12.jpg", url: "http://www.bbcgoodfood.com/recipes/4583/", ingredient: ["500.0g caster sugar", "1 lemon , unwaxed, zested", "250 ml lemon juice (6-8 lemons)"], time: 0, yield: 6, category: ["Low-Fat"])
-        
         repository.recipeItem = [expectedResult]
         
         viewModel.viewWillAppear()
-        viewModel.didSelectRecipe(recipe: expectedResult)
+        viewModel.didSelectRecipe(recipe: self.expectedResult)
         
-        XCTAssertEqual(delegate.recipe, expectedResult)
+        XCTAssertEqual(delegate.recipe, self.expectedResult)
     }
     
     func test_Given_RecipesViewModel_When_NoService_Then_Alert() {
         
         let viewModel = RecipesViewModel(delegate: delegate, repository: repository, ingredients: "")
         
-        let expectedResult = RecipeItem(name: "Lemon Sorbet", imageName: "https://www.edamam.com/web-img/78e/78ef0e463d0aadbf2caf7b6237cd5f12.jpg", url: "http://www.bbcgoodfood.com/recipes/4583/", ingredient: ["500.0g caster sugar", "1 lemon , unwaxed, zested", "250 ml lemon juice (6-8 lemons)"], time: 0, yield: 6, category: ["Low-Fat"])
-        
         repository.isSuccess = false
         
         viewModel.viewWillAppear()
-        viewModel.didSelectRecipe(recipe: expectedResult)
+        viewModel.didSelectRecipe(recipe: self.expectedResult)
         
         XCTAssertEqual(delegate.alert, .errorService)
     }

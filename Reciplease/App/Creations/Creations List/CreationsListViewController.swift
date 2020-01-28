@@ -20,7 +20,7 @@ class CreationsListViewController: UIViewController {
 
     private var creationsListDataSource = CreationsListDataSource()
 
-    // MARK: - View life cycl
+    // MARK: - View life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
