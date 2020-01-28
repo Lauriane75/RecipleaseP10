@@ -86,6 +86,4 @@ final class SearchHomeViewModel {
     func didPressCreateRecipe() {
         delegate?.showSavingCreationView()
     }
-    
-    
 }

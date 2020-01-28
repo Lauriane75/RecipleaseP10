@@ -37,7 +37,6 @@ final class RecipeDetailViewModel {
     var nameRecipeButton: ((String) -> Void)?
     var favoriteState: ((Bool) -> Void)?
     var favoriteImageState: ((String) -> Void)?
-    
     var navBarTitle: ((String) -> Void)?
     
     // MARK: - Input

@@ -39,11 +39,8 @@ final class CreationDetailViewModel {
     var categoryLabel: ((String) -> Void)?
     var yieldLabel: ((String) -> Void)?
     var navBarTitle: ((String) -> Void)?
-
     var imageData: ((Data?) -> Void)?
-    
     var creationButton: ((String) -> Void)?
-    
     var creationDisplayed: (([CreationItem]) -> Void)?
     
     // MARK: - Input

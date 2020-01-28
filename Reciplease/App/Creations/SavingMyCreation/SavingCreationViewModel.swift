@@ -45,10 +45,7 @@ final class SavingCreationViewModel {
     var ingredientsPlaceholder: ((String) -> Void)?
     var metohdPlaceholder: ((String) -> Void)?
     var navBarTitle: ((String) -> Void)?
-    
-    
     var saveButton: ((String) -> Void)?
-    
     
     // MARK: - Input
     
@@ -82,7 +79,6 @@ final class SavingCreationViewModel {
     }
     
     // Alert
-    
     func restrictedCase() {
         delegate?.displayAlert(for: .restricted)
     }
