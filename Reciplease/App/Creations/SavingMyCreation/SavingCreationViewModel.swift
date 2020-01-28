@@ -13,6 +13,8 @@ protocol SavingCreationViewModelDelegate: class {
     func didPressSaveButton(creation: CreationItem)
     
     func displayAlert(for type: AlertType)
+
+    func deniedCase(for type: AlertType)
 }
 
 final class SavingCreationViewModel {
@@ -82,8 +84,10 @@ final class SavingCreationViewModel {
         delegate?.displayAlert(for: .restricted)
     }
     
-    func denied() {
-        delegate?.displayAlert(for: .denied)
+    func deniedCase() {
+        delegate?.deniedCase(for: .denied)
     }
+
+
     
 }

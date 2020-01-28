@@ -9,9 +9,16 @@
 import XCTest
 
 protocol SavingCreationViewVerifying {
+    // Show view
+    func showSavingCreationView()
 
 }
 
 extension SavingCreationViewVerifying {
+
+    func showSavingCreationView() {
+        let homeSearchViewUITests = HomeSearchViewUITests()
+        homeSearchViewUITests.test_goTo_SavingCreationView()
+    }
     
 }

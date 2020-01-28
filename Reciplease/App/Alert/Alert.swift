@@ -38,3 +38,9 @@ extension Alert {
         }
     }
 }
+
+//let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+
+
+//
+//let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings if you want to change it", preferredStyle: .alert)

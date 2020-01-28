@@ -9,11 +9,17 @@
 import XCTest
 
 protocol RecipesViewVerifying {
+    // Show recipes view
+    func showRecipesView()
 
 }
 
 extension RecipesViewVerifying {
 
+    func showRecipesView() {
+        let homeSearchViewUITests = HomeSearchViewUITests()
+        homeSearchViewUITests.test_goTo_recipesView()
+    }
 }
 
 

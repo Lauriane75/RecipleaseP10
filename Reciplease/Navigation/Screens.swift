@@ -117,3 +117,17 @@ extension Screens {
     }
 }
 
+extension Screens {
+    func creationDeniedCase(for type: AlertType) -> UIAlertController {
+        let alert = Alert(type: type)
+        let alertViewController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .alert)
+        let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
+            let url = URL(string: UIApplication.openSettingsURLString)!
+            UIApplication.shared.open(url, options:[:])
+        }
+        let cancelAction = UIAlertAction(title:"Cancel", style: .cancel)
+        alertViewController.addAction(goToSettings)
+        alertViewController.addAction(cancelAction)
+        return alertViewController
+    }
+}

@@ -161,26 +161,27 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     }
     
     /// func in case denied requestAuthorization
-    fileprivate func deniedCase() {
-        let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings if you want to change it", preferredStyle: .alert)
-        let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
-            DispatchQueue.main.async {
-                let url = URL(string: UIApplication.openSettingsURLString)!
-                UIApplication.shared.open(url, options:[:])
-            }
-        }
-        let cancelAction = UIAlertAction(title:"Cancel", style: .cancel)
-        alert.addAction(goToSettings)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true)
-    }
+//    fileprivate func deniedCase() {
+//        let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings if you want to change it", preferredStyle: .alert)
+//        let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
+//            DispatchQueue.main.async {
+//                let url = URL(string: UIApplication.openSettingsURLString)!
+//                UIApplication.shared.open(url, options:[:])
+//            }
+//        }
+//        let cancelAction = UIAlertAction(title:"Cancel", style: .cancel)
+//        alert.addAction(goToSettings)
+//        alert.addAction(cancelAction)
+//        self.present(alert, animated: true)
+//    }
     
     fileprivate func addPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         let actionSheet = UIAlertController(title: "photo source", message: "choose a source", preferredStyle: .actionSheet)
         // Camera access
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction)
+            in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerController.sourceType = .camera
                 self.present(imagePickerController, animated: true, completion: nil)
@@ -193,20 +194,20 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
             (action:UIAlertAction) in
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 PHPhotoLibrary.requestAuthorization { (status) in
+                    DispatchQueue.main.async {
                     switch status {
                     case .authorized:
-                        DispatchQueue.main.async {
                             self.PhotoPickerController()
                             self.lastImageViewTapped = self.imageView
-                        }
                     case .notDetermined:
                         self.notDeterminedCase(status)
                     case .restricted:
                         self.viewModel.restrictedCase()
                     case .denied:
-                        self.deniedCase()
+                        self.viewModel.deniedCase()
+
                     default:break
-                        
+                        }
                     }
                 }
             }

@@ -65,6 +65,12 @@ final class SearchCoordinator {
         let viewController = screens.createCreationsListViewController(delegate: self)
         presenter.pushViewController(viewController, animated: true)
     }
+
+    private func showDeniedCase(for type: AlertType) {
+        let alert = screens.creationDeniedCase(for: type)
+        presenter.visibleViewController?.present(alert, animated: true)
+    }
+
     
 }
 
@@ -92,6 +98,11 @@ extension SearchCoordinator: RecipesViewModelDelegate {
 }
 
 extension SearchCoordinator: SavingCreationViewModelDelegate {
+
+    func deniedCase(for type: AlertType) {
+        showDeniedCase(for: type)
+    }
+
     
     func didPressSaveButton(creation: CreationItem) {
         showCreationDetail(creation: creation)
@@ -114,3 +125,4 @@ extension SearchCoordinator: CreationDetailViewModelDelegate {
 
 extension SearchCoordinator: CreationsListViewModelDelegate {
 }
+
