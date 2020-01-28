@@ -93,7 +93,9 @@ class CreationDetailViewController: UIViewController {
     // MARK: - Private Files
     
     fileprivate func navigationBar() {
-        navigationItem.title = Accessibility.CreationDetailView.title
+        viewModel.navBarTitle = { text in
+            self.navigationItem.title = text
+        }
         let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = titleColor
         self.navigationController?.navigationBar.tintColor = .white
@@ -107,5 +109,4 @@ class CreationDetailViewController: UIViewController {
         showCreationListButton.layer.borderWidth = 1
         showCreationListButton.layer.borderColor = UIColor.orange.cgColor
     }
-    
 }

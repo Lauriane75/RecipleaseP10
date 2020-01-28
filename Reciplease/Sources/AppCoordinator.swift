@@ -52,4 +52,3 @@ final class AppCoordinator {
         mainCoordinator?.start()
     }
 }
-

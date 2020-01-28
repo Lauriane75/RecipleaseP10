@@ -8,17 +8,17 @@
 import UIKit
 
 class CreationsListTableViewCell: UITableViewCell {
-
+    
     // MARK: - Outlet
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var yieldLabel: UILabel!
     @IBOutlet weak var creationImageView: UIImageView!
-
+    
     // MARK: - Properties
-
+    
     private var creation: CreationItem? = nil {
         didSet {
             guard let creation = self.creation else { return }
@@ -31,7 +31,7 @@ class CreationsListTableViewCell: UITableViewCell {
             yieldLabel.text = creation.yield
         }
     }
-
+    
     func updateCell(with creation: CreationItem) {
         self.creation = creation
     }

@@ -10,7 +10,52 @@ import XCTest
 
 class SavingCreationViewUITests: UITestCase, RootViewStarting, SavingCreationViewVerifying {
 
-    func testExample() {
+    // MARK: - View
 
+    func test_VerifyingSavingCreationView() {
+        // Show view
+        showSavingCreationView()
+        // Wait
+        savingCreationViewWaitForExistence()
+        // Check view
+        XCTAssertTrue(savingCreationViewExists())
+    }
+
+    func test_Given_SavingCreationView_When_AddPhotoTap_Then_Alert() {
+        // Show view
+        showSavingCreationView()
+        // Action
+        _ = addPhotoButton.waitForExistence(timeout: 1)
+        addPhotoButton.tap()
+        // Wait
+        sourceAuthorizationWaitForExistence()
+        // Check alert
+        XCTAssertTrue(sourceAuthorizationViewExists())
+    }
+
+    func test_fillTheTextfields() {
+        // Show view
+        showSavingCreationView()
+        // Wait
+        savingCreationViewWaitForExistence()
+        // Fill textField
+        titleTextField.tap()
+        titleTextField.typeText("test")
+        ingredientTextField.tap()
+        ingredientTextField.typeText("test")
+        methodTextField.tap()
+        methodTextField.typeText("test")
+    }
+
+    func test_Given_SavingCreation_When_SaveButtonTap_Then_Alert() {
+        // Show view
+        showSavingCreationView()
+        // Wait
+        _ = saveButton.waitForExistence(timeout: 1)
+        saveButton.tap()
+        // Check view
+        _ = fillItemAlert.waitForExistence(timeout: 1)
+        XCTAssertTrue(fillItemAlert.exists)
     }
 }
+

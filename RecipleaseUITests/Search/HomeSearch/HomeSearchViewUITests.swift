@@ -9,18 +9,18 @@
 import XCTest
 
 class HomeSearchViewUITests: UITestCase, RootViewStarting, HomeSearchViewVerifying {
-
-    // View
-
+    
+    // MARK: - View
+    
     func test_VerifyingHomeSearchView() {
         // Wait
         homeSearchViewWaitForExistence()
         // Check view
         XCTAssertTrue(homeSearchViewExists())
     }
-
-    // Action
-
+    
+    // MARK: - Action
+    
     func test_Given_homeSearchView_When_addIngredient_Then_goButtonExists() {
         // Fiil textfield
         _ = ingredientTextField.waitForExistence(timeout: 1)
@@ -33,9 +33,9 @@ class HomeSearchViewUITests: UITestCase, RootViewStarting, HomeSearchViewVerifyi
         _ = goButton.waitForExistence(timeout: 1)
         XCTAssertTrue(goButton.exists)
     }
-
+    
     // Go to next view
-
+    
     func test_goTo_recipesView() {
         // Fiil textfield
         _ = ingredientTextField.waitForExistence(timeout: 1)
@@ -50,11 +50,18 @@ class HomeSearchViewUITests: UITestCase, RootViewStarting, HomeSearchViewVerifyi
         _ = goButton.waitForExistence(timeout: 1)
         goButton.tap()
     }
-
+    
     func test_goTo_SavingCreationView() {
         _ = createMyRecipeButton.waitForExistence(timeout: 1)
         createMyRecipeButton.tap()
     }
-
-
+    
+    func test_goTo_FavoriteView() {
+        _ = favoriteItem.exists
+        favoriteItem.tap()
+    }
+    func test_goTo_CreationsListView() {
+        _ = creationItem.exists
+        creationItem.tap()
+    }
 }

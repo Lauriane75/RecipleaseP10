@@ -38,9 +38,13 @@ final class RecipeDetailViewModel {
     var favoriteState: ((Bool) -> Void)?
     var favoriteImageState: ((String) -> Void)?
     
+    var navBarTitle: ((String) -> Void)?
+    
     // MARK: - Input
     
     func viewDidLoad() {
+        navBarTitle?("Detail Recipes")
+        
         recipeDisplayed?(recipe)
         image?("\(recipe.imageName)")
         setUpTime()
@@ -86,7 +90,7 @@ final class RecipeDetailViewModel {
             return
         }
     }
-
+    
     func returnUrl() -> URL {
         return URL(string: recipe.url)!
     }

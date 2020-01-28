@@ -121,7 +121,9 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     
     /// NavBar
     fileprivate func navigationBar() {
-        navigationItem.title = Accessibility.CreateMyRecipe.title
+        viewModel.navBarTitle = { text in
+            self.navigationItem.title = text
+        }
         let titleColor = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = titleColor
         self.navigationController?.navigationBar.tintColor = .white
@@ -163,9 +165,9 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
     fileprivate func addPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        let actionSheet = UIAlertController(title: "photo source", message: "choose a source", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: Accessibility.ImagePickerController.titleSource, message: Accessibility.ImagePickerController.messageSource, preferredStyle: .actionSheet)
         // Camera access
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction)
+        actionSheet.addAction(UIAlertAction(title: Accessibility.ImagePickerController.titleCamera, style: .default, handler: { (action:UIAlertAction)
             in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerController.sourceType = .camera
@@ -175,29 +177,29 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
             }
         }))
         // Photo Library access
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {
+        actionSheet.addAction(UIAlertAction(title: Accessibility.ImagePickerController.titleLibrary, style: .default, handler: {
             (action:UIAlertAction) in
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 PHPhotoLibrary.requestAuthorization { (status) in
                     DispatchQueue.main.async {
-                    switch status {
-                    case .authorized:
+                        switch status {
+                        case .authorized:
                             self.PhotoPickerController()
                             self.lastImageViewTapped = self.imageView
-                    case .notDetermined:
-                        self.notDeterminedCase(status)
-                    case .restricted:
-                        self.viewModel.restrictedCase()
-                    case .denied:
-                        self.viewModel.deniedCase()
+                        case .notDetermined:
+                            self.notDeterminedCase(status)
+                        case .restricted:
+                            self.viewModel.restrictedCase()
+                        case .denied:
+                            self.viewModel.deniedCase()
 
-                    default:break
+                        default:break
                         }
                     }
                 }
             }
         }))
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        actionSheet.addAction(UIAlertAction(title: Accessibility.ImagePickerController.titleCancel, style: .cancel, handler:nil))
         self.present(actionSheet, animated: true, completion: nil)
     }
     
@@ -247,4 +249,3 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         return true
     }
 }
-

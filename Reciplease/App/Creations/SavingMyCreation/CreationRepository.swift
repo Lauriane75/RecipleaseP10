@@ -14,21 +14,21 @@ protocol CreationRepositoryType {
 }
 
 final class CreationRepository: CreationRepositoryType {
-
+    
     // MARK: - Properties
-
+    
     private let stack: CoreDataStack
-
+    
     // MARK: - Initializer
-
+    
     init(stack: CoreDataStack) {
         self.stack = stack
     }
-
+    
     // MARK: - Save
-
+    
     func didPressSaveCreation(creation: CreationItem) {
-
+        
         let creationObject = CreationObject(context: stack.context)
         creationObject.imageCreation = creation.image
         creationObject.titleCreation = creation.name
@@ -37,24 +37,24 @@ final class CreationRepository: CreationRepositoryType {
         creationObject.timeCreation = creation.time
         creationObject.categoryCreation = creation.category
         creationObject.yieldCreation = creation.yield
-
+        
         stack.saveContext()
     }
-
+    
     // MARK: - Remove
-
+    
     func didPressRemoveCreation(titleCreation: String) {
         let request: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
         request.predicate = NSPredicate(format: "titleCreation == %@", titleCreation)
-
+        
         if let object = try? stack.context.fetch(request), let firstObject = object.first {
             stack.context.delete(firstObject)
             stack.saveContext()
         }
     }
-
+    
     // MARK: - get
-
+    
     func getCreations(callback: @escaping ([CreationItem]) -> Void) {
         let requestCreation: NSFetchRequest<CreationObject> = CreationObject.fetchRequest()
         guard let creations = try? stack.context.fetch(requestCreation) else { return }

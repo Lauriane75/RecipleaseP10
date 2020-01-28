@@ -22,5 +22,4 @@ extension RootViewStarting {
     func configureStartup() {
         startRootView()
     }
-
 }

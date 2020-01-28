@@ -13,7 +13,7 @@ protocol SavingCreationViewModelDelegate: class {
     func didPressSaveButton(creation: CreationItem)
     
     func displayAlert(for type: AlertType)
-
+    
     func deniedCase(for type: AlertType)
 }
 
@@ -44,6 +44,8 @@ final class SavingCreationViewModel {
     var titlePlaceholder: ((String) -> Void)?
     var ingredientsPlaceholder: ((String) -> Void)?
     var metohdPlaceholder: ((String) -> Void)?
+    var navBarTitle: ((String) -> Void)?
+    
     
     var saveButton: ((String) -> Void)?
     
@@ -59,6 +61,7 @@ final class SavingCreationViewModel {
         self.ingredientsPlaceholder?("40 g Parmesan cheese")
         self.metohdPlaceholder?("Put 50g dried porcini mushrooms into ...")
         self.saveButton?("Save")
+        self.navBarTitle?("Create my recipe")
     }
     
     func didPressSaveButton(titleTextField: String, ingredientTextField: String, methodTextField: String, timeTextField: String, dietCategoryTextField: String, yieldTextField: String) {
@@ -77,7 +80,7 @@ final class SavingCreationViewModel {
     func didPressAddPhoto(imageAdded: Data?) {
         imageData = imageAdded
     }
-
+    
     // Alert
     
     func restrictedCase() {
@@ -87,7 +90,4 @@ final class SavingCreationViewModel {
     func deniedCase() {
         delegate?.deniedCase(for: .denied)
     }
-
-
-    
 }

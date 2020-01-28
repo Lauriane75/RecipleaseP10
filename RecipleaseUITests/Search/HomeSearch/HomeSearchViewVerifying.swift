@@ -10,10 +10,10 @@ import XCTest
 
 protocol HomeSearchViewVerifying {
 
-       func homeSearchViewWaitForExistence()
-       func homeSearchViewExists() -> Bool
+    func homeSearchViewWaitForExistence()
+    func homeSearchViewExists() -> Bool
 
-       // MARK: - Properties
+    // MARK: - Properties
 
     var titleLabel: XCUIElement { get }
     var addButton: XCUIElement { get }
@@ -24,6 +24,8 @@ protocol HomeSearchViewVerifying {
     var createMyRecipeButton: XCUIElement { get }
     var goButton: XCUIElement { get }
 
+    var favoriteItem: XCUIElement { get }
+    var creationItem: XCUIElement { get }
 }
 
 extension HomeSearchViewVerifying {
@@ -47,7 +49,7 @@ extension HomeSearchViewVerifying {
             && ingredientTextField.exists
             && createMyRecipeButton.exists
     }
-
+    
     // MARK: - Properties
 
     var titleLabel: XCUIElement {
@@ -63,7 +65,7 @@ extension HomeSearchViewVerifying {
         return XCUIApplication().buttons["x"]
     }
     var clearLabel: XCUIElement {
-          return XCUIApplication().staticTexts["Clear"]
+        return XCUIApplication().staticTexts["Clear"]
     }
     var ingredientTextField: XCUIElement {
         return XCUIApplication().textFields["Lemon, Sugar, Honey ..."]
@@ -74,4 +76,11 @@ extension HomeSearchViewVerifying {
     var goButton: XCUIElement {
         return XCUIApplication().buttons["Go !"]
     }
+    var favoriteItem: XCUIElement {
+        return XCUIApplication().tabBars.children(matching: .button).element(boundBy: 1)
+    }
+    var creationItem: XCUIElement {
+        return  XCUIApplication().tabBars.children(matching: .button).element(boundBy: 2)
+    }
 }
+

@@ -77,5 +77,3 @@ extension RecipeItem {
         self.yield = Int(object.yieldRecipe)
     }
 }
-
-

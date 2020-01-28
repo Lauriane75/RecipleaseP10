@@ -13,6 +13,10 @@ class MockSavingCreationViewModelDelegate: SavingCreationViewModelDelegate {
     
     var alert: AlertType? = nil
     var creation: CreationItem? = nil
+
+    func deniedCase(for type: AlertType) {
+        self.alert = type
+    }
     
     func didPressSaveButton(creation: CreationItem) {
         self.creation = creation
@@ -61,7 +65,7 @@ class SavingCreationViewModelTests: XCTestCase {
         let expectation6 = self.expectation(description: "Diplayed ingredientsPlaceholder")
         let expectation7 = self.expectation(description: "Diplayed metohdPlaceholder")
         let expectation8 = self.expectation(description: "Diplayed saveButton")
-        
+        let expectation9 = self.expectation(description: "Diplayed navBarTitle")
         
         viewModel.label = { text in
             XCTAssertEqual(text, "Add the picture of your recipe then fill every field")
@@ -101,7 +105,11 @@ class SavingCreationViewModelTests: XCTestCase {
             XCTAssertEqual(state, "Save")
             expectation8.fulfill()
         }
-        
+        viewModel.navBarTitle = { text in
+            XCTAssertEqual(text, "Create my recipe")
+            expectation9.fulfill()
+        }
+
         viewModel.viewDidLoad()
         waitForExpectations(timeout: 1.0, handler: nil)
     }
@@ -129,6 +137,15 @@ class SavingCreationViewModelTests: XCTestCase {
         viewModel.didPressSaveButton(titleTextField: "", ingredientTextField: "rice", methodTextField: "boil the rice into water", timeTextField: "30", dietCategoryTextField: "Veggie", yieldTextField: "4")
 
         XCTAssertEqual(delegate.alert, .itemEmpty)
+    }
+
+    func test_Given__When__Then_denied() {
+
+        let viewModel = SavingCreationViewModel(delegate: delegate, repository: repository)
+
+        viewModel.deniedCase()
+
+        XCTAssertEqual(delegate.alert, .denied)
     }
     
 }

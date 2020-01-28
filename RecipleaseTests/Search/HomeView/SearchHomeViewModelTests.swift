@@ -9,15 +9,15 @@
 import XCTest
 @ testable import Reciplease
 
-    // MARK: - Mock
+// MARK: - Mock
 
 class MockSearchHomeViewModelDelegate: SearchHomeViewModelDelegate {
-
+    
     var alert: AlertType? = nil
     var ingredient = "lemon"
     var didShowSavingCreationView = false
-
-
+    
+    
     func didSelectIngredient(ingredient: String) {
         self.ingredient = ingredient
     }
@@ -30,7 +30,7 @@ class MockSearchHomeViewModelDelegate: SearchHomeViewModelDelegate {
     }
 }
 
-    // MARK: - Tests
+// MARK: - Tests
 
 class SearchHomeViewModelTests: XCTestCase {
     
@@ -155,29 +155,29 @@ class SearchHomeViewModelTests: XCTestCase {
         
         XCTAssertEqual(delegate.alert, .errorIngredientListEmpty)
     }
-
+    
     func test_Given_ViewModel_When_didPressSearchForRecipes_Then_DelegateIsCalled() {
-
+        
         let delegate = MockSearchHomeViewModelDelegate()
-
+        
         let viewModel = SearchHomeViewModel(delegate: delegate)
-
+        
         viewModel.viewDidLoad()
         viewModel.didPressAdd(ingredientSelected: "eggs")
         viewModel.didPressSearchForRecipes()
-
+        
         XCTAssertEqual(delegate.ingredient, "eggs")
     }
-
+    
     func test_Given_ViewModel_When_didPressCreateRecipe_Then_DelegateIsCalled() {
-
+        
         let delegate = MockSearchHomeViewModelDelegate()
-
+        
         let viewModel = SearchHomeViewModel(delegate: delegate)
-
+        
         viewModel.viewDidLoad()
         viewModel.didPressCreateRecipe()
-
+        
         XCTAssertTrue(delegate.didShowSavingCreationView)
     }
 }

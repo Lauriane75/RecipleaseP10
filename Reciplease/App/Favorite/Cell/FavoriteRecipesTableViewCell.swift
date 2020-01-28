@@ -34,5 +34,4 @@ class FavoriteRecipesTableViewCell: UITableViewCell {
         
         ingredientsLabel.text = "\(recipe.ingredient.joined(separator: "\n"))"
     }
-    
 }

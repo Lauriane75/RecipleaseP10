@@ -9,8 +9,15 @@
 import XCTest
 
 class RecipesViewUITests: UITestCase, RootViewStarting, RecipesViewVerifying {
-
-    func testExample() {
-
+    
+    // MARK: - View
+    
+    func test_VerifyingRecipesView() {
+        // Show view
+        showRecipesView()
+        // Wait
+        recipesViewWaitForExistence()
+        // Check view
+        XCTAssertTrue(recipesViewExists())
     }
 }

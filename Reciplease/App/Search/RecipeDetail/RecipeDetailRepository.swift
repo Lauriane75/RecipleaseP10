@@ -15,9 +15,9 @@ protocol RecipeDetailRepositoryType {
 }
 
 final class RecipeDetailRepository: RecipeDetailRepositoryType {
-
+    
     private let stack: CoreDataStack
-
+    
     init(stack: CoreDataStack) {
         self.stack = stack
     }

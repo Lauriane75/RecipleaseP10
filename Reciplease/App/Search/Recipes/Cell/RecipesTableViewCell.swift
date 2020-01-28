@@ -44,6 +44,4 @@ final class RecipesTableViewCell: UITableViewCell {
     func updateCell(with recipe: RecipeItem) {
         self.recipe = recipe
     }
-    
 }
-

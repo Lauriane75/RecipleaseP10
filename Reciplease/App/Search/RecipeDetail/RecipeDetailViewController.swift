@@ -94,7 +94,8 @@ class RecipeDetailViewController: UIViewController {
     }
     
     private func navigationBar() {
-        navigationItem.title = Accessibility.RecipeDetailView.title
+        viewModel.navBarTitle = { text in
+            self.navigationItem.title = text
+        }
     }
-    
 }

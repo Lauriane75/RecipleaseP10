@@ -22,7 +22,7 @@ final class CreationsListViewModel {
     private var repository: CreationRepositoryType
     
     private var delegate: CreationsListViewModelDelegate?
-
+    
     // MARK: - Initializer
     
     init(repository: CreationRepositoryType, delegate: CreationsListViewModelDelegate?) {

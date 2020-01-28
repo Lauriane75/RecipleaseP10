@@ -12,10 +12,10 @@ import UIKit
 final class Screens {
     
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: Screens.self))
-
+    
     private let context: Context
     private let stack: CoreDataStack
-
+    
     init(context: Context, stack: CoreDataStack) {
         self.context = context
         self.stack = stack

@@ -25,5 +25,3 @@ extension StringProtocol {
         return String(prefix(1)).capitalized + dropFirst()
     }
 }
-
-

@@ -31,7 +31,6 @@ final class MockSavingCreationRepo: CreationRepositoryType {
     }
 
     func didPressSaveButton(creation: CreationItem) {
-        
     }
     
     func didPressRemoveCreation(titleCreation: String) {
@@ -57,6 +56,7 @@ class CreationDetailViewModelTests: XCTestCase {
         let expectation4 = self.expectation(description: "Displayed timeLabel")
         let expectation5 = self.expectation(description: "Displayed dietLabel")
         let expectation6 = self.expectation(description: "Displayed yieldLabel")
+        let expectation7 = self.expectation(description: "Displayed navBarTitle")
         
         viewModel.creationDisplayed = { creation in
             XCTAssertEqual(creation, ([self.creation]))
@@ -81,6 +81,10 @@ class CreationDetailViewModelTests: XCTestCase {
         viewModel.yieldLabel = { text in
             XCTAssertEqual(text, (self.creation.yield))
             expectation6.fulfill()
+        }
+        viewModel.navBarTitle = { text in
+            XCTAssertEqual(text, "Detail Creation")
+            expectation7.fulfill()
         }
 
         viewModel.viewDidLoad()

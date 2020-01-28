@@ -38,6 +38,7 @@ final class CreationDetailViewModel {
     var timeLabel: ((String) -> Void)?
     var categoryLabel: ((String) -> Void)?
     var yieldLabel: ((String) -> Void)?
+    var navBarTitle: ((String) -> Void)?
 
     var imageData: ((Data?) -> Void)?
     
@@ -56,6 +57,7 @@ final class CreationDetailViewModel {
         self.creationButton?("My creations")
         self.creationDisplayed?([creation])
         self.imageData?(creation.image)
+        self.navBarTitle?("Detail Creation")
     }
     
     func didPressMyCreationsButton() {

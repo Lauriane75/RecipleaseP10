@@ -50,12 +50,12 @@ final class RecipesViewModel {
     var activityIndicatorIsLoading: ((Bool) -> Void)?
     
     // MARK: - Input
-
+    
     func viewWillAppear() {
         activityIndicatorIsLoading?(true)
         guard let url = route.getURL(ingredients: ingredients) else { return }
         repository.getRecipes(url: url, success: { [weak self] recipes in
-
+            
             switch recipes {
             case .success(value: let
                 recipeArray):
@@ -72,7 +72,7 @@ final class RecipesViewModel {
         })
         recipesDisplayed?(recipes)
     }
-
+    
     func didSelectRecipe(recipe: RecipeItem) {
         delegate?.selectRecipe(recipe: recipe)
     }

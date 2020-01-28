@@ -11,7 +11,7 @@ import UIKit
 final class CreationsListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private var creations: [CreationItem] = []
-
+    
     var selectedCreation: ((CreationItem) -> Void)?
     
     func update (updatedCreations: [CreationItem]) {

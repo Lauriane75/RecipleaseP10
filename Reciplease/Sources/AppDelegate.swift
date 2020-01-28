@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator?.start()
         return true
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         
     }

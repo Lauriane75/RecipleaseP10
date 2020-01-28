@@ -35,7 +35,4 @@ final class CreationDetailDataSource: NSObject, UITableViewDataSource {
         
         return cell
     }
-    
 }
-
-

@@ -85,7 +85,7 @@ class CreationsListViewModelTests: XCTestCase {
 
         viewModel.creationItem = { creation in
 
-        XCTAssertEqual(creation, [])
+            XCTAssertEqual(creation, [])
         }
     }
 

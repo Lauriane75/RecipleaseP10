@@ -23,9 +23,9 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
     private var favoriteRecipesCoordinator: FavoriteCoordinator?
     
     private var creationCoordinator: CreationsCoordinator?
-
+    
     private let context: Context
-
+    
     private let stack: CoreDataStack
     
     // MARK: - Init
@@ -34,9 +34,9 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
         self.presenter = presenter
         
         self.screens = Screens(context: context, stack: stack)
-    
+        
         self.context = context
-
+        
         self.stack = stack
         
         tabBarController = UITabBarController(nibName: nil, bundle: nil)
