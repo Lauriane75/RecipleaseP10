@@ -159,22 +159,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
             self.PhotoPickerController()
         }
     }
-    
-    /// func in case denied requestAuthorization
-//    fileprivate func deniedCase() {
-//        let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings if you want to change it", preferredStyle: .alert)
-//        let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
-//            DispatchQueue.main.async {
-//                let url = URL(string: UIApplication.openSettingsURLString)!
-//                UIApplication.shared.open(url, options:[:])
-//            }
-//        }
-//        let cancelAction = UIAlertAction(title:"Cancel", style: .cancel)
-//        alert.addAction(goToSettings)
-//        alert.addAction(cancelAction)
-//        self.present(alert, animated: true)
-//    }
-    
+
     fileprivate func addPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -251,7 +236,7 @@ class SavingCreationViewController: UIViewController, UIImagePickerControllerDel
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
             notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            view.frame.origin.y = -(keyboardHeight/3)
+            view.frame.origin.y = -(keyboardHeight/2)
         } else {
             view.frame.origin.y = 0
         }
