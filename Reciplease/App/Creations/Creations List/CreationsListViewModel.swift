@@ -48,8 +48,5 @@ final class CreationsListViewModel {
     func didSelectCreation(creation: CreationItem) {
         delegate?.selectCreation(creation: creation)
     }
-    
-    func didPressDeleteCreation(name: String) {
-        repository.didPressRemoveCreation(titleCreation: name)
-    }
+
 }

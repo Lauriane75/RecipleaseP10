@@ -63,7 +63,7 @@ final class SavingCreationViewModel {
     
     func didPressSaveButton(titleTextField: String, ingredientTextField: String, methodTextField: String, timeTextField: String, dietCategoryTextField: String, yieldTextField: String) {
         
-        guard !titleTextField.isEmpty && !ingredientTextField.isEmpty && !methodTextField.isEmpty && !timeTextField.isEmpty  && !dietCategoryTextField.isEmpty && !yieldTextField.isEmpty else {
+        guard !titleTextField.isEmpty && !ingredientTextField.isEmpty && !methodTextField.isEmpty && !timeTextField.isEmpty  && !dietCategoryTextField.isEmpty && !yieldTextField.isEmpty && imageData != nil else {
             delegate?.displayAlert(for: .itemEmpty)
             return }
         

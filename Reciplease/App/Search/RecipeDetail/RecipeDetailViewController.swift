@@ -33,15 +33,15 @@ class RecipeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bind(to: viewModel)
-        
-        viewModel.viewDidLoad()
-        
+        navigationBar()
+
         self.tableView.dataSource = recipeDetailDataSource
         
         elementsCustom()
-        
-        navigationBar()
+
+        bind(to: viewModel)
+
+        viewModel.viewDidLoad()
     }
     
     // MARK: - Private Functions

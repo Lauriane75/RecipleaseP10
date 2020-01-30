@@ -50,7 +50,6 @@ class CreationDetailViewModelTests: XCTestCase {
         
         let viewModel = CreationDetailViewModel(repository: repository, delegate: delegate, creation: creation)
         
-        let expectation1 = self.expectation(description: "Displayed creationDisplayed")
         let expectation2 = self.expectation(description: "Displayed titleLabel")
         let expectation3 = self.expectation(description: "Displayed ingredientsAndMethod")
         let expectation4 = self.expectation(description: "Displayed timeLabel")
@@ -58,10 +57,6 @@ class CreationDetailViewModelTests: XCTestCase {
         let expectation6 = self.expectation(description: "Displayed yieldLabel")
         let expectation7 = self.expectation(description: "Displayed navBarTitle")
         
-        viewModel.creationDisplayed = { creation in
-            XCTAssertEqual(creation, ([self.creation]))
-            expectation1.fulfill()
-        }
         viewModel.titleLabel = { text in
             XCTAssertEqual(text, (self.creation.name))
             expectation2.fulfill()

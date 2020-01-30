@@ -73,7 +73,7 @@ class RecipeDetailViewModelTests: XCTestCase {
             expectation6.fulfill()
         }
         viewModel.navBarTitle = { text in
-            XCTAssertEqual(text, "Detail Recipes")
+            XCTAssertEqual(text, "Detail Recipe")
             expectation7.fulfill()
         }
         

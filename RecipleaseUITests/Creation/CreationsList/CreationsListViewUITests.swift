@@ -9,7 +9,8 @@
 import XCTest
 
 class CreationsListViewUITests: UITestCase, RootViewStarting, CreationsListViewVerifying {
-    
+
+    // make sure there is no creation saved in creationList
     func testExample() {
         showCreationsListView()
         _ = noCreationFound.waitForExistence(timeout: 1)

@@ -42,14 +42,13 @@ final class RecipeDetailViewModel {
     // MARK: - Input
     
     func viewDidLoad() {
-        navBarTitle?("Detail Recipes")
-        
         recipeDisplayed?(recipe)
         image?("\(recipe.imageName)")
         setUpTime()
         setUpCategory()
         setUpYield()
         nameRecipeButton?("\(recipe.name)")
+        navBarTitle?("Detail Recipe")
         
         self.repository.verifyingFavoriteState(recipeName: self.recipe.name) {
             (state) in

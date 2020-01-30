@@ -41,8 +41,7 @@ final class CreationDetailViewModel {
     var navBarTitle: ((String) -> Void)?
     var imageData: ((Data?) -> Void)?
     var creationButton: ((String) -> Void)?
-    var creationDisplayed: (([CreationItem]) -> Void)?
-    
+
     // MARK: - Input
     
     func viewDidLoad() {
@@ -52,7 +51,6 @@ final class CreationDetailViewModel {
         self.categoryLabel?(creation.category)
         self.yieldLabel?(creation.yield)
         self.creationButton?("My creations")
-        self.creationDisplayed?([creation])
         self.imageData?(creation.image)
         self.navBarTitle?("Detail Creation")
     }

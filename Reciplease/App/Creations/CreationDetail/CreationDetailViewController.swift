@@ -76,6 +76,7 @@ class CreationDetailViewController: UIViewController {
             self?.tableView.reloadData()
         }
         viewModel.imageData = { [weak self] data in
+            guard data != nil else { return }
             self?.imageView.image = UIImage(data: data!)
         }
     }
