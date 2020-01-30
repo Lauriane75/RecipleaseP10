@@ -33,20 +33,6 @@ class SavingCreationViewUITests: UITestCase, RootViewStarting, SavingCreationVie
         XCTAssertTrue(sourceAuthorizationViewExists())
     }
 
-    func test_fillTheTextfields() {
-        // Show view
-        showSavingCreationView()
-        // Wait
-        savingCreationViewWaitForExistence()
-        // Fill textField
-        titleTextField.tap()
-        titleTextField.typeText("test")
-        ingredientTextField.tap()
-        ingredientTextField.typeText("test")
-        methodTextField.tap()
-        methodTextField.typeText("test")
-    }
-
     func test_Given_SavingCreation_When_SaveButtonTap_Then_Alert() {
         // Show view
         showSavingCreationView()
